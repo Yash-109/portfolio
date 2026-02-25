@@ -30,7 +30,19 @@ export default function Page() {
             </div>
 
             {/* RIGHT COLUMN — SKILLS GRID */}
-            <SkillsGrid />
+            <div
+              className="
+                relative
+                bg-slate-900/60
+                border border-slate-800
+                rounded-2xl
+                p-6
+                backdrop-blur-md
+                shadow-[0_10px_40px_rgba(0,0,0,0.35)]
+              "
+            >
+              <SkillsGrid />
+            </div>
 
           </div>
         </Surface>

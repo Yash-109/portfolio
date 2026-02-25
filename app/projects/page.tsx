@@ -16,12 +16,12 @@ export default function ProjectsPage() {
         </div>
 
         {/* Featured Project */}
-        <div className="border border-gray-700 rounded-xl p-8 space-y-6">
+        <div className="border border-gray-700 rounded-xl p-10 bg-gray-900/40 space-y-6">
           <span className="text-xs uppercase tracking-wide text-indigo-400">
             Featured Project
           </span>
           
-          <h2 className="text-2xl font-semibold">TradeJournal Pro+</h2>
+          <h2 className="text-3xl font-semibold">TradeJournal Pro+</h2>
           
           <p className="text-gray-400">
             Multi-market trading analytics platform with rule-based scoring, session analytics, and behavioral tracking.
@@ -38,13 +38,13 @@ export default function ProjectsPage() {
           <div className="flex gap-4">
             <Link 
               href="/projects/tradejournal"
-              className="border border-gray-700 rounded px-6 py-2 hover:bg-gray-900 transition-colors"
+              className="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-md text-sm font-medium"
             >
               View Case Study
             </Link>
             <a 
               href="#"
-              className="border border-gray-700 rounded px-6 py-2 hover:bg-gray-900 transition-colors"
+              className="border border-gray-600 hover:border-gray-400 px-5 py-2 rounded-md text-sm"
             >
               GitHub
             </a>
@@ -52,13 +52,13 @@ export default function ProjectsPage() {
         </div>
 
         {/* Other Projects */}
-        <div className="space-y-8">
+        <div className="space-y-8 mt-12">
           <h2 className="text-2xl font-semibold">Other Projects</h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Electrotrack */}
-            <div className="border border-gray-700 rounded-lg p-6 space-y-4">
+            <div className="border border-gray-800 rounded-lg p-6 space-y-4">
               <h3 className="text-lg font-semibold">Electrotrack</h3>
               <p className="text-gray-400 text-sm">
                 Real-time electrical consumption monitoring and analytics system.
@@ -70,14 +70,14 @@ export default function ProjectsPage() {
               </div>
               <a 
                 href="#"
-                className="inline-block border border-gray-700 rounded px-4 py-2 text-sm hover:bg-gray-900 transition-colors"
+                className="inline-block border border-gray-600 px-4 py-1.5 rounded-md text-xs"
               >
                 View Details
               </a>
             </div>
 
             {/* ML Disease Detection */}
-            <div className="border border-gray-700 rounded-lg p-6 space-y-4">
+            <div className="border border-gray-800 rounded-lg p-6 space-y-4">
               <h3 className="text-lg font-semibold">ML Disease Detection</h3>
               <p className="text-gray-400 text-sm">
                 Machine learning model for early disease detection from medical imaging.
@@ -89,14 +89,14 @@ export default function ProjectsPage() {
               </div>
               <a 
                 href="#"
-                className="inline-block border border-gray-700 rounded px-4 py-2 text-sm hover:bg-gray-900 transition-colors"
+                className="inline-block border border-gray-600 px-4 py-1.5 rounded-md text-xs"
               >
                 View Details
               </a>
             </div>
 
             {/* Face Beats */}
-            <div className="border border-gray-700 rounded-lg p-6 space-y-4">
+            <div className="border border-gray-800 rounded-lg p-6 space-y-4">
               <h3 className="text-lg font-semibold">Face Beats</h3>
               <p className="text-gray-400 text-sm">
                 Face detection music player with emotion-based playlist generation.
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
               </div>
               <a 
                 href="#"
-                className="inline-block border border-gray-700 rounded px-4 py-2 text-sm hover:bg-gray-900 transition-colors"
+                className="inline-block border border-gray-600 px-4 py-1.5 rounded-md text-xs"
               >
                 View Details
               </a>

@@ -314,26 +314,28 @@ export default function TradeJournalPage() {
           </div>
         </section>
 
-        {/* SCREENSHOTS SECTION */}
+        {/* LIVE ACCESS & SOURCE SECTION */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-semibold">Interface Preview</h2>
+          <h2 className="text-2xl font-semibold">Live Access & Source</h2>
           
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div className="border border-gray-700 rounded-lg h-56 flex items-center justify-center text-gray-500">
-              Dashboard Overview
-            </div>
+          <p className="text-gray-400 max-w-2xl">
+            This project is structured as a full-stack analytical system with a modular architecture. 
+            The source code demonstrates separation of concerns between UI, API, business logic, and data layers.
+          </p>
 
-            <div className="border border-gray-700 rounded-lg h-56 flex items-center justify-center text-gray-500">
-              Trade Entry Form
-            </div>
-
-            <div className="border border-gray-700 rounded-lg h-56 flex items-center justify-center text-gray-500">
-              Analytics Charts
-            </div>
-
-            <div className="border border-gray-700 rounded-lg h-56 flex items-center justify-center text-gray-500">
-              Session Evaluation
-            </div>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <a 
+              href="#"
+              className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-md font-medium"
+            >
+              View Source Code
+            </a>
+            <a 
+              href="#"
+              className="border border-gray-600 hover:border-gray-400 px-6 py-3 rounded-md font-medium"
+            >
+              Deployment Plan
+            </a>
           </div>
         </section>
 

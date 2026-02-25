@@ -1,18 +1,21 @@
 import { ReactNode } from "react";
+import Reveal from "@/components/Reveal";
 
 interface SectionProps {
   id: string;
+  title: string;
   children: ReactNode;
-  className?: string;
 }
 
-export default function Section({ id, children, className = "" }: SectionProps) {
+export default function Section({ id, title, children }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={`min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 md:px-8 relative ${className}`}
-    >
-      {children}
+    <section id={id} className="py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <Reveal stagger>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
+          {children}
+        </Reveal>
+      </div>
     </section>
   );
 }

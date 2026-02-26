@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import Surface from "@/components/Surface";
 import SkillsGrid from "@/components/SkillsGrid";
+import ExperienceEducation from "@/components/ExperienceEducation";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ContactForm from "@/components/ContactForm";
 
@@ -70,6 +71,10 @@ export default function Page() {
 
           </div>
         </Surface>
+      </Section>
+
+      <Section id="experience" title="Experience & Education">
+        <ExperienceEducation />
       </Section>
 
       <Section id="projects" title="Projects">

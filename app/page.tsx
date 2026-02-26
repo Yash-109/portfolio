@@ -2,6 +2,8 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import Surface from "@/components/Surface";
 import SkillsGrid from "@/components/SkillsGrid";
+import FeaturedProjects from "@/components/FeaturedProjects";
+import ContactForm from "@/components/ContactForm";
 
 export default function Page() {
   return (
@@ -71,11 +73,11 @@ export default function Page() {
       </Section>
 
       <Section id="projects" title="Projects">
-        <p className="text-slate-300 max-w-2xl">Placeholder content.</p>
+        <FeaturedProjects />
       </Section>
 
       <Section id="contact" title="Contact">
-        <p className="text-slate-300 max-w-2xl">Placeholder content.</p>
+        <ContactForm />
       </Section>
     </main>
   );

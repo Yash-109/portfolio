@@ -15,6 +15,22 @@ export default function Navbar() {
     return pathname.startsWith(path);
   };
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navbarHeight = 64; // Height of sticky navbar
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarHeight - 20; // Extra 20px padding
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav
       className="sticky top-0 z-50 bg-[#0F172A]/80 backdrop-blur-md border-b border-slate-800"
@@ -45,7 +61,8 @@ export default function Navbar() {
               </Link>
               <a
                 href="/#experience"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                onClick={(e) => handleSmoothScroll(e, "experience")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 Experience
               </a>
@@ -143,8 +160,8 @@ export default function Navbar() {
           </Link>
           <a
             href="/#experience"
-            onClick={() => setIsMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors"
+            onClick={(e) => handleSmoothScroll(e, "experience")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             Experience
           </a>

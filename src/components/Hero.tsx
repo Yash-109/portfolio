@@ -141,16 +141,19 @@ export default function Hero() {
             >
               <Link
                 href="/projects"
-                className="group relative px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium text-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105"
+                className="group relative px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium text-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 active:scale-95"
               >
                 <span className="relative z-10">View Projects</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
               </Link>
 
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105"
+                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-blue-500/10"
               >
                 Download Resume
               </a>
@@ -159,7 +162,7 @@ export default function Hero() {
                 href="https://github.com/Yash-109"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105"
+                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-blue-500/10"
               >
                 GitHub
               </a>
@@ -206,10 +209,11 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.9 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-slate-800/40 backdrop-blur-sm border border-slate-700 rounded-lg flex items-center gap-2 text-gray-300 hover:border-blue-500 transition-all duration-300 cursor-default"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative px-4 py-2 bg-slate-800/40 backdrop-blur-sm border border-slate-700 rounded-lg flex items-center gap-2 text-gray-300 hover:border-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-default group"
               >
-                <span className="text-lg">{tech.icon}</span>
+                <span className="text-lg group-hover:scale-110 transition-transform duration-300">{tech.icon}</span>
                 <span className="text-sm font-medium">{tech.name}</span>
               </motion.div>
             ))}

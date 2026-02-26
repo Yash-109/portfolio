@@ -17,18 +17,9 @@ const projects = [
     id: "electrotrack",
     title: "Electrotrack",
     description:
-      "Real-time electrical consumption monitoring and analytics system with structured energy usage tracking and visualization.",
-    techStack: ["React", "Python", "IoT", "Data Analytics"],
+      "Full-stack e-commerce platform for electronics retail with secure authentication, Razorpay payments, and admin analytics dashboard.",
+    techStack: ["Next.js 15", "TypeScript", "MongoDB", "NextAuth.js", "Razorpay"],
     link: "/projects/electrotrack",
-    featured: false,
-  },
-  {
-    id: "ml-disease-detection",
-    title: "ML Disease Detection",
-    description:
-      "Machine learning model for early disease detection using medical imaging data with TensorFlow and OpenCV integration.",
-    techStack: ["Python", "TensorFlow", "OpenCV", "ML"],
-    link: "/projects/ml-disease-detection",
     featured: false,
   },
 ];

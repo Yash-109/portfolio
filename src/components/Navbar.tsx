@@ -1,94 +1,74 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 20);
-
-    const scrollPosition = window.scrollY + 100;
-    
-    for (let i = navLinks.length - 1; i >= 0; i--) {
-      const section = document.querySelector(navLinks[i].href);
-      if (section instanceof HTMLElement && scrollPosition >= section.offsetTop) {
-        setActiveSection(navLinks[i].href.substring(1));
-        break;
-      }
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return pathname === "/";
     }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  const handleLinkClick = (href: string) => {
-    setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    return pathname.startsWith(path);
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#0F172A]/80 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      }`}
+      className="sticky top-0 z-50 bg-[#0F172A]/80 backdrop-blur-md border-b border-slate-800"
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick("#home");
-              }}
-              className="text-xl font-bold text-white hover:text-indigo-300 transition-colors"
+            <Link
+              href="/"
+              className="text-xl font-bold text-white hover:text-gray-300 transition-colors"
             >
               Yash Parmar
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.href);
-                    }}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      isActive
-                        ? "text-indigo-400 bg-indigo-500/10"
-                        : "text-gray-300 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-                );
-              })}
+              <Link
+                href="/"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/")
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="/projects"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/projects")
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                Projects
+              </Link>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors"
+              >
+                Resume
+              </a>
+              <a
+                href="https://github.com/Yash-109"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors"
+              >
+                GitHub
+              </a>
             </div>
           </div>
 
@@ -143,28 +123,47 @@ export default function Navbar() {
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#0F172A]/95 backdrop-blur-md">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href.substring(1);
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                }}
-                aria-current={isActive ? "page" : undefined}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  isActive
-                    ? "text-indigo-400 bg-indigo-500/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {link.name}
-              </a>
-            );
-          })}
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#0F172A]/95 backdrop-blur-md border-t border-slate-800">
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+              isActive("/")
+                ? "text-white"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Home
+          </Link>
+          <Link
+            href="/projects"
+            onClick={() => setIsMenuOpen(false)}
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+              isActive("/projects")
+                ? "text-white"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Projects
+          </Link>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors"
+          >
+            Resume
+          </a>
+          <a
+            href="https://github.com/Yash-109"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors"
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </nav>

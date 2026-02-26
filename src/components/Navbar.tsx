@@ -59,13 +59,6 @@ export default function Navbar() {
               >
                 Home
               </Link>
-              <a
-                href="/#experience"
-                onClick={(e) => handleSmoothScroll(e, "experience")}
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
-              >
-                Experience
-              </a>
               <Link
                 href="/projects"
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -76,6 +69,20 @@ export default function Navbar() {
               >
                 Projects
               </Link>
+              <a
+                href="/#certifications"
+                onClick={(e) => handleSmoothScroll(e, "certifications")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Certifications
+              </a>
+              <a
+                href="/#experience"
+                onClick={(e) => handleSmoothScroll(e, "experience")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Experience
+              </a>
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -158,13 +165,6 @@ export default function Navbar() {
           >
             Home
           </Link>
-          <a
-            href="/#experience"
-            onClick={(e) => handleSmoothScroll(e, "experience")}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
-          >
-            Experience
-          </a>
           <Link
             href="/projects"
             onClick={() => setIsMenuOpen(false)}
@@ -176,6 +176,20 @@ export default function Navbar() {
           >
             Projects
           </Link>
+          <a
+            href="/#certifications"
+            onClick={(e) => handleSmoothScroll(e, "certifications")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            Certifications
+          </a>
+          <a
+            href="/#experience"
+            onClick={(e) => handleSmoothScroll(e, "experience")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            Experience
+          </a>
           <a
             href="/resume.pdf"
             target="_blank"

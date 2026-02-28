@@ -59,6 +59,13 @@ export default function Navbar() {
               >
                 Home
               </Link>
+              <a
+                href="/#skills"
+                onClick={(e) => handleSmoothScroll(e, "skills")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Skills
+              </a>
               <Link
                 href="/projects"
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -77,11 +84,11 @@ export default function Navbar() {
                 Certifications
               </a>
               <a
-                href="/#experience"
-                onClick={(e) => handleSmoothScroll(e, "experience")}
+                href="/#education"
+                onClick={(e) => handleSmoothScroll(e, "education")}
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
-                Experience
+                Education
               </a>
               <a
                 href="/resume.pdf"
@@ -165,6 +172,13 @@ export default function Navbar() {
           >
             Home
           </Link>
+          <a
+            href="/#skills"
+            onClick={(e) => handleSmoothScroll(e, "skills")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            Skills
+          </a>
           <Link
             href="/projects"
             onClick={() => setIsMenuOpen(false)}
@@ -184,11 +198,11 @@ export default function Navbar() {
             Certifications
           </a>
           <a
-            href="/#experience"
-            onClick={(e) => handleSmoothScroll(e, "experience")}
+            href="/#education"
+            onClick={(e) => handleSmoothScroll(e, "education")}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
-            Experience
+            Education
           </a>
           <a
             href="/resume.pdf"

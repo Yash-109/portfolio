@@ -1,3 +1,15 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'TradeJournal Pro+',
+  description: 'Multi-market trading analytics platform with rule-based scoring, session analytics, and behavioral tracking across Equity, F&O, and Forex markets.',
+  openGraph: {
+    title: 'TradeJournal Pro+ | Yash Parmar',
+    description: 'Multi-market trading analytics platform focused on risk discipline and structured performance tracking.',
+    url: 'https://yashparmar.dev/projects/tradejournal',
+  },
+};
+
 export default function TradeJournalPage() {
   return (
     <main className="bg-[#0F172A] text-white min-h-screen">

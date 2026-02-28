@@ -1,3 +1,15 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Electrotrack',
+  description: 'Full-stack e-commerce platform for electronics retail with secure authentication, integrated Razorpay payments, and comprehensive admin analytics.',
+  openGraph: {
+    title: 'Electrotrack | Yash Parmar',
+    description: 'Professional e-commerce platform for electronics retail with secure authentication and integrated payments.',
+    url: 'https://yashparmar.dev/projects/electrotrack',
+  },
+};
+
 export default function ElectrotrackPage() {
   return (
     <main className="bg-[#0F172A] text-white min-h-screen">

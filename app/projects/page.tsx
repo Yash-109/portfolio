@@ -1,4 +1,15 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Full-stack and analytical systems focused on performance, scalability, and real-world problem solving. Built with Next.js, React, Node.js, and MongoDB.',
+  openGraph: {
+    title: 'Projects | Yash Parmar',
+    description: 'Full-stack and analytical systems focused on performance, scalability, and real-world problem solving.',
+    url: 'https://yashparmar.dev/projects',
+  },
+};
 
 export default function ProjectsPage() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import {
@@ -103,13 +103,8 @@ export default function Contact() {
     );
   }, []); // runs once on client mount only
 
-  /* debounced real-time validation */
-  useEffect(() => {
-    const timer = setTimeout(() => validateFields(), 500);
-    return () => clearTimeout(timer);
-  }, [formData]);
-
-  const validateFields = () => {
+  /* validation function wrapped in useCallback */
+  const validateFields = useCallback(() => {
     const errors: Record<string, string> = {};
     const valid: Record<string, boolean> = {};
 
@@ -136,7 +131,13 @@ export default function Contact() {
 
     setValidationErrors(errors);
     setValidFields(valid);
-  };
+  }, [formData]);
+
+  /* debounced real-time validation */
+  useEffect(() => {
+    const timer = setTimeout(() => validateFields(), 500);
+    return () => clearTimeout(timer);
+  }, [formData, validateFields]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -146,6 +147,9 @@ export default function Contact() {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
+
+    // Validate all fields immediately before submission
+    validateFields();
 
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       setStatus("error");
@@ -503,7 +507,7 @@ export default function Contact() {
                         initial={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
                         animate={{ x: p.x, y: p.y, opacity: 0, scale: 0, rotate: p.rotate }}
                         transition={{ duration: 1.2, delay: p.delay, ease: "easeOut" }}
-                        className="confetti-particle absolute top-1/2 left-1/2"
+                        className="confetti-particle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                         style={{ backgroundColor: p.color }}
                       />
                     ))}

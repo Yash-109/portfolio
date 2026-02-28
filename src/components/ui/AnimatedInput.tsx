@@ -217,9 +217,9 @@ export default function AnimatedInput({
             <motion.label
               htmlFor={id}
               animate={{
-                y: isFloating ? -34 : 0,
-                x: isFloating ? -44 : 0,
-                scale: isFloating ? 0.8 : 1,
+                y: isFloating ? -38 : 0,
+                x: isFloating ? -40 : 0,
+                scale: isFloating ? 0.85 : 1,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className={`
@@ -235,7 +235,7 @@ export default function AnimatedInput({
                       ? "text-purple-400"
                       : "text-gray-400"
                 }
-                ${isFloating ? "bg-gray-900/95 px-2 rounded" : ""}
+                ${isFloating ? "bg-[#0F172A] px-2 rounded-md" : ""}
               `}
               style={{ originX: 0, originY: 0.5 }}
             >

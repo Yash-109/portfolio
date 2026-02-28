@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useCallback } from "react";
 
 interface FloatingActionButtonProps {
   icon: ReactNode;
@@ -30,7 +30,7 @@ export default function FloatingActionButton({
     }
   }, [label]);
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isHovered) return;
 
     const button = document.getElementById(`fab-${label}`);
@@ -56,12 +56,12 @@ export default function FloatingActionButton({
     } else {
       setMousePosition({ x: 0, y: 0 });
     }
-  };
+  }, [isHovered, label]);
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isHovered]);
+  }, [handleMouseMove]);
 
   const colorClasses = {
     cyan: "bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 hover:shadow-cyan-500/50",

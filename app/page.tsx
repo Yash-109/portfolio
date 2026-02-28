@@ -2,13 +2,15 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import Surface from "@/components/Surface";
 import SkillsGrid from "@/components/SkillsGrid";
-import ExperienceEducation from "@/components/ExperienceEducation";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import Certifications from "@/components/Certifications";
+import Education from "@/components/Education";
+import Experience from "@/components/Experience";
 import ContactForm from "@/components/ContactForm";
 
 export default function Page() {
   return (
+    
     <main className="bg-[#0F172A] text-white">
       <Hero />
 
@@ -32,22 +34,26 @@ export default function Page() {
         </Surface>
       </Section>
 
-      <Section id="projects" title="Featured Projects">
-        <FeaturedProjects />
-      </Section>
-
       <Section id="skills" title="Skills & Technologies">
         <div className="max-w-5xl mx-auto">
           <SkillsGrid />
         </div>
       </Section>
 
+      <Section id="projects" title="Featured Projects">
+        <FeaturedProjects />
+      </Section>
+
       <Section id="certifications" title="Certifications">
         <Certifications />
       </Section>
 
-      <Section id="experience" title="Experience & Education">
-        <ExperienceEducation />
+      <Section id="education" title="Education">
+        <Education />
+      </Section>
+
+      <Section id="experience" title="Experience">
+        <Experience />
       </Section>
 
       <Section id="contact" title="Contact">

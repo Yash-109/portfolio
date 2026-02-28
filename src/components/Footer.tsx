@@ -31,6 +31,14 @@ export default function Footer() {
             >
               Email
             </a>
+            <a
+              href="/Yash_Parmar_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Resume
+            </a>
           </div>
         </div>
 

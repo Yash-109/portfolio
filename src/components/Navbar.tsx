@@ -48,7 +48,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-baseline space-x-6">
               <Link
                 href="/"
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -60,22 +60,26 @@ export default function Navbar() {
                 Home
               </Link>
               <a
+                href="/#about"
+                onClick={(e) => handleSmoothScroll(e, "about")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                About
+              </a>
+              <a
                 href="/#skills"
                 onClick={(e) => handleSmoothScroll(e, "skills")}
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 Skills
               </a>
-              <Link
-                href="/projects"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive("/projects")
-                    ? "text-white"
-                    : "text-gray-400 hover:text-white"
-                }`}
+              <a
+                href="/#projects"
+                onClick={(e) => handleSmoothScroll(e, "projects")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
                 Projects
-              </Link>
+              </a>
               <a
                 href="/#certifications"
                 onClick={(e) => handleSmoothScroll(e, "certifications")}
@@ -91,20 +95,11 @@ export default function Navbar() {
                 Education
               </a>
               <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                href="/#contact"
+                onClick={(e) => handleSmoothScroll(e, "contact")}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
               >
-                Resume
-              </a>
-              <a
-                href="https://github.com/Yash-109"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white transition-colors"
-              >
-                GitHub
+                Contact
               </a>
             </div>
           </div>
@@ -173,23 +168,26 @@ export default function Navbar() {
             Home
           </Link>
           <a
+            href="/#about"
+            onClick={(e) => handleSmoothScroll(e, "about")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            About
+          </a>
+          <a
             href="/#skills"
             onClick={(e) => handleSmoothScroll(e, "skills")}
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             Skills
           </a>
-          <Link
-            href="/projects"
-            onClick={() => setIsMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-              isActive("/projects")
-                ? "text-white"
-                : "text-gray-400 hover:text-white"
-            }`}
+          <a
+            href="/#projects"
+            onClick={(e) => handleSmoothScroll(e, "projects")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             Projects
-          </Link>
+          </a>
           <a
             href="/#certifications"
             onClick={(e) => handleSmoothScroll(e, "certifications")}
@@ -205,22 +203,11 @@ export default function Navbar() {
             Education
           </a>
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors"
+            href="/#contact"
+            onClick={(e) => handleSmoothScroll(e, "contact")}
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
-            Resume
-          </a>
-          <a
-            href="https://github.com/Yash-109"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white transition-colors"
-          >
-            GitHub
+            Contact
           </a>
         </div>
       </div>

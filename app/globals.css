@@ -66,6 +66,12 @@ section {
 
 @theme {
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
+  --animate-shake: shake 0.5s ease-in-out;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shine: shine 0.8s ease-out;
+  --animate-flip: flip 0.6s ease-in-out;
+  --animate-confetti: confetti 1s ease-out forwards;
+  --animate-mesh-gradient: mesh-gradient 20s ease infinite;
 
   @keyframes pulse-slow {
     0%, 100% {
@@ -73,6 +79,68 @@ section {
     }
     50% {
       transform: scale(1.05);
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-8px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(8px);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      transform: rotateX(0);
+    }
+    50% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(180deg);
+    }
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes mesh-gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
     }
   }
 }
@@ -174,3 +242,120 @@ img {
     scroll-behavior: auto;
   }
 }
+
+/* Glassmorphism utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Shine effect for buttons */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.8s ease-out;
+}
+
+.shine-effect:hover::after {
+  left: 100%;
+}
+
+/* Gradient border animation */
+@keyframes gradient-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-border-animated {
+  background: linear-gradient(
+    90deg,
+    #6366f1,
+    #8b5cf6,
+    #06b6d4,
+    #6366f1
+  );
+  background-size: 200% 200%;
+  animation: gradient-border 3s ease infinite;
+}
+
+/* Mesh gradient background */
+.mesh-gradient {
+  background: linear-gradient(
+    135deg,
+    #1e1b4b 0%,
+    #312e81 25%,
+    #1e3a8a 50%,
+    #0e7490 75%,
+    #1e1b4b 100%
+  );
+  background-size: 400% 400%;
+  animation: mesh-gradient 20s ease infinite;
+}
+
+/* Confetti particles */
+.confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: confetti 1s ease-out forwards;
+}
+
+/* Subtle white-alpha helpers used in Contact section */
+.bg-white\/4 {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.bg-white\/8 {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.border-white\/8 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+/* Float slow — used by decorative orbs in Contact */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-18px) scale(1.04); }
+}
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+

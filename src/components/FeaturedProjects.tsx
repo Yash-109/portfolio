@@ -122,24 +122,7 @@ export default function FeaturedProjects() {
         </motion.div>
       ))}
 
-      {/* View All Projects Link */}
-      <motion.div variants={cardVariants} className="md:col-span-2 lg:col-span-3">
-        <Link
-          href="/projects"
-          className="group block relative bg-slate-900/20 backdrop-blur-sm border border-slate-800 border-dashed rounded-2xl p-8 text-center overflow-hidden transition-all duration-300 hover:border-blue-500/50"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          <div className="relative space-y-3">
-            <h3 className="text-xl font-semibold text-gray-300 group-hover:text-white transition-colors">
-              View All Projects
-            </h3>
-            <p className="text-gray-500 text-sm">
-              Explore the complete collection of my work →
-            </p>
-          </div>
-        </Link>
-      </motion.div>
+
     </motion.div>
   );
 }

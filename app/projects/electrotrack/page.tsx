@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ElectrotrackPage() {
   return (
-    <main className="bg-[#0F172A] text-white min-h-screen">
+    <main className="text-white min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-20 space-y-16">
         
         {/* TITLE SECTION */}

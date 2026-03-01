@@ -22,7 +22,7 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] bg-[#0F172A] flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-[#020817] flex items-center justify-center"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}

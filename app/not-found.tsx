@@ -28,7 +28,7 @@ export default function NotFound() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0A0E1A] text-white flex items-center justify-center px-6">
+    <main className="min-h-screen text-white flex items-center justify-center px-6">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-600/10 to-pink-500/5 animate-gradient-slow" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />

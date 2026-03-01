@@ -4,13 +4,11 @@ import AboutSection from "@/components/sections/AboutSection";
 import SkillsGrid from "@/components/SkillsGrid";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import Certifications from "@/components/Certifications";
-import Education from "@/components/Education";
-import Experience from "@/components/Experience";
+import ExperienceEducation from "@/components/ExperienceEducation";
 import Contact from "@/components/Contact";
 
 export default function Page() {
   return (
-    
     <main className="text-white">
       <Hero />
 
@@ -32,12 +30,8 @@ export default function Page() {
         <Certifications />
       </Section>
 
-      <Section id="education" title="Education">
-        <Education />
-      </Section>
-
-      <Section id="experience" title="Experience">
-        <Experience />
+      <Section id="education" title="Experience & Education">
+        <ExperienceEducation />
       </Section>
 
       <Section id="contact" title="Get In Touch">

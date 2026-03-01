@@ -1,3 +1,10 @@
+const SOCIAL_LINKS = [
+  { label: "GitHub",   href: "https://github.com/Yash-109",                    external: true  },
+  { label: "LinkedIn", href: "https://linkedin.com/in/yash-parmar-b99796289",  external: true  },
+  { label: "Email",    href: "mailto:yashparmar1027@gmail.com",                 external: false },
+  { label: "Resume",   href: "/Yash_Parmar_Resume.pdf",                         external: true  },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 mt-24">
@@ -5,45 +12,25 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
           <div className="space-y-1 text-center md:text-left">
             <p className="text-white font-medium">Yash Parmar</p>
-            <p>Full-Stack Developer · Systems & Analytics Focused</p>
+            <p>Full-Stack Developer · Systems &amp; Analytics Focused</p>
           </div>
 
           <div className="flex gap-6 items-center">
-            <a
-              href="https://github.com/Yash-109"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://linkedin.com/in/yash-parmar-b99796289"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="mailto:yashparmar1027@gmail.com"
-              className="hover:text-white transition-colors"
-            >
-              Email
-            </a>
-            <a
-              href="/Yash_Parmar_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              Resume
-            </a>
+            {SOCIAL_LINKS.map(({ label, href, external }) => (
+              <a
+                key={label}
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="hover:text-white transition-colors"
+              >
+                {label}
+              </a>
+            ))}
           </div>
         </div>
 
         <div className="text-center text-xs text-gray-500 mt-6">
-          © 2026 Yash Parmar. All rights reserved.
+          &copy; {new Date().getFullYear()} Yash Parmar. All rights reserved.
         </div>
       </div>
     </footer>

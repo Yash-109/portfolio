@@ -1,5 +1,6 @@
 "use client";
 
+import { type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -11,7 +12,7 @@ interface TimelineItem {
   duration: string;
   status?: string;
   details: string[];
-  icon: React.ReactNode;
+  icon: ReactNode;
   gradient: string;
 }
 

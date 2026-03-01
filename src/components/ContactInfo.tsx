@@ -46,7 +46,7 @@ const linkVariants = {
   show: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { duration: 0.45, delay: 0.2 + i * 0.1, ease: "easeOut" },
+    transition: { duration: 0.45, delay: 0.2 + i * 0.1, ease: "easeOut" as const },
   }),
 };
 

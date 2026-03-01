@@ -1,11 +1,12 @@
 "use client";
 
+import { type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { FaDownload, FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
 import { SiCoursera, SiNvidia } from "react-icons/si";
 
 interface Certificate {
-  id: number;
+  id: string;
   name: string;
   organization: string;
   date: string;
@@ -13,14 +14,14 @@ interface Certificate {
   file: string;
   category: "development" | "ml-ai" | "cloud" | "dsa";
   gradient: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   score?: string;
   certId?: string;
 }
 
 const certificates: Certificate[] = [
   {
-    id: 1,
+    id: "mern-stack",
     name: "MERN Stack Development",
     organization: "Coursera",
     date: "August 2025",
@@ -31,7 +32,7 @@ const certificates: Certificate[] = [
     icon: <SiCoursera className="w-6 h-6" />,
   },
   {
-    id: 2,
+    id: "ml-python",
     name: "Machine Learning with Python",
     organization: "IBM / Coursera",
     date: "August 2025",
@@ -42,7 +43,7 @@ const certificates: Certificate[] = [
     icon: <FaCertificate className="w-6 h-6" />,
   },
   {
-    id: 3,
+    id: "ai-jetson",
     name: "AI on Jetson Nano",
     organization: "NVIDIA",
     date: "January 2025",
@@ -54,7 +55,7 @@ const certificates: Certificate[] = [
     certId: "Xe8g5Ds19yu6WRq48u6EGA",
   },
   {
-    id: 4,
+    id: "dsa-java",
     name: "Data Structures & Algorithms",
     organization: "NPTEL (IIT Kharagpur)",
     date: "Oct 2024",
@@ -66,7 +67,7 @@ const certificates: Certificate[] = [
     score: "52%",
   },
   {
-    id: 5,
+    id: "solutions-arch",
     name: "Solutions Architecture",
     organization: "Forage Platform",
     date: "February 2025",

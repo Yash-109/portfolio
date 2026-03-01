@@ -2,8 +2,18 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-const projects = [
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  link: string;
+  featured: boolean;
+}
+
+const PROJECTS: Project[] = [
   {
     id: "tradejournal",
     title: "TradeJournal Pro+",
@@ -52,7 +62,7 @@ export default function FeaturedProjects() {
       viewport={{ once: true, margin: "-100px" }}
       className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
     >
-      {projects.map((project, index) => (
+      {PROJECTS.map((project, index) => (
         <motion.div
           key={project.id}
           variants={cardVariants}
@@ -101,19 +111,7 @@ export default function FeaturedProjects() {
                 <div className="pt-4">
                   <div className="inline-flex items-center gap-2 text-blue-400 font-medium group-hover:gap-3 transition-all">
                     <span>View Case Study</span>
-                    <svg
-                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>

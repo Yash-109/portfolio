@@ -39,7 +39,7 @@ const skillGroups: SkillGroup[] = [
     gradient: "from-blue-500 to-cyan-500",
     skills: [
       { name: "React", icon: SiReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
@@ -52,7 +52,7 @@ const skillGroups: SkillGroup[] = [
     gradient: "from-green-500 to-emerald-500",
     skills: [
       { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { name: "Express.js", icon: SiExpress, color: "#000000" },
+      { name: "Express.js", icon: SiExpress, color: "#ffffff" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
     ],
   },

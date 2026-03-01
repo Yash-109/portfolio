@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import ContactInput from "./ui/ContactInput";
 
-export default function ContactForm() {
+export default function ContactFormNew() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -57,16 +57,6 @@ export default function ContactForm() {
     // Clear general error message
     if (errorMessage) {
       setErrorMessage("");
-    }
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    if (value.trim()) {
-      const error = validateField(name, value);
-      if (error) {
-        setValidationErrors((prev) => ({ ...prev, [name]: error }));
-      }
     }
   };
 
@@ -125,12 +115,13 @@ export default function ContactForm() {
 
       // Reset success message after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message =
+        typeof error === "object" && error !== null && "text" in error && typeof (error as { text: unknown }).text === "string"
+          ? (error as { text: string }).text
+          : "Failed to send message. Please email me directly at yashparmar1027@gmail.com";
       setStatus("error");
-      setErrorMessage(
-        error?.text ||
-          "Failed to send message. Please email me directly at yashparmar1027@gmail.com"
-      );
+      setErrorMessage(message);
     }
   };
 

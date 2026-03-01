@@ -25,6 +25,8 @@ const TECH_STACK = [
   { name: "Python",     dot: "#F7C948" },
 ];
 
+const WORDS = ["Yash", "Parmar"];
+
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Typewriter hook  (all loop state in refs â€” zero extra re-renders)
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -177,8 +179,6 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
 export default function Hero() {
   const displayed = useTypewriter(ROLES);
   const prefersReduced = useReducedMotion() ?? false;
-
-  const WORDS = ["Yash", "Parmar"];
 
   return (
     <section

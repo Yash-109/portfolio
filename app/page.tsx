@@ -11,7 +11,7 @@ import Contact from "@/components/Contact";
 export default function Page() {
   return (
     
-    <main className="bg-[#0F172A] text-white">
+    <main className="text-white">
       <Hero />
 
       <Section id="about" title="About">

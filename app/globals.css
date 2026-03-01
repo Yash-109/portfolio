@@ -10,54 +10,17 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px; /* Navbar height + padding */
+  scroll-padding-top: 72px;
   min-height: 100%;
-}
-
-html,
-body {
-  background-color: #0F172A;
+  background-color: #020817;
 }
 
 body {
+  background-color: transparent;
   color: white;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(
-      800px at 30% 20%,
-      rgba(79, 70, 229, 0.25),
-      transparent 70%
-    ),
-    radial-gradient(
-      600px at 70% 80%,
-      rgba(168, 85, 247, 0.2),
-      transparent 70%
-    );
-  pointer-events: none;
-  z-index: -2;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.02) 1px,
-    transparent 1px
-  );
-  background-size: 4px 4px;
-  opacity: 0.2;
-  pointer-events: none;
-  z-index: -1;
 }
 
 section {
@@ -191,18 +154,18 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0F172A;
-  border-left: 1px solid #1e293b;
+  background: #020817;
+  border-left: 1px solid #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #4f46e5, #7c3aed);
+  background: linear-gradient(to bottom, #14b8a6, #22d3ee);
   border-radius: 6px;
-  border: 2px solid #0F172A;
+  border: 2px solid #020817;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+  background: linear-gradient(to bottom, #2dd4bf, #38bdf8);
 }
 
 /* Focus visible styling for accessibility */
@@ -357,5 +320,138 @@ img {
 }
 .animate-float-slow {
   animation: float-slow 8s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Autofill Dark Mode Fix
+   ───────────────────────────────────────────────────────────────────── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0 1000px rgb(2, 8, 23) inset !important;
+  box-shadow: 0 0 0 1000px rgb(2, 8, 23) inset !important;
+  transition: background-color 5000s ease-in-out 0s;  
+}
+
+
+/* ─── Aurora Background ──────────────────────────────────────────────────── */
+
+.aurora-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.aurora-beam {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform, opacity;
+}
+
+/* Beam 1 — teal, anchored top-left, drifts slowly diagonal */
+.aurora-beam-1 {
+  width: 70vw;
+  height: 60vh;
+  top: -15%;
+  left: -10%;
+  background: radial-gradient(ellipse at center, rgba(20, 184, 166, 0.38) 0%, transparent 70%);
+  animation: aurora-drift-1 28s ease-in-out infinite;
+}
+
+/* Beam 2 — cyan, right side, long slow loop */
+.aurora-beam-2 {
+  width: 60vw;
+  height: 55vh;
+  top: 25%;
+  right: -15%;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.30) 0%, transparent 70%);
+  animation: aurora-drift-2 35s ease-in-out infinite;
+}
+
+/* Beam 3 — sky-blue, bottom-center */
+.aurora-beam-3 {
+  width: 55vw;
+  height: 50vh;
+  bottom: -10%;
+  left: 20%;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.22) 0%, transparent 70%);
+  animation: aurora-drift-3 25s ease-in-out infinite;
+}
+
+/* Beam 4 — soft indigo, center, bridges to UI accent colors */
+.aurora-beam-4 {
+  width: 45vw;
+  height: 45vh;
+  top: 40%;
+  left: 35%;
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  animation: aurora-drift-4 40s ease-in-out infinite;
+}
+
+/* Mouse-tracking radial spotlight */
+.aurora-mouse-glow {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.08) 0%, transparent 65%);
+  transform: translate(-50%, -50%);
+  left: var(--x, 50vw);
+  top: var(--y, 50vh);
+  pointer-events: none;
+  transition: left 0.12s ease-out, top 0.12s ease-out;
+}
+
+/* SVG fractal noise overlay — prevents gradients looking flat/plastic */
+.aurora-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+
+@keyframes aurora-drift-1 {
+  0%,   100% { transform: translate(0,    0)    scale(1);    }
+  25%        { transform: translate(8%,   12%)  scale(1.08); }
+  50%        { transform: translate(15%,  -5%)  scale(0.95); }
+  75%        { transform: translate(-5%,  8%)   scale(1.05); }
+}
+
+@keyframes aurora-drift-2 {
+  0%,   100% { transform: translate(0,    0)    scale(1);    }
+  33%        { transform: translate(-12%, 8%)   scale(1.10); }
+  66%        { transform: translate(5%,   -10%) scale(0.92); }
+}
+
+@keyframes aurora-drift-3 {
+  0%,   100% { transform: translate(0,    0)    scale(1);    }
+  40%        { transform: translate(-8%,  -12%) scale(1.06); }
+  70%        { transform: translate(6%,   5%)   scale(0.97); }
+}
+
+@keyframes aurora-drift-4 {
+  0%,   100% { transform: translate(0,    0)    scale(1)    rotate(0deg);  }
+  25%        { transform: translate(10%,  -8%)  scale(1.12) rotate(5deg);  }
+  50%        { transform: translate(-6%,  10%)  scale(0.90) rotate(-3deg); }
+  75%        { transform: translate(8%,   5%)   scale(1.08) rotate(2deg);  }
+}
+
+/* Disable aurora animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-beam {
+    animation: none !important;
+  }
 }
 

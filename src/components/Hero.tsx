@@ -62,10 +62,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[#0A0E1A] overflow-hidden">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-600/10 to-pink-500/5 animate-gradient-slow" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
 
       <div className="relative max-w-7xl mx-auto px-6 py-20 w-full">
         <motion.div

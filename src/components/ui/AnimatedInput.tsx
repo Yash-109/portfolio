@@ -235,7 +235,7 @@ export default function AnimatedInput({
                       ? "text-purple-400"
                       : "text-gray-400"
                 }
-                ${isFloating ? "bg-[#0F172A] px-2 rounded-md" : ""}
+                ${isFloating ? "bg-[#020817] px-2 rounded-md" : ""}
               `}
               style={{ originX: 0, originY: 0.5 }}
             >

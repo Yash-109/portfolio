@@ -1,252 +1,212 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import { MapPin, Download, Linkedin } from "lucide-react";
 
 const techStack = [
-  { name: "React", icon: "⚛️" },
-  { name: "Next.js", icon: "▲" },
-  { name: "TypeScript", icon: "TS" },
-  { name: "Node.js", icon: "🟢" },
-  { name: "MongoDB", icon: "🍃" },
-  { name: "Python", icon: "🐍" },
+  { name: "React",      dot: "#61DAFB" },
+  { name: "Next.js",    dot: "#ffffff" },
+  { name: "TypeScript", dot: "#3178C6" },
+  { name: "Node.js",    dot: "#68A063" },
+  { name: "MongoDB",    dot: "#47A248" },
+  { name: "Python",     dot: "#F7C948" },
 ];
 
+const container: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const nameVariant: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, type: "spring", stiffness: 80 } },
+};
+
+const ROLES = ["Full-Stack Developer", "Problem Solver", "Software Developer"];
+
 export default function Hero() {
-  const [text, setText] = useState("");
-  const fullText = "Full-Stack Developer";
-  
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [typing, setTyping] = useState(true);
+
   useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setText(fullText.slice(0, index));
-        index++;
+    const current = ROLES[roleIndex];
+    let i = typing ? 0 : current.length;
+    let alive = true;
+
+    const tick = setInterval(() => {
+      if (!alive) return;
+      if (typing) {
+        i++;
+        setDisplayed(current.slice(0, i));
+        if (i >= current.length) {
+          clearInterval(tick);
+          setTimeout(() => { if (alive) setTyping(false); }, 2600);
+        }
       } else {
-        clearInterval(timer);
+        i--;
+        setDisplayed(current.slice(0, i));
+        if (i <= 0) {
+          clearInterval(tick);
+          setRoleIndex((r) => (r + 1) % ROLES.length);
+          setTimeout(() => { if (alive) setTyping(true); }, 400);
+        }
       }
-    }, 100);
-    
-    return () => clearInterval(timer);
-  }, []);
+    }, typing ? 95 : 48);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
-  const profileVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6 },
-    },
-  };
+    return () => { alive = false; clearInterval(tick); };
+  }, [roleIndex, typing]);
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[#0A0E1A] overflow-hidden">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-600/10 to-pink-500/5 animate-gradient-slow" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 w-full">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-teal-500/6 blur-[140px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-cyan-500/4 blur-[100px]" />
+      </div>
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-20">
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center"
+          className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-center"
         >
-          {/* LEFT SIDE - Content */}
-          <div className="space-y-6 order-2 lg:order-1">
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-400 text-sm md:text-base"
-            >
-              Hi, I'm
-            </motion.p>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold"
-            >
-              <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                Yash Parmar
-              </span>
-            </motion.h1>
+          {/* ── LEFT: Photo ── */}
+          <motion.div variants={item} className="flex justify-center lg:justify-start">
+            <div className="relative flex items-center justify-center w-[320px] h-[320px] md:w-[360px] md:h-[360px]">
 
-            <motion.div
-              variants={itemVariants}
-              className="text-2xl md:text-3xl font-semibold text-white min-h-[40px]"
-            >
-              {text}
-              <span className="animate-pulse">|</span>
-            </motion.div>
+              {/* Rotating gradient ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: "conic-gradient(from 0deg, rgba(20,184,166,0.0) 0%, rgba(20,184,166,0.55) 45%, rgba(6,182,212,0.5) 55%, rgba(20,184,166,0.0) 100%)",
+                  padding: "2px",
+                  borderRadius: "9999px",
+                }}
+              />
+              {/* Mask inner circle to show only ring */}
+              <div className="absolute inset-[2px] rounded-full bg-[#030d18] pointer-events-none" />
 
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-2 text-gray-400"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              <span>Gujarat, India</span>
-            </motion.div>
+              {/* Soft glow */}
+              <div className="absolute inset-0 rounded-full bg-teal-500/10 blur-2xl pointer-events-none scale-110" />
 
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl"
-            >
-              I build scalable web applications with a focus on analytics,
-              discipline, and structured problem-solving.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-4 pt-4"
-            >
-              <Link
-                href="/projects"
-                className="group relative px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium text-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 active:scale-95"
-              >
-                <span className="relative z-10">View Projects</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              </Link>
-
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-blue-500/10"
-              >
-                Download Resume
-              </a>
-
-              <a
-                href="https://github.com/Yash-109"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 border-2 border-slate-700 hover:border-blue-500 rounded-lg font-medium text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-blue-500/10"
-              >
-                GitHub
-              </a>
-            </motion.div>
-          </div>
-
-          {/* RIGHT SIDE - Profile Photo */}
-          <motion.div
-            variants={profileVariants}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
-          >
-            <div className="relative group">
-              {/* Animated Gradient Border */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-gradient"></div>
-              
-              {/* Profile Image */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-slate-800 border-4 border-slate-900">
+              {/* Photo */}
+              <div className="relative w-[calc(100%-6px)] h-[calc(100%-6px)] rounded-full overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.7)]">
                 <Image
                   src="/profile.jpg"
                   alt="Yash Parmar"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top scale-105"
                   priority
                 />
               </div>
             </div>
           </motion.div>
-        </motion.div>
 
-        {/* Tech Stack Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-16 md:mt-20"
-        >
-          <p className="text-gray-400 text-sm mb-4 text-center lg:text-left">
-            Tech Stack
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9 + index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative px-4 py-2 bg-slate-800/40 backdrop-blur-sm border border-slate-700 rounded-lg flex items-center gap-2 text-gray-300 hover:border-blue-500 hover:text-white hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-default group"
-              >
-                <span className="text-lg group-hover:scale-110 transition-transform duration-300">{tech.icon}</span>
-                <span className="text-sm font-medium">{tech.name}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          {/* ── RIGHT: Content ── */}
+          <div className="flex flex-col gap-5 mt-6 lg:mt-0">
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="flex flex-col items-center gap-2 text-gray-400"
-          >
-            <span className="text-xs uppercase tracking-wide">Scroll</span>
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            {/* Availability tag */}
+            <motion.div variants={item}>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-400 text-[11px] font-semibold tracking-widest uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                Available for opportunities
+              </span>
+            </motion.div>
+
+            {/* Name — spring entrance */}
+            <motion.h1
+              variants={nameVariant}
+              className="text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.02]"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </motion.div>
+              Yash Parmar
+            </motion.h1>
+
+            {/* Animated role */}
+            <motion.div variants={item} className="h-9 flex items-center">
+              <span className="text-xl md:text-2xl font-semibold text-teal-300 tracking-tight">
+                {displayed}
+                <span className="inline-block w-[2px] h-6 ml-0.5 bg-teal-400 align-middle rounded-full animate-pulse" />
+              </span>
+            </motion.div>
+
+            {/* Bio */}
+            <motion.p variants={item} className="text-gray-400 text-[15px] leading-7 max-w-md">
+              I build scalable web applications focused on clean architecture,
+              performance, and structured problem-solving.
+            </motion.p>
+
+            {/* Tagline */}
+            <motion.div variants={item} className="flex items-center gap-3">
+              <div className="h-px w-8 bg-teal-500/30 shrink-0" />
+              <p className="text-gray-500 text-sm italic">
+                Building at the intersection of performance and design.
+              </p>
+            </motion.div>
+
+            {/* Location line */}
+            <motion.div variants={item} className="flex items-center gap-1.5 text-gray-500 text-sm">
+              <MapPin size={13} className="text-teal-500/70" strokeWidth={2} />
+              <span>Gujarat, India</span>
+              <span className="mx-1.5 text-gray-700">·</span>
+              <span>Open to Remote &amp; Relocation</span>
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div variants={item} className="flex items-center gap-3 flex-wrap pt-1">
+              {/* Primary — solid */}
+              <a
+                href="/Yash_Parmar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-[#020c14] text-sm font-semibold transition-all duration-200 active:scale-95 shadow-[0_0_24px_rgba(20,184,166,0.35)] hover:shadow-[0_0_32px_rgba(20,184,166,0.55)]"
+              >
+                <Download size={15} strokeWidth={2.5} />
+                Download Resume
+              </a>
+              {/* Secondary — outlined */}
+              <a
+                href="https://linkedin.com/in/yash-parmar-b99796289"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl border border-white/15 text-gray-300 text-sm font-semibold hover:border-teal-500/50 hover:text-teal-300 hover:bg-teal-500/5 transition-all duration-200 active:scale-95"
+              >
+                <Linkedin size={15} strokeWidth={2} />
+                LinkedIn
+              </a>
+            </motion.div>
+
+            {/* Tech stack */}
+            <motion.div variants={item} className="pt-5 border-t border-white/[0.07]">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-gray-600 font-semibold mb-3">
+                Tech Stack
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {techStack.map(({ name, dot }) => (
+                  <span
+                    key={name}
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-gray-300 text-sm font-medium hover:border-teal-500/40 hover:text-teal-300 hover:bg-teal-500/5 transition-all duration-200 cursor-default"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: dot }} />
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
         </motion.div>
       </div>
     </section>

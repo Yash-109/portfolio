@@ -1,11 +1,22 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
-import { useEffect, useState } from "react";
-import { MapPin, Download, Linkedin } from "lucide-react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { MapPin, Download } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 
-const techStack = [
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Constants
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const ROLES = ["Full-Stack Developer", "ML Engineer", "Next.js Developer"];
+
+const TECH_STACK = [
   { name: "React",      dot: "#61DAFB" },
   { name: "Next.js",    dot: "#ffffff" },
   { name: "TypeScript", dot: "#3178C6" },
@@ -14,201 +25,374 @@ const techStack = [
   { name: "Python",     dot: "#F7C948" },
 ];
 
-const container: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const nameVariant: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, type: "spring", stiffness: 80 } },
-};
-
-const ROLES = ["Full-Stack Developer", "Problem Solver", "Software Developer"];
-
-export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Typewriter hook  (all loop state in refs â€” zero extra re-renders)
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function useTypewriter(roles: string[]) {
   const [displayed, setDisplayed] = useState("");
-  const [typing, setTyping] = useState(true);
+  const charRef  = useRef(0);
+  const roleRef  = useRef(0);
+  const phaseRef = useRef<"typing" | "reading" | "deleting" | "waiting">("typing");
+  const ticksRef = useRef(0);
 
   useEffect(() => {
-    const current = ROLES[roleIndex];
-    let i = typing ? 0 : current.length;
-    let alive = true;
+    const TICK_MS    = 65;
+    const READ_TICKS = Math.round(2000 / TICK_MS);
+    const WAIT_TICKS = Math.round(450  / TICK_MS);
 
-    const tick = setInterval(() => {
-      if (!alive) return;
-      if (typing) {
-        i++;
-        setDisplayed(current.slice(0, i));
-        if (i >= current.length) {
-          clearInterval(tick);
-          setTimeout(() => { if (alive) setTyping(false); }, 2600);
+    const id = setInterval(() => {
+      const role = roles[roleRef.current];
+      switch (phaseRef.current) {
+        case "typing": {
+          const next = charRef.current + 1;
+          charRef.current = next;
+          setDisplayed(role.slice(0, next));
+          if (next >= role.length) {
+            phaseRef.current = "reading";
+            ticksRef.current = READ_TICKS;
+          }
+          break;
         }
-      } else {
-        i--;
-        setDisplayed(current.slice(0, i));
-        if (i <= 0) {
-          clearInterval(tick);
-          setRoleIndex((r) => (r + 1) % ROLES.length);
-          setTimeout(() => { if (alive) setTyping(true); }, 400);
+        case "reading": {
+          if (ticksRef.current > 0) ticksRef.current--;
+          else phaseRef.current = "deleting";
+          break;
+        }
+        case "deleting": {
+          const next = charRef.current - 1;
+          charRef.current = next;
+          setDisplayed(role.slice(0, next));
+          if (next <= 0) {
+            roleRef.current = (roleRef.current + 1) % roles.length;
+            phaseRef.current = "waiting";
+            ticksRef.current = WAIT_TICKS;
+          }
+          break;
+        }
+        case "waiting": {
+          if (ticksRef.current > 0) ticksRef.current--;
+          else phaseRef.current = "typing";
+          break;
         }
       }
-    }, typing ? 95 : 48);
+    }, TICK_MS);
 
-    return () => { alive = false; clearInterval(tick); };
-  }, [roleIndex, typing]);
+    return () => clearInterval(id);
+  }, [roles]);
+
+  return displayed;
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   3-D Photo Card with mouse-tracking tilt
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function PhotoCard({ reduced }: { reduced: boolean }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const springX = useSpring(rawX, { stiffness: 150, damping: 15 });
+  const springY = useSpring(rawY, { stiffness: 150, damping: 15 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (reduced || !cardRef.current) return;
+    const r = cardRef.current.getBoundingClientRect();
+    const nx = (e.clientX - r.left) / r.width  - 0.5;
+    const ny = (e.clientY - r.top)  / r.height - 0.5;
+    rawX.set(ny * -24);
+    rawY.set(nx *  24);
+  }
+  function handleMouseLeave() {
+    rawX.set(0);
+    rawY.set(0);
+  }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, x: reduced ? 0 : 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+      {...(!reduced && {
+        animate: { opacity: 1, x: 0, y: [0, -8, 0] },
+        transition: { opacity: { duration: 0.7, delay: 0.35 }, x: { duration: 0.7, delay: 0.35, ease: "easeOut" }, y: { duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" } },
+      })}
+      className="flex justify-center lg:justify-end"
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={
+          reduced
+            ? {}
+            : { rotateX: springX, rotateY: springY, transformStyle: "preserve-3d" }
+        }
+        className="relative cursor-default"
+      >
+        {/* Ambient glow behind circle */}
+        <motion.div
+          aria-hidden
+          className="absolute pointer-events-none rounded-full z-0"
+          style={{
+            inset: "-20%",
+            background: "radial-gradient(circle at 50% 50%, rgba(20,184,166,0.22) 0%, transparent 70%)",
+            filter: "blur(28px)",
+          }}
+          animate={reduced ? {} : { scale: [1, 1.2, 1] }}
+          transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+        />
 
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-teal-500/6 blur-[140px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-cyan-500/4 blur-[100px]" />
+        {/* Floating circle with image */}
+        <div
+          className="relative z-10 overflow-hidden rounded-full"
+          style={{
+            width: "min(240px, 72vw)",
+            height: "min(240px, 72vw)",
+            boxShadow: "0 0 0 3px rgba(20,184,166,0.7), 0 0 60px rgba(20,184,166,0.2)",
+            transform: reduced ? undefined : "translateZ(20px)",
+          }}
+        >
+          <Image
+            src="/profile.jpg"
+            alt="Yash Parmar"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="240px"
+          />
+
+        </div>
+
+
+
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Hero
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+export default function Hero() {
+  const displayed = useTypewriter(ROLES);
+  const prefersReduced = useReducedMotion() ?? false;
+
+  const WORDS = ["Yash", "Parmar"];
+
+  return (
+    <section
+      className="relative min-h-screen flex items-center justify-center"
+    >
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute top-1/3  left-1/4  w-[500px] h-[500px] rounded-full bg-teal-500/5  blur-[160px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/4  blur-[120px]" />
       </div>
 
-      <div className="relative w-full max-w-6xl mx-auto px-6 py-20">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-center"
-        >
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/*
+          Mobile:  single col, photo first (order-1), text second (order-2)
+          Desktop: 55 / 45 grid â€” text left, photo right
+        */}
+        <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 items-center">
 
-          {/* ── LEFT: Photo ── */}
-          <motion.div variants={item} className="flex justify-center lg:justify-start">
-            <div className="relative flex items-center justify-center w-[320px] h-[320px] md:w-[360px] md:h-[360px]">
+          {/* â”€â”€ TEXT COLUMN â”€â”€ */}
+          <div className="order-2 lg:order-1 flex flex-col gap-6">
 
-              {/* Rotating gradient ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: "conic-gradient(from 0deg, rgba(20,184,166,0.0) 0%, rgba(20,184,166,0.55) 45%, rgba(6,182,212,0.5) 55%, rgba(20,184,166,0.0) 100%)",
-                  padding: "2px",
-                  borderRadius: "9999px",
-                }}
-              />
-              {/* Mask inner circle to show only ring */}
-              <div className="absolute inset-[2px] rounded-full bg-[#030d18] pointer-events-none" />
-
-              {/* Soft glow */}
-              <div className="absolute inset-0 rounded-full bg-teal-500/10 blur-2xl pointer-events-none scale-110" />
-
-              {/* Photo */}
-              <div className="relative w-[calc(100%-6px)] h-[calc(100%-6px)] rounded-full overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.7)]">
-                <Image
-                  src="/profile.jpg"
-                  alt="Yash Parmar"
-                  fill
-                  className="object-cover object-top scale-105"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ── RIGHT: Content ── */}
-          <div className="flex flex-col gap-5 mt-6 lg:mt-0">
-
-            {/* Availability tag */}
-            <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-400 text-[11px] font-semibold tracking-widest uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-                Available for opportunities
-              </span>
-            </motion.div>
-
-            {/* Name — spring entrance */}
-            <motion.h1
-              variants={nameVariant}
-              className="text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.02]"
+            {/* [1] Status badge */}
+            <motion.div
+              initial={{ opacity: 0, y: prefersReduced ? 0 : -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
             >
-              Yash Parmar
-            </motion.h1>
-
-            {/* Animated role */}
-            <motion.div variants={item} className="h-9 flex items-center">
-              <span className="text-xl md:text-2xl font-semibold text-teal-300 tracking-tight">
-                {displayed}
-                <span className="inline-block w-[2px] h-6 ml-0.5 bg-teal-400 align-middle rounded-full animate-pulse" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-500/40 bg-teal-500/10 text-teal-400 text-xs font-semibold tracking-widest uppercase">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+                Available for Opportunities
               </span>
             </motion.div>
 
-            {/* Bio */}
-            <motion.p variants={item} className="text-gray-400 text-[15px] leading-7 max-w-md">
+            {/* [2] Name â€” word-level slide-up stagger */}
+            <h1
+              className="font-extrabold text-white leading-[1.05]"
+              style={{
+                fontSize:      "clamp(2.8rem, 6vw, 5.5rem)",
+                letterSpacing: "-0.03em",
+              }}
+              aria-label="Yash Parmar"
+            >
+              {WORDS.map((word, wi) => (
+                <span key={wi} className="inline-block overflow-hidden mr-[0.24em] last:mr-0" style={{ lineHeight: 1.08 }}>
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: prefersReduced ? 0 : "100%", opacity: prefersReduced ? 0 : 1 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      duration: 0.55,
+                      delay:    0.2 + wi * 0.1,
+                      ease:     [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
+            </h1>
+
+            {/* [3] Role typewriter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="flex items-center"
+              style={{ minHeight: "2.6rem" }}
+            >
+              <span
+                className="font-semibold tracking-tight"
+                style={{
+                  fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
+                  color:    "#14b8a6",
+                }}
+              >
+                {displayed}
+                {/* Blinking cursor */}
+                <motion.span
+                  className="inline-block ml-[2px] w-[2px] h-[0.85em] bg-teal-400 align-middle rounded-sm"
+                  animate={{ opacity: [1, 1, 0, 0, 1] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+                />
+              </span>
+            </motion.div>
+
+            {/* [4] Bio */}
+            <motion.p
+              initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.7 }}
+              style={{
+                color:      "#94a3b8",
+                fontSize:   "clamp(0.95rem, 1.5vw, 1.1rem)",
+                maxWidth:    480,
+                lineHeight:  1.7,
+              }}
+            >
               I build scalable web applications focused on clean architecture,
               performance, and structured problem-solving.
             </motion.p>
 
-            {/* Tagline */}
-            <motion.div variants={item} className="flex items-center gap-3">
-              <div className="h-px w-8 bg-teal-500/30 shrink-0" />
-              <p className="text-gray-500 text-sm italic">
-                Building at the intersection of performance and design.
-              </p>
+            {/* [5] Italic tagline â€” blockquote style */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.82, duration: 0.45 }}
+              className="italic pl-3"
+              style={{
+                color:       "#475569",
+                fontSize:    "0.9rem",
+                borderLeft:  "3px solid #14b8a6",
+              }}
+            >
+              Building at the intersection of performance and design.
+            </motion.p>
+
+            {/* [6] Location */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.4 }}
+              className="flex items-center gap-2"
+              style={{ color: "#64748b", fontSize: "0.875rem" }}
+            >
+              <MapPin size={16} color="#14b8a6" strokeWidth={2} className="shrink-0" />
+              <span>Navsari, Gujarat</span>
             </motion.div>
 
-            {/* Location line */}
-            <motion.div variants={item} className="flex items-center gap-1.5 text-gray-500 text-sm">
-              <MapPin size={13} className="text-teal-500/70" strokeWidth={2} />
-              <span>Gujarat, India</span>
-              <span className="mx-1.5 text-gray-700">·</span>
-              <span>Open to Remote &amp; Relocation</span>
-            </motion.div>
-
-            {/* CTAs */}
-            <motion.div variants={item} className="flex items-center gap-3 flex-wrap pt-1">
-              {/* Primary — solid */}
+            {/* [7] CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: prefersReduced ? 0 : 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.45 }}
+              className="flex flex-wrap gap-3 mt-1"
+            >
               <a
                 href="/Yash_Parmar_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-[#020c14] text-sm font-semibold transition-all duration-200 active:scale-95 shadow-[0_0_24px_rgba(20,184,166,0.35)] hover:shadow-[0_0_32px_rgba(20,184,166,0.55)]"
+                className="
+                  inline-flex items-center justify-center gap-2
+                  w-full sm:w-auto
+                  px-6 py-3 min-h-[44px] rounded-xl
+                  border border-teal-500/50 text-teal-400 text-sm font-semibold
+                  transition-all duration-300
+                  hover:bg-teal-500/10 hover:border-teal-500 hover:scale-105 active:scale-[0.97]
+                  focus-visible:ring-2 focus-visible:ring-teal-500 outline-none
+                "
               >
-                <Download size={15} strokeWidth={2.5} />
+                <Download size={16} strokeWidth={2.5} />
                 Download Resume
               </a>
-              {/* Secondary — outlined */}
               <a
                 href="https://linkedin.com/in/yash-parmar-b99796289"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl border border-white/15 text-gray-300 text-sm font-semibold hover:border-teal-500/50 hover:text-teal-300 hover:bg-teal-500/5 transition-all duration-200 active:scale-95"
+                className="
+                  inline-flex items-center justify-center gap-2
+                  w-full sm:w-auto
+                  px-6 py-3 min-h-[44px] rounded-xl
+                  border border-teal-500/50 text-teal-400 text-sm font-semibold
+                  transition-all duration-300
+                  hover:bg-teal-500/10 hover:border-teal-500 hover:scale-105 active:scale-[0.97]
+                  focus-visible:ring-2 focus-visible:ring-teal-500 outline-none
+                "
               >
-                <Linkedin size={15} strokeWidth={2} />
+                <FaLinkedin size={16} />
                 LinkedIn
               </a>
             </motion.div>
 
-            {/* Tech stack */}
-            <motion.div variants={item} className="pt-5 border-t border-white/[0.07]">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-gray-600 font-semibold mb-3">
+            {/* [8] Tech Stack */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.4 }}
+              className="pt-3 border-t border-slate-800"
+            >
+              <p className="text-xs tracking-[0.2em] text-slate-500 uppercase mb-3">
                 Tech Stack
               </p>
-              <div className="flex flex-wrap gap-2.5">
-                {techStack.map(({ name, dot }) => (
-                  <span
+              <div className="flex flex-wrap gap-2">
+                {TECH_STACK.map(({ name, dot }, i) => (
+                  <motion.span
                     key={name}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-gray-300 text-sm font-medium hover:border-teal-500/40 hover:text-teal-300 hover:bg-teal-500/5 transition-all duration-200 cursor-default"
+                    initial={{ opacity: 0, scale: prefersReduced ? 1 : 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.25 + i * 0.07, duration: 0.3 }}
+                    className="
+                      inline-flex items-center gap-1.5
+                      px-3 py-1 rounded-full text-xs font-medium
+                      border border-slate-700 bg-slate-800/60 text-slate-300
+                      transition-all duration-200
+                      hover:border-teal-500/60 hover:text-teal-400 hover:bg-teal-500/5 hover:scale-105
+                      cursor-default
+                    "
                   >
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: dot }} />
                     {name}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
 
           </div>
-        </motion.div>
+
+          {/* â”€â”€ PHOTO COLUMN â”€â”€ */}
+          <div className="order-1 lg:order-2 flex justify-center">
+            <PhotoCard reduced={prefersReduced} />
+          </div>
+
+        </div>
       </div>
     </section>
   );
 }
+

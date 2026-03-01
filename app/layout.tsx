@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
-import AuroraBackground from "@/components/AuroraBackground";
+import GlobalBackground from "@/components/background/GlobalBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -95,7 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuroraBackground />
+        <GlobalBackground />
         <div className="relative z-[1]">
           <PageLoader />
           <Navbar />

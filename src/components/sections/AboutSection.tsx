@@ -37,6 +37,13 @@ const STATS: StatDef[] = [
     label:         "CGPA",
     sublabel:      "at CHARUSAT University",
   },
+  {
+    numericTarget: 1,
+    decimals:      0,
+    suffix:        " mo",
+    label:         "Internship",
+    sublabel:      "ML Intern · Vaishnav Tech",
+  },
 ];
 
 const SKILL_CHIPS = [
@@ -249,13 +256,10 @@ export default function AboutSection() {
             Who I Am
           </motion.h2>
 
-          {/* Stat cards — horizontal scroll on mobile, vertical on desktop */}
-          <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible
-                          pb-2 lg:pb-0 -mx-2 px-2 lg:mx-0 lg:px-0 snap-x lg:snap-none">
+          {/* Stat cards — 2×2 grid on desktop, 1 col on mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {STATS.map((stat, i) => (
-              <div key={stat.label} className="snap-start shrink-0 lg:shrink lg:w-auto w-64">
-                <StatCard stat={stat} index={i} reduced={reduced} />
-              </div>
+              <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
             ))}
           </div>
         </motion.div>

@@ -1,20 +1,7 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'Full-stack and analytical systems focused on performance, scalability, and real-world problem solving. Built with Next.js, React, Node.js, and MongoDB.',
-  openGraph: {
-    title: 'Projects | Yash Parmar',
-    description: 'Full-stack and analytical systems focused on performance, scalability, and real-world problem solving.',
-    url: 'https://yashparmar.dev/projects',
-  },
-};
+import { redirect } from 'next/navigation';
 
 export default function ProjectsPage() {
-  return (
-    <div className="min-h-screen text-white">
-      <div className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+  redirect('/#projects');
         
         {/* Title Section */}
         <div className="space-y-4">

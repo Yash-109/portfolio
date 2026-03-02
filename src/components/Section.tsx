@@ -1,20 +1,16 @@
 import { ReactNode } from "react";
-import Reveal from "@/components/Reveal";
 
 interface SectionProps {
-  id: string;
-  title: string;
+  id:       string;
+  title:    string;   // kept for aria/SEO — each section renders its own heading
   children: ReactNode;
 }
 
-export default function Section({ id, title, children }: SectionProps) {
+export default function Section({ id, children }: SectionProps) {
   return (
-    <section id={id} className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
-        <Reveal stagger>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">{title}</h2>
-          {children}
-        </Reveal>
+    <section id={id} className="relative py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        {children}
       </div>
     </section>
   );

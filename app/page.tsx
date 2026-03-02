@@ -22,7 +22,7 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section id="projects" title="Featured Projects">
+      <Section id="projects" title="Projects">
         <FeaturedProjects />
       </Section>
 

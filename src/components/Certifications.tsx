@@ -102,18 +102,45 @@ const cardVariants = {
 
 export default function Certifications() {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
-    >
+    <div className="space-y-6">.
+      {/* Section header row — matches FeaturedProjects/SkillsGrid pattern */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        className="flex items-center justify-between"
+      >
+        <p
+          className="font-mono font-semibold tracking-wide"
+          style={{ fontSize: "0.78rem", color: "#14b8a6", letterSpacing: "0.12em" }}
+        >
+          // certifications
+        </p>
+        <span
+          className="text-xs font-mono px-3 py-1 rounded-full"
+          style={{
+            border: "1px solid rgba(20,184,166,0.25)",
+            background: "rgba(20,184,166,0.06)",
+            color: "#5eead4",
+          }}
+        >
+          {certificates.length} certifications
+        </span>
+      </motion.div>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
       {certificates.map((cert) => (
         <motion.div
           key={cert.id}
           variants={cardVariants}
-          whileHover={{ y: -8, scale: 1.02 }}
+          whileHover={{ y: -6 }}
           className="group relative"
         >
           {/* Certificate Card */}
@@ -126,7 +153,8 @@ export default function Certifications() {
               p-6
               backdrop-blur-md
               shadow-[0_10px_40px_rgba(0,0,0,0.35)]
-              hover:border-slate-700
+              hover:border-teal-500/30
+              hover:shadow-[0_10px_40px_rgba(20,184,166,0.1)]
               transition-all
               duration-300
               overflow-hidden
@@ -151,14 +179,16 @@ export default function Certifications() {
                 <div
                   className={`
                     flex items-center justify-center
+                    flex-shrink-0
                     w-14 h-14
+                    min-w-[3.5rem]
                     rounded-xl
                     bg-gradient-to-br ${cert.gradient}
                     text-white
                     shadow-lg
-                    group-hover:scale-110
-                    transition-transform
+                    transition-shadow
                     duration-300
+                    group-hover:shadow-xl
                   `}
                 >
                   {cert.icon}
@@ -169,17 +199,18 @@ export default function Certifications() {
                   href={cert.file}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Download Certificate"
                   className="
                     flex items-center justify-center
                     w-10 h-10
                     rounded-lg
                     bg-slate-800/80
-                    hover:bg-slate-700
+                    hover:bg-teal-600/20
                     text-slate-300
-                    hover:text-white
+                    hover:text-teal-400
                     transition-all
                     duration-300
-                    hover:scale-110
+                    hover:scale-115
                   "
                   aria-label="Download Certificate"
                 >
@@ -188,24 +219,24 @@ export default function Certifications() {
               </div>
 
               {/* Certificate Name */}
-              <h3 className="text-lg font-bold text-white mb-2 line-clamp-2">
+              <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
                 {cert.name}
               </h3>
 
               {/* Organization */}
-              <p className="text-slate-400 text-sm mb-3 font-medium">
+              <p className="text-slate-400 text-sm mb-3 font-semibold">
                 {cert.organization}
               </p>
 
               {/* Date & Score */}
-              <div className="flex items-center gap-4 mb-4 text-sm text-slate-500">
+              <div className="flex items-center gap-6 mb-4 text-sm text-slate-500">
                 <div className="flex items-center gap-2">
-                  <FaCalendarAlt className="w-3 h-3" />
+                  <FaCalendarAlt className="w-4 h-4" />
                   <span>{cert.date}</span>
                 </div>
                 {cert.score && (
                   <div className="flex items-center gap-2">
-                    <FaAward className="w-3 h-3" />
+                    <FaAward className="w-4 h-4" />
                     <span>{cert.score}</span>
                   </div>
                 )}
@@ -273,6 +304,7 @@ export default function Certifications() {
           </div>
         </motion.div>
       ))}
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

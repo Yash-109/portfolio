@@ -211,7 +211,7 @@ export default function FeaturedProjects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
       >
         {PROJECTS.map(project => (
           <ProjectCard key={project.id} project={project} reduced={reduced} />

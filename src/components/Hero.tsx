@@ -319,9 +319,9 @@ export default function Hero() {
                 className="
                   group relative inline-flex items-center justify-center gap-2
                   w-full sm:w-auto
-                  px-6 py-3 min-h-[44px] rounded-xl
+                  px-7 py-3.5 min-h-[44px] rounded-xl
                   bg-gradient-to-r from-teal-500 to-cyan-400
-                  text-slate-900 text-sm font-bold
+                  text-slate-900 text-[15px] font-bold tracking-wide
                   shadow-[0_4px_20px_rgba(20,184,166,0.4)]
                   hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
                   hover:scale-[1.04] active:scale-[0.97]
@@ -339,31 +339,21 @@ export default function Hero() {
                 <ArrowRight size={16} strokeWidth={2.5} className="relative z-10" />
               </a>
 
-              {/* Secondary: Contact Me — gradient border pill */}
+              {/* Secondary: Contact Me — ghost outlined */}
               <a
                 href="#contact"
                 className="
-                  group relative inline-flex items-center justify-center
-                  w-full sm:w-auto min-h-[44px] rounded-xl p-px
-                  bg-gradient-to-r from-teal-500/60 to-cyan-400/60
-                  hover:from-teal-500 hover:to-cyan-400
+                  inline-flex items-center justify-center gap-2
+                  w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-xl
+                  border-2 border-teal-400/80 text-teal-400
+                  text-[15px] font-bold tracking-wide
+                  hover:bg-teal-400 hover:text-slate-900 hover:border-teal-400
                   hover:scale-[1.04] active:scale-[0.97]
-                  transition-all duration-300
+                  transition-all duration-200
                   focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
                 "
               >
-                <span
-                  className="
-                    relative z-10 flex items-center gap-2
-                    w-full px-6 py-[10px] rounded-[11px]
-                    bg-slate-950 group-hover:bg-transparent
-                    text-teal-400 group-hover:text-slate-900
-                    text-sm font-semibold
-                    transition-all duration-300
-                  "
-                >
-                  Contact Me
-                </span>
+                Contact Me
               </a>
             </motion.div>
 

@@ -129,7 +129,7 @@ export default function Certifications() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
       >
       {certificates.map((cert) => (
         <motion.div
@@ -138,7 +138,7 @@ export default function Certifications() {
           variants={cardVariants}
           whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
           whileTap={reduced ? {} : { scale: 0.98 }}
-          className="group relative h-full"
+          className="group relative z-0 hover:z-10 h-full"
         >
           <div className="relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
 

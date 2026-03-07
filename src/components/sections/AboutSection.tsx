@@ -145,7 +145,7 @@ function StatCard({
             }
       }
       whileTap={reduced ? {} : { scale: 0.98 }}
-      className="group p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
+      className="group relative z-0 hover:z-10 p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
@@ -183,38 +183,24 @@ export default function AboutSection() {
   return (
     <div className="flex flex-col gap-12 md:gap-16">
 
-      {/* ── Content grid ── */}
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-
-        {/* ─────── LEFT: label + heading ─────── */}
-        <motion.div
-          initial={{ opacity: 0, x: reduced ? 0 : -32 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.05 }}
-          className="order-2 lg:order-1 flex flex-col gap-7"
+      {/* ── Single-column content block ── */}
+      <motion.div
+        initial={{ opacity: 0, y: reduced ? 0 : 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.05 }}
+        className="flex flex-col gap-6 max-w-3xl"
+      >
+        {/* Heading */}
+        <motion.h3
+          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight"
         >
-          {/* Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: reduced ? 0 : 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight"
-          >
-            Who I Am
-          </motion.h2>
-
-        </motion.div>
-
-        {/* ─────── RIGHT: bio + chips + button ─────── */}
-        <motion.div
-          initial={{ opacity: 0, x: reduced ? 0 : 32 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.15 }}
-          className="order-1 lg:order-2 flex flex-col gap-6"
-        >
+          Who I Am
+        </motion.h3>
           {/* Para 1 — bright intro */}
           <motion.p
             initial={{ opacity: 0, y: reduced ? 0 : 14 }}
@@ -271,7 +257,6 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + i * 0.06, duration: 0.28 }}
-                whileHover={reduced ? {} : { scale: 1.07 }}
                 className="px-3 py-1.5 rounded-full text-xs font-medium cursor-default select-none
                            bg-teal-500/10 border border-teal-500/20 text-teal-300
                            hover:bg-teal-500/20 hover:border-teal-400/50
@@ -296,9 +281,9 @@ export default function AboutSection() {
               rel="noopener noreferrer"
               className="
                 group relative inline-flex items-center gap-2
-                px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl
+                px-7 py-3.5 min-h-[44px] rounded-xl
                 bg-gradient-to-r from-teal-500 to-cyan-400
-                text-slate-900 text-sm font-bold
+                text-slate-900 text-[15px] font-bold tracking-wide
                 shadow-[0_4px_20px_rgba(20,184,166,0.4)]
                 hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
                 hover:scale-[1.04] active:scale-[0.97]
@@ -317,11 +302,10 @@ export default function AboutSection() {
             </a>
           </motion.div>
 
-        </motion.div>
-        </div>
+      </motion.div>
 
       {/* ── Stat cards — full-width 4-col grid ── */}
-      <div role="list" aria-label="Professional Statistics" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div role="list" aria-label="Professional Statistics" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-2">
         {STATS.map((stat, i) => (
           <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
         ))}

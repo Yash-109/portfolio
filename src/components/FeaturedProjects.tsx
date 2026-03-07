@@ -60,7 +60,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     <motion.div
       role="listitem"
       variants={cardVariants}
-      whileHover={reduced ? {} : { y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+      whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
       whileTap={reduced ? {} : { scale: 0.98 }}
       className="group relative z-0 h-full hover:z-10"
     >
@@ -70,8 +70,8 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           "relative h-full flex flex-col overflow-hidden rounded-2xl p-6 md:p-8",
           "bg-gray-900/50 backdrop-blur-sm border transition-all duration-300",
           isBlue
-            ? "border-gray-800 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]"
-            : "border-gray-800 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]",
+            ? "border-gray-800 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10"
+            : "border-gray-800 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10",
         ].join(" ")}
       >
         {/* Gradient overlay on hover */}
@@ -150,7 +150,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
             {project.comingSoon ? (
               <button
                 disabled
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
+                className="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
               >
                 View Case Study
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               <Link
                 href={project.link}
                 className={[
-                  "group/cta inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300",
+                  "group/cta inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold transition-all duration-300",
                   isBlue
                     ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60"
                     : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400/60",
@@ -189,7 +189,7 @@ export default function FeaturedProjects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end mb-8"
+        className="relative z-10 flex items-center justify-end"
       >
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
@@ -211,7 +211,7 @@ export default function FeaturedProjects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
       >
         {PROJECTS.map(project => (
           <ProjectCard key={project.id} project={project} reduced={reduced} />

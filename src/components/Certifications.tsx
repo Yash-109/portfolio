@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaDownload, FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
 import { SiCoursera, SiNvidia } from "react-icons/si";
 
@@ -90,17 +90,16 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-    },
+    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
   },
 };
 
 export default function Certifications() {
+  const reduced = useReducedMotion() ?? false;
   return (
     <div className="space-y-8">
       {/* Section header row */}
@@ -109,7 +108,7 @@ export default function Certifications() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end mb-8"
+        className="relative z-10 flex items-center justify-end"
       >
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
@@ -129,19 +128,19 @@ export default function Certifications() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        viewport={{ once: true, margin: "-80px" }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
       >
       {certificates.map((cert) => (
         <motion.div
           key={cert.id}
           role="listitem"
           variants={cardVariants}
-          whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+          whileTap={reduced ? {} : { scale: 0.98 }}
           className="group relative h-full"
         >
-          <div className="relative h-full flex flex-col bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
+          <div className="relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
 
             {/* Hover gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
@@ -153,7 +152,7 @@ export default function Certifications() {
             <div className="relative z-10 flex flex-col h-full">
 
               {/* Icon */}
-              <div className={`w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${cert.gradient} text-white shadow-lg mb-5 shrink-0`}>
+              <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br ${cert.gradient} text-white shadow-lg mb-5 shrink-0`}>
                 {cert.icon}
               </div>
 
@@ -213,7 +212,7 @@ export default function Certifications() {
                 aria-label="Download Certificate"
                 title="Download Certificate"
                 onClick={e => e.stopPropagation()}
-                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
+                className="mt-4 inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
               >
                 <FaDownload className="w-3.5 h-3.5" />
                 Download

@@ -392,11 +392,11 @@ export default function ContactFormNew() {
                   className={`
                     w-full rounded-xl px-6 py-3.5 font-semibold text-white text-sm
                     flex items-center justify-center gap-2.5
-                    transition-all duration-200 min-h-[48px]
+                    transition-all duration-300 min-h-[48px] overflow-hidden
                     ${
                       isSubmitDisabled
-                        ? "bg-slate-700 cursor-not-allowed opacity-60 shadow-none"
-                        : "bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 shadow-[0_4px_24px_rgba(99,102,241,0.4)] hover:shadow-[0_6px_32px_rgba(99,102,241,0.55)]"
+                        ? "bg-slate-700/60 cursor-not-allowed opacity-55 shadow-none"
+                        : "bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-600 hover:from-indigo-400 hover:via-violet-400 hover:to-purple-500 shadow-[0_4px_24px_rgba(99,102,241,0.45)] hover:shadow-[0_8px_40px_rgba(99,102,241,0.65)] hover:scale-[1.02]"
                     }
                   `}
                 >

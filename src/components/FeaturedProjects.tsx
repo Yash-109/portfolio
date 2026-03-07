@@ -196,11 +196,17 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
             ) : (
               <Link
                 href={project.link}
-                className="inline-flex items-center gap-2 text-base font-semibold transition-all duration-300 group-hover:gap-3"
-                style={{ color: "#60a5fa" }}
+                className="group/cta inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-300"
+                style={{ color: accent === "#3b82f6" ? "#60a5fa" : "#c084fc" }}
               >
-                <span>View Case Study</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative">
+                  View Case Study
+                  <span
+                    className="absolute bottom-0 left-0 h-px w-0 group-hover/cta:w-full transition-all duration-300 rounded-full"
+                    style={{ background: accent === "#3b82f6" ? "#60a5fa" : "#c084fc" }}
+                  />
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1.5" />
               </Link>
             )}
           </div>

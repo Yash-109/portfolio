@@ -1,8 +1,8 @@
 ﻿"use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { Download } from "lucide-react";
+import { useEffect, useRef, type ElementType } from "react";
+import { Download, Rocket, Award, GraduationCap, Briefcase } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Types & Data
@@ -13,6 +13,7 @@ interface StatDef {
   suffix:        string;
   label:         string;
   sublabel:      string;
+  icon:          ElementType;
 }
 
 const STATS: StatDef[] = [
@@ -22,6 +23,7 @@ const STATS: StatDef[] = [
     suffix:        "+",
     label:         "Production Apps",
     sublabel:      "Shipped & deployed",
+    icon:          Rocket,
   },
   {
     numericTarget: 5,
@@ -29,6 +31,7 @@ const STATS: StatDef[] = [
     suffix:        "+",
     label:         "Certifications",
     sublabel:      "IBM · NVIDIA · IIT KGP",
+    icon:          Award,
   },
   {
     numericTarget: 8.1,
@@ -36,6 +39,7 @@ const STATS: StatDef[] = [
     suffix:        "",
     label:         "CGPA",
     sublabel:      "at CHARUSAT University",
+    icon:          GraduationCap,
   },
   {
     numericTarget: 1,
@@ -43,6 +47,7 @@ const STATS: StatDef[] = [
     suffix:        " mo",
     label:         "Internship",
     sublabel:      "ML Intern · Vaishnav Tech",
+    icon:          Briefcase,
   },
 ];
 
@@ -116,10 +121,12 @@ function StatCard({
   index:   number;
   reduced: boolean;
 }) {
+  const Icon = stat.icon;
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: reduced ? 0 : -24, scale: reduced ? 1 : 0.94 }}
-      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      initial={{ opacity: 0, y: reduced ? 0 : 24, scale: reduced ? 1 : 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{
         type:      "spring",
@@ -131,50 +138,34 @@ function StatCard({
         reduced
           ? {}
           : {
-              x:         5,
+              y:         -4,
               transition: { type: "spring", stiffness: 300, damping: 20 },
             }
       }
-      className="group relative flex items-center gap-5 px-6 py-5 rounded-2xl cursor-default overflow-hidden"
-      style={{
-        background: "rgba(15, 23, 42, 0.85)",
-        border:     "1px solid rgba(20,184,166,0.15)",
-        borderLeft: "3px solid #14b8a6",
-      }}
+      className="group p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 cursor-default"
     >
-      {/* Hover glow fill — slides in from left */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: "linear-gradient(90deg, rgba(20,184,166,0.06) 0%, transparent 60%)",
-        }}
-      />
+      <div className="flex items-start gap-4">
+        {/* Icon */}
+        <div className="p-3 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg shrink-0">
+          <Icon size={20} strokeWidth={2} className="text-white" />
+        </div>
 
-      {/* Shimmer sweep on hover */}
-      <div
-        className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(20,184,166,0.08), transparent)",
-        }}
-      />
-
-      {/* Number */}
-      <div
-        className="relative font-extrabold tabular-nums shrink-0 z-10"
-        style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", color: "#14b8a6", lineHeight: 1 }}
-      >
-        <CountUp
-          target={stat.numericTarget}
-          decimals={stat.decimals}
-          suffix={stat.suffix}
-          reduced={reduced}
-        />
-      </div>
-
-      {/* Labels */}
-      <div className="relative z-10 flex flex-col gap-0.5">
-        <span className="text-sm font-semibold text-white">{stat.label}</span>
-        <span className="text-xs" style={{ color: "#64748b" }}>{stat.sublabel}</span>
+        {/* Stat + labels */}
+        <div>
+          <h3
+            className="font-bold text-white tabular-nums"
+            style={{ fontSize: "clamp(1.75rem, 3vw, 2rem)", lineHeight: 1 }}
+          >
+            <CountUp
+              target={stat.numericTarget}
+              decimals={stat.decimals}
+              suffix={stat.suffix}
+              reduced={reduced}
+            />
+          </h3>
+          <p className="text-sm font-semibold text-white/90 mt-2">{stat.label}</p>
+          <p className="text-xs text-gray-400 mt-0.5">{stat.sublabel}</p>
+        </div>
       </div>
     </motion.div>
   );
@@ -222,9 +213,10 @@ export default function AboutSection() {
       />
 
       {/* ── Content grid ── */}
-      <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div className="relative z-10 flex flex-col gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-        {/* ─────── LEFT: label + heading + stats ─────── */}
+        {/* ─────── LEFT: label + heading ─────── */}
         <motion.div
           initial={{ opacity: 0, x: reduced ? 0 : -32 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -264,12 +256,6 @@ export default function AboutSection() {
             Who I Am
           </motion.h2>
 
-          {/* Stat cards — 2×2 grid on desktop, 1 col on mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {STATS.map((stat, i) => (
-              <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
-            ))}
-          </div>
         </motion.div>
 
         {/* ─────── RIGHT: bio + chips + button ─────── */}
@@ -377,29 +363,21 @@ export default function AboutSection() {
               rel="noopener noreferrer"
               className="
                 group relative inline-flex items-center gap-2
-                px-8 py-3.5 rounded-xl
-                border-2 text-sm font-semibold
-                overflow-hidden
+                px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl
+                bg-gradient-to-r from-teal-500 to-cyan-400
+                text-slate-900 text-sm font-bold
+                shadow-[0_4px_20px_rgba(20,184,166,0.4)]
+                hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
+                hover:scale-[1.04] active:scale-[0.97]
                 transition-all duration-300
-                hover:border-teal-500 hover:shadow-[0_0_28px_rgba(20,184,166,0.35)]
-                active:scale-[0.97]
+                overflow-hidden w-fit
                 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
-                w-fit
               "
-              style={{
-                borderColor: "rgba(20,184,166,0.65)",
-                color:        "#14b8a6",
-              }}
             >
-              {/* Hover glow fill — slides in from left (matches stat cards) */}
+              {/* Shimmer sweep */}
               <span
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[10px]"
-                style={{ background: "linear-gradient(90deg, rgba(20,184,166,0.15) 0%, transparent 60%)" }}
-              />
-              {/* Shimmer sweep on hover (matches stat cards) */}
-              <span
-                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(20,184,166,0.12), transparent)" }}
+                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)" }}
               />
               <Download size={16} strokeWidth={2.5} className="relative z-10 shrink-0" />
               <span className="relative z-10">Download Resume</span>
@@ -407,6 +385,14 @@ export default function AboutSection() {
           </motion.div>
 
         </motion.div>
+        </div>
+
+        {/* ── Stat cards — full-width 4-col grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {STATS.map((stat, i) => (
+            <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
+          ))}
+        </div>
       </div>
     </div>
   );

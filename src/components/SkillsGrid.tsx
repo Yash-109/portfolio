@@ -95,47 +95,47 @@ function SkillCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: reduced ? 1 : 0.85 }}
+      initial={{ opacity: 0, scale: reduced ? 1 : 0.82 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.28, delay: index * 0.055 }}
-      whileHover={reduced ? {} : { scale: 1.06, transition: { duration: 0.18 } }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
+      whileHover={reduced ? {} : { scale: 1.07, transition: { duration: 0.18 } }}
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-2xl h-[88px] sm:h-[104px] border transition-all duration-300"
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 sm:p-5 rounded-2xl h-[108px] sm:h-[120px] transition-all duration-300"
         style={{
-          background:     "rgba(15,23,42,0.75)",
-          borderColor:    "rgba(148,163,184,0.12)",
+          background:  "rgba(15,23,42,0.9)",
+          border:      "1px solid rgba(30,41,59,1)",
           backdropFilter: "blur(8px)",
         }}
         onMouseEnter={e => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = accent + "55";
-          el.style.boxShadow   = `0 0 0 1px ${accent}22, 0 8px 32px ${accent}20`;
+          el.style.borderColor = accent + "99";
+          el.style.boxShadow   = `0 0 0 1px ${accent}33, 0 12px 40px ${accent}35`;
         }}
         onMouseLeave={e => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = "rgba(148,163,184,0.12)";
+          el.style.borderColor = "rgba(30,41,59,1)";
           el.style.boxShadow   = "none";
         }}
       >
-        {/* Ambient icon glow on hover */}
+        {/* Radial glow from icon color on hover */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
           style={{
-            background: `radial-gradient(ellipse at 50% 30%, ${skill.color}18 0%, transparent 70%)`,
+            background: `radial-gradient(ellipse at 50% 30%, ${skill.color}28 0%, transparent 68%)`,
           }}
         />
 
         <skill.icon
-          className="relative z-10 w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-300 group-hover:scale-110"
-          style={{ color: skill.color }}
+          className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
+          style={{ color: skill.color, filter: `drop-shadow(0 0 6px ${skill.color}60)` }}
         />
 
         <span
           className="relative z-10 text-xs font-semibold text-center leading-tight transition-colors duration-300 group-hover:text-white"
-          style={{ color: "#94a3b8" }}
+          style={{ color: "#cbd5e1" }}
         >
           {skill.name}
         </span>
@@ -160,35 +160,47 @@ function SkillGroupPanel({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ type: "spring", stiffness: 70, damping: 18, delay: groupIndex * 0.1 }}
-      /* isolate = new stacking context, overflow-hidden = cards never escape panel */
       className="isolate rounded-2xl overflow-hidden"
       style={{
-        border:     "1px solid rgba(148,163,184,0.08)",
-        background: "rgba(15,23,42,0.4)",
+        border:     "1px solid rgba(30,41,59,0.9)",
+        background: "rgba(15,23,42,0.65)",
       }}
     >
       {/* Panel header */}
       <div
-        className="relative flex items-center gap-3 px-4 sm:px-5 py-3 sm:py-4 overflow-hidden"
-        style={{ borderBottom: "1px solid rgba(148,163,184,0.08)" }}
+        className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden"
+        style={{ borderBottom: "1px solid rgba(30,41,59,0.9)" }}
       >
-        {/* Vertical accent bar */}
-        <div className={`shrink-0 h-6 w-1 rounded-full bg-gradient-to-b ${group.gradient}`} />
+        {/* Accent tint wash — more opaque than before */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `linear-gradient(90deg, ${group.accent}18 0%, transparent 55%)` }}
+        />
 
-        <h4 className={`text-sm font-bold tracking-wide bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
+        {/* Vertical accent bar */}
+        <div className={`relative z-10 shrink-0 h-5 w-1 rounded-full bg-gradient-to-b ${group.gradient}`} />
+
+        {/* Gradient title text */}
+        <h4 className={`relative z-10 text-sm font-bold tracking-wide bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
           {group.title}
         </h4>
 
-        {/* Subtle left-to-right tint */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.03]"
-          style={{ background: `linear-gradient(90deg, ${group.accent}, transparent 60%)` }}
-        />
+        {/* Skill count badge */}
+        <span
+          className="relative z-10 ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full"
+          style={{
+            background: `${group.accent}14`,
+            border:     `1px solid ${group.accent}30`,
+            color:      group.accent,
+          }}
+        >
+          {group.skills.length}
+        </span>
       </div>
 
       {/* Skills grid */}
-      <div className="p-3 sm:p-5">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2 sm:gap-3">
+      <div className="p-4 sm:p-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {group.skills.map((skill, i) => (
             <SkillCard
               key={skill.name}

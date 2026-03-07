@@ -320,37 +320,50 @@ export default function Hero() {
                   group relative inline-flex items-center justify-center gap-2
                   w-full sm:w-auto
                   px-6 py-3 min-h-[44px] rounded-xl
-                  bg-teal-500 text-slate-900 text-sm font-bold
-                  overflow-hidden
+                  bg-gradient-to-r from-teal-500 to-cyan-400
+                  text-slate-900 text-sm font-bold
+                  shadow-[0_4px_20px_rgba(20,184,166,0.4)]
+                  hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
+                  hover:scale-[1.04] active:scale-[0.97]
                   transition-all duration-300
-                  hover:bg-teal-400 hover:shadow-[0_0_28px_rgba(20,184,166,0.45)] hover:scale-105
-                  active:scale-[0.97]
+                  overflow-hidden
                   focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
                 "
               >
                 {/* Shimmer sweep */}
                 <span
                   className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)" }}
                 />
                 <span className="relative z-10">View Projects</span>
                 <ArrowRight size={16} strokeWidth={2.5} className="relative z-10" />
               </a>
 
-              {/* Secondary: Contact Me */}
+              {/* Secondary: Contact Me — gradient border pill */}
               <a
                 href="#contact"
                 className="
-                  inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto
-                  px-6 py-3 min-h-[44px] rounded-xl
-                  border border-teal-500/50 text-teal-400 text-sm font-semibold
+                  group relative inline-flex items-center justify-center
+                  w-full sm:w-auto min-h-[44px] rounded-xl p-px
+                  bg-gradient-to-r from-teal-500/60 to-cyan-400/60
+                  hover:from-teal-500 hover:to-cyan-400
+                  hover:scale-[1.04] active:scale-[0.97]
                   transition-all duration-300
-                  hover:bg-teal-500/10 hover:border-teal-500 hover:scale-105 active:scale-[0.97]
-                  focus-visible:ring-2 focus-visible:ring-teal-500 outline-none
+                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
                 "
               >
-                Contact Me
+                <span
+                  className="
+                    relative z-10 flex items-center gap-2
+                    w-full px-6 py-[10px] rounded-[11px]
+                    bg-slate-950 group-hover:bg-transparent
+                    text-teal-400 group-hover:text-slate-900
+                    text-sm font-semibold
+                    transition-all duration-300
+                  "
+                >
+                  Contact Me
+                </span>
               </a>
             </motion.div>
 

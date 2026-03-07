@@ -8,8 +8,8 @@ interface SectionProps {
 
 export default function Section({ id, children }: SectionProps) {
   return (
-    <section id={id} className="relative py-24 lg:py-32 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+    <section id={id} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {children}
       </div>
     </section>

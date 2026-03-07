@@ -232,17 +232,25 @@ export default function AboutSection() {
           transition={{ type: "spring", stiffness: 65, damping: 18, delay: 0.05 }}
           className="order-2 lg:order-1 flex flex-col gap-7"
         >
-          {/* Monospace section label */}
-          <motion.p
+          {/* Section label */}
+          <motion.div
             initial={{ opacity: 0, y: reduced ? 0 : -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="font-mono font-semibold tracking-wide"
-            style={{ fontSize: "0.8rem", color: "#14b8a6", letterSpacing: "0.12em" }}
+            className="relative z-10 flex items-center gap-2"
           >
-            // about me
-          </motion.p>
+            <span
+              className="inline-block w-6 h-px shrink-0 rounded-full"
+              style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
+            />
+            <span
+              className="text-xs font-semibold tracking-[0.18em] uppercase"
+              style={{ color: "#14b8a6" }}
+            >
+              About Me
+            </span>
+          </motion.div>
 
           {/* Heading */}
           <motion.h2

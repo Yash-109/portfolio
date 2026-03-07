@@ -60,7 +60,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     <motion.div
       variants={cardVariants}
       whileHover={reduced ? {} : { y: -12, transition: { duration: 0.3 } }}
-      className="group relative h-full"
+      className="group relative z-0 h-full hover:z-10"
     >
       {/* Card shell */}
       <div
@@ -215,21 +215,27 @@ export default function FeaturedProjects() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="space-y-6">
-      {/* Section intro row — matches SkillsGrid pattern */}
+    <div className="space-y-8">
+      {/* Section intro row */}
       <motion.div
         initial={{ opacity: 0, y: reduced ? 0 : -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="flex items-center justify-between"
+        className="relative z-10 flex items-center justify-between"
       >
-        <p
-          className="font-mono font-semibold tracking-wide"
-          style={{ fontSize: "0.78rem", color: "#14b8a6", letterSpacing: "0.12em" }}
-        >
-          // projects
-        </p>
+        <div className="relative z-10 flex items-center gap-2">
+          <span
+            className="inline-block w-6 h-px shrink-0 rounded-full"
+            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
+          />
+          <span
+            className="text-xs font-semibold tracking-[0.18em] uppercase"
+            style={{ color: "#14b8a6" }}
+          >
+            Projects
+          </span>
+        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{

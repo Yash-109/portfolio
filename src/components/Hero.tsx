@@ -213,7 +213,7 @@ export default function Hero() {
 
             {/* [2] Name â€” word-level slide-up stagger */}
             <h1
-              className="font-extrabold text-white leading-[1.05]"
+              className="font-extrabold text-white leading-[1.05] mt-3 sm:mt-5"
               style={{
                 fontSize:      "clamp(2.8rem, 6vw, 5.5rem)",
                 letterSpacing: "-0.03em",
@@ -221,7 +221,7 @@ export default function Hero() {
               aria-label="Yash Parmar"
             >
               {WORDS.map((word, wi) => (
-                <span key={wi} className="inline-block overflow-hidden mr-[0.24em] last:mr-0" style={{ lineHeight: 1.08 }}>
+                <span key={wi} className="inline-block overflow-hidden mr-[0.35em] last:mr-0" style={{ lineHeight: 1.08 }}>
                   <motion.span
                     className="inline-block"
                     initial={{ y: prefersReduced ? 0 : "100%", opacity: prefersReduced ? 0 : 1 }}

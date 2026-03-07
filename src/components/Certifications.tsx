@@ -102,21 +102,27 @@ const cardVariants = {
 
 export default function Certifications() {
   return (
-    <div className="space-y-6">.
-      {/* Section header row — matches FeaturedProjects/SkillsGrid pattern */}
+    <div className="space-y-8">
+      {/* Section header row */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="flex items-center justify-between"
+        className="relative z-10 flex items-center justify-between"
       >
-        <p
-          className="font-mono font-semibold tracking-wide"
-          style={{ fontSize: "0.78rem", color: "#14b8a6", letterSpacing: "0.12em" }}
-        >
-          // certifications
-        </p>
+        <div className="relative z-10 flex items-center gap-2">
+          <span
+            className="inline-block w-6 h-px shrink-0 rounded-full"
+            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
+          />
+          <span
+            className="text-xs font-semibold tracking-[0.18em] uppercase"
+            style={{ color: "#14b8a6" }}
+          >
+            Certifications
+          </span>
+        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{

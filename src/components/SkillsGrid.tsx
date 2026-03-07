@@ -210,21 +210,27 @@ export default function SkillsGrid() {
   const totalSkills = skillGroups.reduce((s, g) => s + g.skills.length, 0);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       {/* Intro row */}
       <motion.div
         initial={{ opacity: 0, y: reduced ? 0 : -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="flex items-center justify-between mb-2"
+        className="relative z-10 flex items-center justify-between"
       >
-        <p
-          className="font-mono font-semibold tracking-wide"
-          style={{ fontSize: "0.78rem", color: "#14b8a6", letterSpacing: "0.12em" }}
-        >
-          // tech stack
-        </p>
+        <div className="relative z-10 flex items-center gap-2">
+          <span
+            className="inline-block w-6 h-px shrink-0 rounded-full"
+            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
+          />
+          <span
+            className="text-xs font-semibold tracking-[0.18em] uppercase"
+            style={{ color: "#14b8a6" }}
+          >
+            Tech Stack
+          </span>
+        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{

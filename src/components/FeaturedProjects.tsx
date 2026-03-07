@@ -54,69 +54,42 @@ const cardVariants = {
 
 /* ─── Single Project Card ─────────────────────────────────────────────────── */
 function ProjectCard({ project, reduced }: { project: Project; reduced: boolean }) {
-  const accent = project.comingSoon ? "#a855f7" : "#3b82f6";
+  const isBlue = !project.comingSoon;
 
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={reduced ? {} : { y: -12, transition: { duration: 0.3 } }}
+      whileHover={reduced ? {} : { y: -8, transition: { duration: 0.25 } }}
       className="group relative z-0 h-full hover:z-10"
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-8 transition-all duration-300"
-        style={{
-          background:     "rgba(15,23,42,0.75)",
-          border:         "1px solid rgba(148,163,184,0.12)",
-          backdropFilter: "blur(8px)",
-        }}
-        onMouseEnter={e => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = accent + "66";
-          el.style.boxShadow   = `0 0 0 1px ${accent}33, 0 20px 60px ${accent}25, 0 8px 32px ${accent}15`;
-        }}
-        onMouseLeave={e => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = "rgba(148,163,184,0.12)";
-          el.style.boxShadow   = "none";
-        }}
+        className={[
+          "relative h-full flex flex-col overflow-hidden rounded-2xl p-8",
+          "bg-gray-900/50 backdrop-blur-sm border transition-all duration-300",
+          isBlue
+            ? "border-gray-800 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]"
+            : "border-gray-800 hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]",
+        ].join(" ")}
       >
-        {/* Subtle dot texture overlay */}
+        {/* Gradient overlay on hover */}
         <div
-          className="absolute inset-0 pointer-events-none rounded-2xl opacity-30"
-          style={{
-            backgroundImage: "radial-gradient(rgba(148,163,184,0.07) 1px, transparent 1px)",
-            backgroundSize:  "20px 20px",
-          }}
-        />
-
-        {/* Ambient gradient on hover */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-          style={{
-            background: `radial-gradient(ellipse at 0% 0%, ${accent}0d 0%, transparent 60%)`,
-          }}
+          className={[
+            "absolute inset-0 bg-gradient-to-t to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl",
+            isBlue ? "from-blue-900/20" : "from-purple-900/20",
+          ].join(" ")}
         />
 
         {/* Top row: Coming Soon badge OR GitHub icon */}
         <div className="relative z-10 flex items-start justify-between mb-5">
-          {/* Left: Coming Soon badge */}
           {project.comingSoon ? (
-            <span
-              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold"
-              style={{
-                background: "rgba(168,85,247,0.12)",
-                border:     "1px solid rgba(168,85,247,0.3)",
-                color:      "#c084fc",
-              }}
-            >
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-500/10 border border-purple-500/30 text-purple-300">
               Coming Soon
             </span>
           ) : (
-            <span /> /* spacer */
+            <span />
           )}
 
-          {/* Right: GitHub icon */}
           {project.github ? (
             <a
               href={project.github}
@@ -124,89 +97,74 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               rel="noopener noreferrer"
               aria-label={`${project.title} on GitHub`}
               onClick={e => e.stopPropagation()}
-              className="transition-colors duration-200"
-              style={{ color: "rgba(148,163,184,0.5)" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#e2e8f0"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(148,163,184,0.5)"; }}
+              className="text-gray-500 hover:text-white transition-colors duration-200"
             >
               <Github className="w-5 h-5" />
             </a>
           ) : (
-            <span /> /* spacer */
+            <span />
           )}
         </div>
 
-        {/* Main content (grows to fill card) */}
+        {/* Main content */}
         <div className="relative z-10 flex flex-col flex-1 space-y-4">
-          {/* Title */}
-          <h3 className="text-2xl font-bold text-white leading-snug transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text"
-            style={{
-              backgroundImage: `linear-gradient(to right, ${accent === "#3b82f6" ? "#60a5fa, #a78bfa" : "#c084fc, #f472b6"})`,
-            }}
+          {/* Title — gradient on hover */}
+          <h3
+            className={[
+              "text-2xl font-bold leading-snug transition-all duration-300",
+              "text-white group-hover:text-transparent group-hover:bg-clip-text",
+              isBlue
+                ? "group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-violet-400"
+                : "group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400",
+            ].join(" ")}
           >
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="text-base leading-relaxed flex-1" style={{ color: "#94a3b8" }}>
+          <p className="text-base leading-relaxed flex-1 text-slate-400">
             {project.description}
           </p>
 
-          {/* Tech badges */}
+          {/* Tech badges — pill style */}
           <div className="flex flex-wrap gap-2 pt-2">
             {project.techStack.slice(0, 5).map(tech => (
               <span
                 key={tech}
-                className="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 cursor-default"
-                style={{
-                  background:  "rgba(30,41,59,0.8)",
-                  border:      "1px solid rgba(148,163,184,0.15)",
-                  color:       "#94a3b8",
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLSpanElement;
-                  el.style.borderColor = accent + "55";
-                  el.style.boxShadow   = `0 0 8px ${accent}30`;
-                  el.style.color       = "#e2e8f0";
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLSpanElement;
-                  el.style.borderColor = "rgba(148,163,184,0.15)";
-                  el.style.boxShadow   = "none";
-                  el.style.color       = "#94a3b8";
-                }}
+                className={[
+                  "px-3 py-1 text-xs font-medium rounded-full cursor-default transition-colors duration-200",
+                  isBlue
+                    ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20"
+                    : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20",
+                ].join(" ")}
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          {/* View Case Study button */}
+          {/* CTA */}
           <div className="pt-4">
             {project.comingSoon ? (
               <button
                 disabled
-                title="Coming Soon"
-                className="inline-flex items-center gap-2 text-base font-medium cursor-not-allowed select-none"
-                style={{ color: "rgba(148,163,184,0.35)" }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
               >
-                <span>View Case Study</span>
-                <ArrowRight className="w-4 h-4" />
+                View Case Study
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             ) : (
               <Link
                 href={project.link}
-                className="group/cta inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-300"
-                style={{ color: accent === "#3b82f6" ? "#60a5fa" : "#c084fc" }}
+                className={[
+                  "group/cta inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300",
+                  isBlue
+                    ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60"
+                    : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400/60",
+                ].join(" ")}
               >
-                <span className="relative">
-                  View Case Study
-                  <span
-                    className="absolute bottom-0 left-0 h-px w-0 group-hover/cta:w-full transition-all duration-300 rounded-full"
-                    style={{ background: accent === "#3b82f6" ? "#60a5fa" : "#c084fc" }}
-                  />
-                </span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1.5" />
+                View Case Study
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1" />
               </Link>
             )}
           </div>

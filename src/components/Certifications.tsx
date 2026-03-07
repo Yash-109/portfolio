@@ -146,167 +146,88 @@ export default function Certifications() {
         <motion.div
           key={cert.id}
           variants={cardVariants}
-          whileHover={{ y: -6 }}
-          className="group relative"
+          whileHover={{ y: -6, transition: { duration: 0.25 } }}
+          className="group relative h-full"
         >
-          {/* Certificate Card */}
-          <div
-            className="
-              relative
-              bg-slate-900/60
-              border border-slate-800
-              rounded-2xl
-              p-6
-              backdrop-blur-md
-              shadow-[0_10px_40px_rgba(0,0,0,0.35)]
-              hover:border-teal-500/30
-              hover:shadow-[0_10px_40px_rgba(20,184,166,0.1)]
-              transition-all
-              duration-300
-              overflow-hidden
-              h-full
-              flex
-              flex-col
-            "
-          >
-            {/* Gradient Glow Effect */}
-            <div
-              className={`
-                absolute inset-0 opacity-0 group-hover:opacity-10
-                bg-gradient-to-br ${cert.gradient}
-                transition-opacity duration-500
-              `}
-            />
+          <div className="relative h-full flex flex-col bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-6 overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
+
+            {/* Hover gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+
+            {/* Decorative corner orb */}
+            <div className={`absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-gradient-to-br ${cert.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
 
             {/* Content */}
             <div className="relative z-10 flex flex-col h-full">
-              {/* Header with Icon */}
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className={`
-                    flex items-center justify-center
-                    flex-shrink-0
-                    w-14 h-14
-                    min-w-[3.5rem]
-                    rounded-xl
-                    bg-gradient-to-br ${cert.gradient}
-                    text-white
-                    shadow-lg
-                    transition-shadow
-                    duration-300
-                    group-hover:shadow-xl
-                  `}
-                >
-                  {cert.icon}
-                </div>
 
-                {/* Download Button */}
-                <a
-                  href={cert.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Download Certificate"
-                  className="
-                    flex items-center justify-center
-                    w-10 h-10
-                    rounded-lg
-                    bg-slate-800/80
-                    hover:bg-teal-600/20
-                    text-slate-300
-                    hover:text-teal-400
-                    transition-all
-                    duration-300
-                    hover:scale-115
-                  "
-                  aria-label="Download Certificate"
-                >
-                  <FaDownload className="w-4 h-4" />
-                </a>
+              {/* Icon */}
+              <div className={`w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${cert.gradient} text-white shadow-lg mb-5 shrink-0`}>
+                {cert.icon}
               </div>
 
-              {/* Certificate Name */}
-              <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
+              {/* Name */}
+              <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 leading-snug">
                 {cert.name}
               </h3>
 
-              {/* Organization */}
-              <p className="text-slate-400 text-sm mb-3 font-semibold">
+              {/* Provider */}
+              <p className="text-gray-400 text-sm font-semibold mb-2">
                 {cert.organization}
               </p>
 
-              {/* Date & Score */}
-              <div className="flex items-center gap-6 mb-4 text-sm text-slate-500">
-                <div className="flex items-center gap-2">
-                  <FaCalendarAlt className="w-4 h-4" />
-                  <span>{cert.date}</span>
-                </div>
+              {/* Date + optional score */}
+              <div className="flex items-center gap-4 text-xs text-gray-500 mb-5">
+                <span className="flex items-center gap-1.5">
+                  <FaCalendarAlt className="w-3 h-3" />
+                  {cert.date}
+                </span>
                 {cert.score && (
-                  <div className="flex items-center gap-2">
-                    <FaAward className="w-4 h-4" />
-                    <span>{cert.score}</span>
-                  </div>
+                  <span className="flex items-center gap-1.5">
+                    <FaAward className="w-3 h-3" />
+                    {cert.score}
+                  </span>
                 )}
               </div>
 
-              {/* Skills Tags */}
+              {/* Skill pills */}
               <div className="flex flex-wrap gap-2 mt-auto">
                 {cert.skills.slice(0, 3).map((skill, idx) => (
                   <span
                     key={idx}
-                    className="
-                      px-3 py-1
-                      text-xs
-                      rounded-full
-                      bg-slate-800/60
-                      text-slate-300
-                      border border-slate-700
-                      hover:border-slate-600
-                      transition-colors
-                      duration-200
-                    "
+                    className="px-2.5 py-1 text-xs bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-300 hover:bg-purple-500/20 transition-colors duration-200"
                   >
                     {skill}
                   </span>
                 ))}
                 {cert.skills.length > 3 && (
-                  <span
-                    className="
-                      px-3 py-1
-                      text-xs
-                      rounded-full
-                      bg-slate-800/60
-                      text-slate-400
-                      border border-slate-700
-                    "
-                  >
-                    +{cert.skills.length - 3} more
+                  <span className="px-2.5 py-1 text-xs bg-gray-700/40 border border-gray-700 rounded-lg text-gray-400">
+                    +{cert.skills.length - 3}
                   </span>
                 )}
               </div>
 
-              {/* Cert ID (if available) */}
+              {/* Cert ID */}
               {cert.certId && (
-                <div className="mt-3 pt-3 border-t border-slate-800">
-                  <p className="text-xs text-slate-500 truncate">
-                    ID: {cert.certId}
-                  </p>
+                <div className="mt-3 pt-3 border-t border-gray-800">
+                  <p className="text-xs text-gray-600 truncate">ID: {cert.certId}</p>
                 </div>
               )}
-            </div>
 
-            {/* Decorative Corner Accent */}
-            <div
-              className={`
-                absolute -bottom-8 -right-8
-                w-32 h-32
-                rounded-full
-                bg-gradient-to-br ${cert.gradient}
-                opacity-5
-                group-hover:opacity-10
-                transition-opacity
-                duration-500
-              `}
-            />
+              {/* Download button — appears on hover */}
+              <a
+                href={cert.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Certificate"
+                title="Download Certificate"
+                onClick={e => e.stopPropagation()}
+                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20"
+              >
+                <FaDownload className="w-3.5 h-3.5" />
+                Download
+              </a>
+
+            </div>
           </div>
         </motion.div>
       ))}

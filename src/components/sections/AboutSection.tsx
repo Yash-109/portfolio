@@ -130,19 +130,22 @@ function StatCard({
       viewport={{ once: true, amount: 0.35 }}
       transition={{
         type:      "spring",
-        stiffness:  75,
-        damping:    18,
-        delay:      0.2 + index * 0.12,
+        stiffness:  100,
+        damping:    20,
+        delay:      0.1 + index * 0.08,
       }}
+      role="listitem"
       whileHover={
         reduced
           ? {}
           : {
               y:         -4,
+              scale:     1.02,
               transition: { type: "spring", stiffness: 300, damping: 20 },
             }
       }
-      className="group p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 hover:border-purple-500/50 transition-all duration-300 cursor-default"
+      whileTap={reduced ? {} : { scale: 0.98 }}
+      className="group p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
@@ -221,29 +224,9 @@ export default function AboutSection() {
           initial={{ opacity: 0, x: reduced ? 0 : -32 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.12 }}
-          transition={{ type: "spring", stiffness: 65, damping: 18, delay: 0.05 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.05 }}
           className="order-2 lg:order-1 flex flex-col gap-7"
         >
-          {/* Section label */}
-          <motion.div
-            initial={{ opacity: 0, y: reduced ? 0 : -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="relative z-10 flex items-center gap-2"
-          >
-            <span
-              className="inline-block w-6 h-px shrink-0 rounded-full"
-              style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
-            />
-            <span
-              className="text-xs font-semibold tracking-[0.18em] uppercase"
-              style={{ color: "#14b8a6" }}
-            >
-              About Me
-            </span>
-          </motion.div>
-
           {/* Heading */}
           <motion.h2
             initial={{ opacity: 0, y: reduced ? 0 : 16 }}
@@ -262,8 +245,8 @@ export default function AboutSection() {
         <motion.div
           initial={{ opacity: 0, x: reduced ? 0 : 32 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ type: "spring", stiffness: 65, damping: 18, delay: 0.15 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.15 }}
           className="order-1 lg:order-2 flex flex-col gap-6"
         >
           {/* Para 1 — bright intro */}
@@ -355,7 +338,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.45 }}
-            className="pt-2"
+            className="pt-4"
           >
             <a
               href="/Yash_Parmar_Resume.pdf"
@@ -371,7 +354,7 @@ export default function AboutSection() {
                 hover:scale-[1.04] active:scale-[0.97]
                 transition-all duration-300
                 overflow-hidden w-fit
-                focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
               "
             >
               {/* Shimmer sweep */}
@@ -388,7 +371,7 @@ export default function AboutSection() {
         </div>
 
         {/* ── Stat cards — full-width 4-col grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div role="list" aria-label="Professional Statistics" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {STATS.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
           ))}

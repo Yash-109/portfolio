@@ -8,6 +8,7 @@ interface BaseInputProps {
   id: string;
   error?: string;
   required?: boolean;
+  autoComplete?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
@@ -44,6 +45,7 @@ export default function ContactInput({
   error,
   required = false,
   placeholder = "",
+  autoComplete,
   ...props
 }: ContactInputProps) {
   const [focused, setFocused] = useState(false);
@@ -86,6 +88,7 @@ export default function ContactInput({
     value,
     placeholder,
     required,
+    autoComplete,
     "aria-required": required,
     "aria-invalid": !!error,
     "aria-describedby": error ? errorId : undefined,
@@ -110,7 +113,7 @@ export default function ContactInput({
           onBlur={handleBlurInternal as React.FocusEventHandler<HTMLTextAreaElement>}
           rows={(props as TextareaInputProps).rows || 4}
           maxLength={maxLength}
-          className={`${inputClasses} min-h-[120px] resize-none`}
+          className={`${inputClasses} min-h-[128px] resize-none`}
         />
       ) : (
         <input
@@ -119,7 +122,7 @@ export default function ContactInput({
           onChange={onChange as (e: React.ChangeEvent<HTMLInputElement>) => void}
           onFocus={handleFocus}
           onBlur={handleBlurInternal as React.FocusEventHandler<HTMLInputElement>}
-          className={`${inputClasses} min-h-[44px]`}
+          className={`${inputClasses} h-12`}
         />
       )}
 

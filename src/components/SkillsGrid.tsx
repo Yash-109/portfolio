@@ -103,20 +103,22 @@ function SkillCard({
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 sm:p-5 rounded-2xl h-[108px] sm:h-[120px] transition-all duration-300"
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-5 sm:p-6 rounded-2xl h-[120px] sm:h-[130px] transition-all duration-300"
         style={{
-          background:  "rgba(15,23,42,0.9)",
-          border:      "1px solid rgba(30,41,59,1)",
-          backdropFilter: "blur(8px)",
+          background:  "rgba(30,41,59,0.4)",
+          border:      "1px solid rgba(51,65,85,0.6)",
+          backdropFilter: "blur(12px)",
         }}
         onMouseEnter={e => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = accent + "99";
-          el.style.boxShadow   = `0 0 0 1px ${accent}33, 0 12px 40px ${accent}35`;
+          el.style.borderColor = accent + "AA";
+          el.style.background  = "rgba(30,41,59,0.6)";
+          el.style.boxShadow   = `0 0 0 1px ${accent}60, 0 12px 40px ${accent}50, 0 0 80px ${accent}20`;
         }}
         onMouseLeave={e => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = "rgba(30,41,59,1)";
+          el.style.borderColor = "rgba(51,65,85,0.6)";
+          el.style.background  = "rgba(30,41,59,0.4)";
           el.style.boxShadow   = "none";
         }}
       >
@@ -159,7 +161,7 @@ function SkillGroupPanel({
       initial={{ opacity: 0, y: reduced ? 0 : 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
-      transition={{ type: "spring", stiffness: 70, damping: 18, delay: groupIndex * 0.1 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20, delay: groupIndex * 0.1 }}
       className="isolate rounded-2xl overflow-hidden"
       style={{
         border:     "1px solid rgba(30,41,59,0.9)",
@@ -229,20 +231,8 @@ export default function SkillsGrid() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-between"
+        className="relative z-10 flex items-center justify-end mb-8"
       >
-        <div className="relative z-10 flex items-center gap-2">
-          <span
-            className="inline-block w-6 h-px shrink-0 rounded-full"
-            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
-          />
-          <span
-            className="text-xs font-semibold tracking-[0.18em] uppercase"
-            style={{ color: "#14b8a6" }}
-          >
-            Tech Stack
-          </span>
-        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{

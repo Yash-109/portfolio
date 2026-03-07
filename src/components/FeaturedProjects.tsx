@@ -44,7 +44,7 @@ const PROJECTS: Project[] = [
 
 const containerVariants = {
   hidden:   { opacity: 0 },
-  visible:  { opacity: 1, transition: { staggerChildren: 0.15 } },
+  visible:  { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
 const cardVariants = {
@@ -58,8 +58,10 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
 
   return (
     <motion.div
+      role="listitem"
       variants={cardVariants}
-      whileHover={reduced ? {} : { y: -8, transition: { duration: 0.25 } }}
+      whileHover={reduced ? {} : { y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+      whileTap={reduced ? {} : { scale: 0.98 }}
       className="group relative z-0 h-full hover:z-10"
     >
       {/* Card shell */}
@@ -97,7 +99,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               rel="noopener noreferrer"
               aria-label={`${project.title} on GitHub`}
               onClick={e => e.stopPropagation()}
-              className="text-gray-500 hover:text-white transition-colors duration-200"
+              className="text-gray-500 hover:text-white transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-teal-400 rounded outline-none"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -161,6 +163,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
                   isBlue
                     ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60"
                     : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400/60",
+                  "focus-visible:ring-2 focus-visible:ring-teal-400 outline-none",
                 ].join(" ")}
               >
                 View Case Study
@@ -186,20 +189,8 @@ export default function FeaturedProjects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-between"
+        className="relative z-10 flex items-center justify-end mb-8"
       >
-        <div className="relative z-10 flex items-center gap-2">
-          <span
-            className="inline-block w-6 h-px shrink-0 rounded-full"
-            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
-          />
-          <span
-            className="text-xs font-semibold tracking-[0.18em] uppercase"
-            style={{ color: "#14b8a6" }}
-          >
-            Projects
-          </span>
-        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{
@@ -214,6 +205,8 @@ export default function FeaturedProjects() {
 
       {/* Cards grid */}
       <motion.div
+        role="list"
+        aria-label="Featured Projects"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"

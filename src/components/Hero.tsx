@@ -156,7 +156,7 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
         >
           <Image
             src="/profile.jpg"
-            alt="Yash Parmar"
+            alt="Yash Parmar - Full-Stack Developer"
             fill
             priority
             className="object-cover object-center"
@@ -185,8 +185,8 @@ export default function Hero() {
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute top-1/3  left-1/4  w-[500px] h-[500px] rounded-full bg-teal-500/5  blur-[160px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/4  blur-[120px]" />
+        <div className="absolute top-1/3  left-1/4  w-[500px] h-[500px] rounded-full bg-teal-500/8  blur-[160px] animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/6  blur-[120px] animate-pulse-slow" />
       </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20">
@@ -311,7 +311,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: prefersReduced ? 0 : 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.45 }}
-              className="flex flex-wrap gap-3 mt-1"
+              className="flex flex-wrap gap-3 mt-4"
             >
               {/* Primary: View Projects */}
               <a
@@ -327,7 +327,7 @@ export default function Hero() {
                   hover:scale-[1.04] active:scale-[0.97]
                   transition-all duration-300
                   overflow-hidden
-                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                  focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
                 "
               >
                 {/* Shimmer sweep */}
@@ -349,7 +349,7 @@ export default function Hero() {
                   hover:from-teal-500 hover:to-cyan-400
                   hover:scale-[1.04] active:scale-[0.97]
                   transition-all duration-300
-                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                  focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
                 "
               >
                 <span

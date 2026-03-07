@@ -259,7 +259,7 @@ export default function ContactFormNew() {
                     onClick={handleSendAnother}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors duration-200 underline-offset-4 hover:underline font-medium"
+                    className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors duration-200 underline-offset-4 hover:underline font-medium focus-visible:ring-2 focus-visible:ring-teal-400 rounded outline-none"
                   >
                     Send another message
                   </motion.button>
@@ -319,6 +319,7 @@ export default function ContactFormNew() {
                   onBlur={handleBlur}
                   error={validationErrors.name}
                   placeholder="Your name"
+                  autoComplete="name"
                   required
                 />
 
@@ -331,6 +332,7 @@ export default function ContactFormNew() {
                   onBlur={handleBlur}
                   error={validationErrors.email}
                   placeholder="your.email@example.com"
+                  autoComplete="email"
                   required
                 />
 
@@ -389,6 +391,7 @@ export default function ContactFormNew() {
                     w-full rounded-xl px-6 py-3.5 font-semibold text-white text-sm
                     flex items-center justify-center gap-2.5
                     transition-all duration-300 min-h-[48px] overflow-hidden
+                    focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
                     ${
                       isSubmitDisabled
                         ? "bg-slate-700/60 cursor-not-allowed opacity-55 shadow-none"

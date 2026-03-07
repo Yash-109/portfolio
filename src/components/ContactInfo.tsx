@@ -77,7 +77,8 @@ export default function ContactInfo() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="group flex items-center gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-xl hover:border-purple-500/60 hover:bg-purple-500/5 transition-all duration-300 cursor-pointer"
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-xl hover:border-purple-500/60 hover:bg-purple-500/5 transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 outline-none"
             >
               {/* Icon */}
               <div className="p-3 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg text-white flex items-center justify-center flex-shrink-0 shadow-md">

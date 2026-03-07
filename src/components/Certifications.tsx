@@ -84,7 +84,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
@@ -109,20 +109,8 @@ export default function Certifications() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-between"
+        className="relative z-10 flex items-center justify-end mb-8"
       >
-        <div className="relative z-10 flex items-center gap-2">
-          <span
-            className="inline-block w-6 h-px shrink-0 rounded-full"
-            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
-          />
-          <span
-            className="text-xs font-semibold tracking-[0.18em] uppercase"
-            style={{ color: "#14b8a6" }}
-          >
-            Certifications
-          </span>
-        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{
@@ -136,6 +124,8 @@ export default function Certifications() {
       </motion.div>
 
       <motion.div
+        role="list"
+        aria-label="Professional Certifications"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -145,8 +135,10 @@ export default function Certifications() {
       {certificates.map((cert) => (
         <motion.div
           key={cert.id}
+          role="listitem"
           variants={cardVariants}
-          whileHover={{ y: -6, transition: { duration: 0.25 } }}
+          whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+          whileTap={{ scale: 0.98 }}
           className="group relative h-full"
         >
           <div className="relative h-full flex flex-col bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
@@ -166,7 +158,7 @@ export default function Certifications() {
               </div>
 
               {/* Name */}
-              <h3 className="text-xl font-bold text-white mb-1 line-clamp-2 leading-snug">
+              <h3 className="text-lg font-bold text-white mb-1 line-clamp-2 leading-snug">
                 {cert.name}
               </h3>
 
@@ -194,13 +186,13 @@ export default function Certifications() {
                 {cert.skills.slice(0, 3).map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 text-xs bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-300 hover:bg-purple-500/20 transition-colors duration-200"
+                    className="px-2.5 py-1 text-xs bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-300 hover:bg-purple-500/20 transition-colors duration-200 whitespace-nowrap"
                   >
                     {skill}
                   </span>
                 ))}
                 {cert.skills.length > 3 && (
-                  <span className="px-2.5 py-1 text-xs bg-gray-700/40 border border-gray-700 rounded-lg text-gray-400">
+                  <span className="px-2.5 py-1 text-xs bg-gray-700/40 border border-gray-700 rounded-lg text-gray-400 whitespace-nowrap">
                     +{cert.skills.length - 3}
                   </span>
                 )}
@@ -221,7 +213,7 @@ export default function Certifications() {
                 aria-label="Download Certificate"
                 title="Download Certificate"
                 onClick={e => e.stopPropagation()}
-                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20"
+                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
               >
                 <FaDownload className="w-3.5 h-3.5" />
                 Download

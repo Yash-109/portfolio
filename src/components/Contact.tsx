@@ -6,7 +6,7 @@ import ContactFormNew from "./ContactFormNew";
 
 export default function Contact() {
   return (
-    <div className="relative">
+    <div role="region" aria-label="Contact" className="relative">
       {/* Background ambient orbs — larger + more vivid */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-56 -left-56 w-[600px] h-[600px] rounded-full bg-indigo-600/15 blur-[120px]" />

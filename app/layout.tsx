@@ -94,6 +94,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Yash Parmar",
+              "jobTitle": "Full-Stack Developer & ML Engineer",
+              "url": "https://yashparmar.dev",
+              "image": "https://yashparmar.dev/profile.jpg",
+              "description": "Full-Stack Developer specializing in Next.js, React, Node.js, and Machine Learning.",
+              "sameAs": [
+                "https://github.com/Yash-109",
+                "https://linkedin.com/in/yash-parmar-b99796289"
+              ],
+              "knowsAbout": ["Next.js", "React", "Node.js", "TypeScript", "Machine Learning", "MongoDB"]
+            }),
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <GlobalBackground />
         <div className="relative z-[1]">

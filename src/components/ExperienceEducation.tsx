@@ -98,20 +98,8 @@ export default function ExperienceEducation() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-between"
+        className="relative z-10 flex items-center justify-end mb-8"
       >
-        <div className="relative z-10 flex items-center gap-2">
-          <span
-            className="inline-block w-6 h-px shrink-0 rounded-full"
-            style={{ background: "linear-gradient(to right, #14b8a6, rgba(20,184,166,0.15))" }}
-          />
-          <span
-            className="text-xs font-semibold tracking-[0.18em] uppercase"
-            style={{ color: "#14b8a6" }}
-          >
-            Education
-          </span>
-        </div>
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
           style={{
@@ -126,6 +114,8 @@ export default function ExperienceEducation() {
 
       {/* Cards grid */}
       <motion.div
+        role="list"
+        aria-label="Educational Qualifications"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -135,8 +125,10 @@ export default function ExperienceEducation() {
         {educationData.map((edu) => (
           <motion.div
             key={edu.title}
+            role="listitem"
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+            whileTap={{ scale: 0.98 }}
             className="group relative z-10 hover:z-20"
           >
             {/* Card */}
@@ -166,7 +158,7 @@ export default function ExperienceEducation() {
 
                 {/* Title + institution + location — right-padded to avoid year overlap */}
                 <div className="pr-20 flex flex-col gap-1">
-                  <h3 className="text-base font-bold text-white leading-snug">
+                  <h3 className="text-lg font-bold text-white leading-snug">
                     {edu.title}
                   </h3>
                   <p className="text-sm font-semibold text-slate-300 mt-1">

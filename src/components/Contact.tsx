@@ -14,23 +14,6 @@ export default function Contact() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-indigo-500/8 blur-[100px]" />
       </div>
 
-      {/* Centered section header */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12 md:mb-16"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Let&apos;s Connect
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
-          Whether it&apos;s a freelance project, full-time role, or just a chat about
-          tech — my inbox is always open.
-        </p>
-      </motion.div>
-
       {/* Two-column grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
         {/* Left — Contact Info */}

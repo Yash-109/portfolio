@@ -17,9 +17,7 @@ export default function Page() {
       </Section>
 
       <Section id="skills" title="Skills & Technologies">
-        <div className="max-w-5xl mx-auto">
-          <SkillsGrid />
-        </div>
+        <SkillsGrid />
       </Section>
 
       <Section id="projects" title="Projects">

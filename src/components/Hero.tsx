@@ -221,7 +221,7 @@ export default function Hero() {
               aria-label="Yash Parmar"
             >
               {WORDS.map((word, wi) => (
-                <span key={wi} className="inline-block overflow-hidden mr-[0.35em] last:mr-0" style={{ lineHeight: 1.08 }}>
+                <span key={wi} className="inline-block overflow-hidden mr-[0.5em] last:mr-0" style={{ lineHeight: 1.08 }}>
                   <motion.span
                     className="inline-block"
                     initial={{ y: prefersReduced ? 0 : "100%", opacity: prefersReduced ? 0 : 1 }}

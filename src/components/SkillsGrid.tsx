@@ -103,12 +103,7 @@ function SkillCard({
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-5 sm:p-6 rounded-2xl h-[120px] sm:h-[130px] transition-all duration-300"
-        style={{
-          background:  "rgba(30,41,59,0.4)",
-          border:      "1px solid rgba(51,65,85,0.6)",
-          backdropFilter: "blur(12px)",
-        }}
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-5 sm:p-6 rounded-2xl h-[120px] sm:h-[130px] bg-slate-800/40 backdrop-blur-[12px] border border-slate-700/60 transition-all duration-300"
         onMouseEnter={e => {
           const el = e.currentTarget as HTMLDivElement;
           el.style.borderColor = accent + "AA";
@@ -136,8 +131,7 @@ function SkillCard({
         />
 
         <span
-          className="relative z-10 text-xs font-semibold text-center leading-tight transition-colors duration-300 group-hover:text-white"
-          style={{ color: "#cbd5e1" }}
+          className="relative z-10 text-xs font-semibold text-center leading-tight transition-colors duration-300 text-slate-300 group-hover:text-white"
         >
           {skill.name}
         </span>
@@ -162,16 +156,11 @@ function SkillGroupPanel({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ type: "spring", stiffness: 100, damping: 20, delay: groupIndex * 0.1 }}
-      className="isolate rounded-2xl overflow-hidden"
-      style={{
-        border:     "1px solid rgba(30,41,59,0.9)",
-        background: "rgba(15,23,42,0.65)",
-      }}
+      className="isolate rounded-2xl overflow-hidden border border-slate-800/90 bg-slate-950/65"
     >
       {/* Panel header */}
       <div
-        className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden"
-        style={{ borderBottom: "1px solid rgba(30,41,59,0.9)" }}
+        className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden border-b border-slate-800/90"
       >
         {/* Accent tint wash — more opaque than before */}
         <div
@@ -231,7 +220,7 @@ export default function SkillsGrid() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end mb-8"
+        className="relative z-10 flex items-center justify-end"
       >
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"

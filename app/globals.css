@@ -24,10 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-section {
-  min-height: 100vh;
-}
-
 @theme {
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
   --animate-shake: shake 0.5s ease-in-out;

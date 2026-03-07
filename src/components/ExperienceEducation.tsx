@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaGraduationCap, FaBook, FaBookOpen, FaMapMarkerAlt } from "react-icons/fa";
 
 interface EducationCard {
@@ -76,7 +76,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -90,6 +90,7 @@ const cardVariants = {
 };
 
 export default function ExperienceEducation() {
+  const reduced = useReducedMotion() ?? false;
   return (
     <div className="space-y-8">
       {/* Section header */}
@@ -98,7 +99,7 @@ export default function ExperienceEducation() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end mb-8"
+        className="relative z-10 flex items-center justify-end"
       >
         <span
           className="text-xs font-mono px-3 py-1 rounded-full"
@@ -127,8 +128,8 @@ export default function ExperienceEducation() {
             key={edu.title}
             role="listitem"
             variants={cardVariants}
-            whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+            whileTap={reduced ? {} : { scale: 0.98 }}
             className="group relative z-10 hover:z-20"
           >
             {/* Card */}

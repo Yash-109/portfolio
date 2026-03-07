@@ -132,20 +132,20 @@ function StatCard({
         type:      "spring",
         stiffness:  100,
         damping:    20,
-        delay:      0.1 + index * 0.08,
+        delay:      0.1 + index * 0.12,
       }}
       role="listitem"
       whileHover={
         reduced
           ? {}
           : {
-              y:         -4,
+              y:         -6,
               scale:     1.02,
               transition: { type: "spring", stiffness: 300, damping: 20 },
             }
       }
       whileTap={reduced ? {} : { scale: 0.98 }}
-      className="group p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
+      className="group p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
@@ -181,43 +181,10 @@ export default function AboutSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="relative">
-
-      {/* ── Decorative oversized background text ── */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none select-none whitespace-nowrap font-black leading-none"
-        style={{
-          fontSize:    "clamp(7rem, 14vw, 13rem)",
-          color:       "rgba(255,255,255,0.025)",
-          top:         "-0.15em",
-          left:        "-0.05em",
-          zIndex:       0,
-          letterSpacing: "-0.04em",
-        }}
-      >
-        ABOUT
-      </div>
-
-      {/* ── Ambient glow orb ── */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          width:      "40vw",
-          height:     "40vw",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%)",
-          filter:     "blur(60px)",
-          top:        "20%",
-          left:       "-10%",
-          zIndex:      0,
-        }}
-      />
+    <div className="flex flex-col gap-12 md:gap-16">
 
       {/* ── Content grid ── */}
-      <div className="relative z-10 flex flex-col gap-12 md:gap-16">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
         {/* ─────── LEFT: label + heading ─────── */}
         <motion.div
@@ -233,8 +200,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-bold text-white leading-tight"
-            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight"
           >
             Who I Am
           </motion.h2>
@@ -255,11 +221,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            style={{
-              color:      "#e2e8f0",
-              fontSize:   "clamp(0.95rem, 1.3vw, 1.05rem)",
-              lineHeight:  1.85,
-            }}
+            className="text-base md:text-lg text-slate-200 leading-relaxed"
           >
             I&apos;m a Full-Stack Developer and ML Engineer pursuing B.Tech in
             Computer Science at CHARUSAT (2023&ndash;2027), currently in my 3rd
@@ -272,11 +234,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            style={{
-              color:      "#94a3b8",
-              fontSize:   "clamp(0.95rem, 1.3vw, 1.05rem)",
-              lineHeight:  1.85,
-            }}
+            className="text-base md:text-lg text-slate-400 leading-relaxed"
           >
             I build production-grade applications &mdash; from trading analytics
             platforms with real-time charts and risk engines, to e-commerce
@@ -291,11 +249,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            style={{
-              color:      "#94a3b8",
-              fontSize:   "clamp(0.95rem, 1.3vw, 1.05rem)",
-              lineHeight:  1.85,
-            }}
+            className="text-base md:text-lg text-slate-400 leading-relaxed"
           >
             I write clean, structured code and care deeply about performance,
             edge cases, and the user experience under imperfect conditions. Every
@@ -319,13 +273,9 @@ export default function AboutSection() {
                 transition={{ delay: 0.5 + i * 0.06, duration: 0.28 }}
                 whileHover={reduced ? {} : { scale: 1.07 }}
                 className="px-3 py-1.5 rounded-full text-xs font-medium cursor-default select-none
-                           transition-colors duration-200
-                           hover:bg-teal-500/10 hover:border-teal-400/50"
-                style={{
-                  border:   "1px solid rgba(20,184,166,0.28)",
-                  background: "rgba(20,184,166,0.06)",
-                  color:    "#5eead4",
-                }}
+                           bg-teal-500/10 border border-teal-500/20 text-teal-300
+                           hover:bg-teal-500/20 hover:border-teal-400/50
+                           transition-colors duration-200"
               >
                 {chip}
               </motion.span>
@@ -370,12 +320,11 @@ export default function AboutSection() {
         </motion.div>
         </div>
 
-        {/* ── Stat cards — full-width 4-col grid ── */}
-        <div role="list" aria-label="Professional Statistics" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {STATS.map((stat, i) => (
-            <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
-          ))}
-        </div>
+      {/* ── Stat cards — full-width 4-col grid ── */}
+      <div role="list" aria-label="Professional Statistics" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {STATS.map((stat, i) => (
+          <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
+        ))}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Mail, Github, Linkedin, Clock, MapPin, Briefcase } from "lucide-react";
 import ContactStat from "./ui/ContactStat";
 
@@ -41,27 +41,17 @@ const itemVariants = {
     y: 0,
     transition: {
       type: "spring" as const,
-      stiffness: 260,
-      damping: 22,
-      delay: 0.1 + i * 0.1,
+      stiffness: 100,
+      damping: 20,
+      delay: 0.1 + i * 0.12,
     },
   }),
 };
 
 export default function ContactInfo() {
+  const reduced = useReducedMotion() ?? false;
   return (
     <div className="space-y-6">
-      {/* Section label */}
-      <motion.h3
-        initial={{ opacity: 0, y: -8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-        className="text-2xl font-bold text-white"
-      >
-        Get in Touch
-      </motion.h3>
-
       {/* Contact cards */}
       <div className="space-y-4">
         {contactLinks.map((link, i) => {
@@ -77,8 +67,9 @@ export default function ContactInfo() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-xl hover:border-purple-500/60 hover:bg-purple-500/5 transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 outline-none"
+              whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+              whileTap={reduced ? {} : { scale: 0.98 }}
+              className="group flex items-center gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
             >
               {/* Icon */}
               <div className="p-3 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg text-white flex items-center justify-center flex-shrink-0 shadow-md">

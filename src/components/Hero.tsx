@@ -189,7 +189,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/4  blur-[120px]" />
       </div>
 
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20">
         {/*
           Mobile:  single col, photo first (order-1), text second (order-2)
           Desktop: 55 / 45 grid â€” text left, photo right

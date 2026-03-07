@@ -213,8 +213,8 @@ export default function AboutSection() {
       />
 
       {/* ── Content grid ── */}
-      <div className="relative z-10 flex flex-col gap-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div className="relative z-10 flex flex-col gap-12 md:gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
         {/* ─────── LEFT: label + heading ─────── */}
         <motion.div
@@ -388,7 +388,7 @@ export default function AboutSection() {
         </div>
 
         {/* ── Stat cards — full-width 4-col grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {STATS.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} reduced={reduced} />
           ))}

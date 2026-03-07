@@ -65,7 +65,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
       {/* Card shell */}
       <div
         className={[
-          "relative h-full flex flex-col overflow-hidden rounded-2xl p-8",
+          "relative h-full flex flex-col overflow-hidden rounded-2xl p-6 md:p-8",
           "bg-gray-900/50 backdrop-blur-sm border transition-all duration-300",
           isBlue
             ? "border-gray-800 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]"
@@ -218,7 +218,7 @@ export default function FeaturedProjects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
       >
         {PROJECTS.map(project => (
           <ProjectCard key={project.id} project={project} reduced={reduced} />

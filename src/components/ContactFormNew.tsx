@@ -174,14 +174,10 @@ export default function ContactFormNew() {
   /* ── render ── */
   return (
     <div className="relative">
-      {/* Stronger layered glow behind the card */}
-      <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-indigo-500/25 via-violet-500/10 to-indigo-500/15 blur-2xl -z-10" />
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-indigo-500/30 via-transparent to-violet-500/20 blur-lg -z-10" />
-
-      {/* Card — glassmorphism with border glow */}
-      <div className="rounded-2xl bg-slate-900/85 backdrop-blur-xl border border-slate-700/60 overflow-hidden shadow-[0_20px_60px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(99,102,241,0.08)] ring-1 ring-indigo-500/10">
-        {/* Top accent bar — gradient shimmer */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500" />
+      {/* Card */}
+      <div className="rounded-2xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors duration-300 shadow-lg">
+        {/* Top accent bar */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-purple-500 via-violet-500 to-cyan-500" />
 
         <AnimatePresence mode="wait">
           {status === "success" ? (
@@ -192,7 +188,7 @@ export default function ContactFormNew() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: -8 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className="relative p-10 md:p-12 flex flex-col items-center justify-center text-center min-h-[440px] gap-6 overflow-hidden"
+              className="relative p-8 md:p-10 flex flex-col items-center justify-center text-center min-h-[440px] gap-6 overflow-hidden"
               role="status"
               aria-live="polite"
             >
@@ -278,7 +274,7 @@ export default function ContactFormNew() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.3 }}
-              className="p-8 md:p-10"
+              className="p-6 md:p-8"
             >
               {/* Form Header */}
               <div className="mb-7">

@@ -140,7 +140,7 @@ export default function Certifications() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
       >
       {certificates.map((cert) => (
         <motion.div
@@ -149,7 +149,7 @@ export default function Certifications() {
           whileHover={{ y: -6, transition: { duration: 0.25 } }}
           className="group relative h-full"
         >
-          <div className="relative h-full flex flex-col bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-6 overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
+          <div className="relative h-full flex flex-col bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
 
             {/* Hover gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />

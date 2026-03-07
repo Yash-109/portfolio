@@ -119,7 +119,7 @@ export default function ContactInput({
           onChange={onChange as (e: React.ChangeEvent<HTMLInputElement>) => void}
           onFocus={handleFocus}
           onBlur={handleBlurInternal as React.FocusEventHandler<HTMLInputElement>}
-          className={inputClasses}
+          className={`${inputClasses} min-h-[44px]`}
         />
       )}
 

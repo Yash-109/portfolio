@@ -37,21 +37,21 @@ export default function PageLoader() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-4 border-transparent border-t-indigo-500 border-r-purple-500"
+                className="absolute inset-0 rounded-full border-4 border-transparent border-t-teal-500 border-r-cyan-400"
               />
               
               {/* Inner ring */}
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-2 rounded-full border-4 border-transparent border-t-purple-500 border-l-indigo-500"
+                className="absolute inset-2 rounded-full border-4 border-transparent border-t-cyan-400 border-l-teal-500"
               />
               
               {/* Center dot */}
               <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="absolute inset-0 m-auto w-3 h-3 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500"
+                className="absolute inset-0 m-auto w-3 h-3 rounded-full bg-gradient-to-br from-teal-500 to-cyan-400"
               />
             </div>
 

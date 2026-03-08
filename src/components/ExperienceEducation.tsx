@@ -133,10 +133,11 @@ export default function ExperienceEducation() {
             className="group relative z-0 hover:z-10"
           >
             {/* Card */}
-            <div className="relative h-full flex flex-col bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
+            <div
+              className="relative h-full flex flex-col bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
 
               {/* Hover gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
 
               {/* Subtle per-card tint */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${edu.cardGradient} pointer-events-none`} />
@@ -145,7 +146,7 @@ export default function ExperienceEducation() {
               <div className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br ${edu.iconGradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
 
               {/* Year badge — absolutely positioned top-right */}
-              <div className="absolute top-4 right-4 px-3 py-1 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300 text-xs font-medium whitespace-nowrap z-20">
+              <div className="absolute top-4 right-4 px-3 py-1 bg-teal-500/20 border border-teal-500/30 rounded-lg text-teal-300 text-xs font-medium whitespace-nowrap z-20">
                 {edu.year}
               </div>
 

@@ -175,9 +175,9 @@ export default function ContactFormNew() {
   return (
     <div className="relative">
       {/* Card */}
-      <div className="rounded-2xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-purple-500/50 transition-colors duration-300 shadow-lg">
+      <div className="relative rounded-2xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-teal-500/50 transition-colors duration-300 shadow-lg">
         {/* Top accent bar */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-purple-500 via-violet-500 to-cyan-500" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-500" />
 
         <AnimatePresence mode="wait">
           {status === "success" ? (
@@ -395,7 +395,7 @@ export default function ContactFormNew() {
                     ${
                       isSubmitDisabled
                         ? "bg-slate-700/60 cursor-not-allowed opacity-55 shadow-none"
-                        : "bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-600 hover:from-indigo-400 hover:via-violet-400 hover:to-purple-500 shadow-[0_4px_24px_rgba(99,102,241,0.45)] hover:shadow-[0_8px_40px_rgba(99,102,241,0.65)] hover:scale-[1.02]"
+                        : "bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 hover:from-teal-400 hover:via-cyan-400 hover:to-teal-500 shadow-[0_4px_24px_rgba(20,184,166,0.45)] hover:shadow-[0_8px_40px_rgba(20,184,166,0.65)] hover:scale-[1.02]"
                     }
                   `}
                 >

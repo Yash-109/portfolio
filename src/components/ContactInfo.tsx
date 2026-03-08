@@ -11,6 +11,7 @@ const contactLinks = [
     value: "yashparmar1027@gmail.com",
     href: "mailto:yashparmar1027@gmail.com",
     icon: Mail,
+    color: "from-teal-500 to-cyan-500",
   },
   {
     id: "github",
@@ -18,6 +19,7 @@ const contactLinks = [
     value: "@Yash-109",
     href: "https://github.com/Yash-109",
     icon: Github,
+    color: "from-slate-500 to-slate-400",
   },
   {
     id: "linkedin",
@@ -25,13 +27,14 @@ const contactLinks = [
     value: "Yash Parmar",
     href: "https://linkedin.com/in/yash-parmar-b99796289",
     icon: Linkedin,
+    color: "from-blue-500 to-blue-400",
   },
 ];
 
 const stats = [
-  { icon: Clock, title: "Response", value: "24–48 hrs" },
-  { icon: MapPin, title: "Location", value: "India · Remote" },
-  { icon: Briefcase, title: "Open to", value: "Freelance & FT" },
+  { icon: Clock,    title: "Response", value: "24–48 hrs"      },
+  { icon: MapPin,   title: "Location", value: "India · Remote" },
+  { icon: Briefcase,title: "Open to",  value: "Freelance & FT" },
 ];
 
 const itemVariants = {
@@ -51,9 +54,9 @@ const itemVariants = {
 export default function ContactInfo() {
   const reduced = useReducedMotion() ?? false;
   return (
-    <div className="space-y-6">
-      {/* Contact cards */}
-      <div className="space-y-4">
+    <div className="space-y-5">
+      {/* Contact link cards */}
+      <div className="space-y-3">
         {contactLinks.map((link, i) => {
           const Icon = link.icon;
           return (
@@ -67,26 +70,40 @@ export default function ContactInfo() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              whileHover={reduced ? {} : { y: -6, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+              whileHover={reduced ? {} : { y: -3, scale: 1.01, transition: { type: "spring", stiffness: 320, damping: 22 } }}
               whileTap={reduced ? {} : { scale: 0.98 }}
-              className="group flex items-center gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
+              className="group flex items-center gap-4 p-4 rounded-2xl outline-none
+                bg-gray-900/50 backdrop-blur-sm border border-gray-800
+                hover:border-teal-500/50 hover:shadow-lg hover:shadow-teal-500/10
+                transition-all duration-300
+                focus-visible:ring-2 focus-visible:ring-teal-400"
             >
-              {/* Icon */}
-              <div className="p-3 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg text-white flex items-center justify-center flex-shrink-0 shadow-md">
-                <Icon className="w-5 h-5" />
+              {/* Square icon badge */}
+              <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                bg-gradient-to-br ${link.color} shadow-lg`}>
+                <Icon size={18} strokeWidth={2} className="text-white" />
               </div>
 
               {/* Labels */}
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-gray-400">{link.label}</p>
-                <p className="text-white font-medium truncate">{link.value}</p>
+                <p className="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-0.5">{link.label}</p>
+                <p className="text-sm text-slate-200 font-medium truncate group-hover:text-teal-300 transition-colors duration-200">{link.value}</p>
               </div>
+
+              {/* Subtle external indicator */}
+              {link.id !== "email" && (
+                <span className="text-slate-700 group-hover:text-teal-500 transition-colors duration-200 shrink-0">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              )}
             </motion.a>
           );
         })}
       </div>
 
-      {/* Quick stats */}
+      {/* Quick info stats */}
       <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-2">
         {stats.map((stat, i) => (
           <motion.div

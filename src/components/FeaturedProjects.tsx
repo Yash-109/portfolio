@@ -70,22 +70,22 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           "relative h-full flex flex-col overflow-hidden rounded-2xl p-6 md:p-8",
           "bg-gray-900/50 backdrop-blur-sm border transition-all duration-300",
           isBlue
-            ? "border-gray-800 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10"
-            : "border-gray-800 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10",
+            ? "border-gray-800 hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10"
+            : "border-gray-800 hover:border-gray-600/40 hover:shadow-xl hover:shadow-gray-500/5",
         ].join(" ")}
       >
         {/* Gradient overlay on hover */}
         <div
           className={[
             "absolute inset-0 bg-gradient-to-t to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl",
-            isBlue ? "from-blue-900/20" : "from-purple-900/20",
+            isBlue ? "from-teal-900/20" : "from-gray-900/20",
           ].join(" ")}
         />
 
         {/* Top row: Coming Soon badge OR GitHub icon */}
         <div className="relative z-10 flex items-start justify-between mb-5">
           {project.comingSoon ? (
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-500/10 border border-purple-500/30 text-purple-300">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-500/10 border border-gray-500/30 text-gray-400">
               Coming Soon
             </span>
           ) : (
@@ -116,8 +116,8 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               "text-2xl font-bold leading-snug transition-all duration-300",
               "text-white group-hover:text-transparent group-hover:bg-clip-text",
               isBlue
-                ? "group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-violet-400"
-                : "group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400",
+                ? "group-hover:bg-gradient-to-r group-hover:from-teal-400 group-hover:to-cyan-400"
+                : "group-hover:bg-gradient-to-r group-hover:from-gray-400 group-hover:to-gray-300",
             ].join(" ")}
           >
             {project.title}
@@ -134,10 +134,10 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               <span
                 key={tech}
                 className={[
-                  "px-3 py-1 text-xs font-medium rounded-full cursor-default transition-colors duration-200",
+                  "px-3.5 py-2 text-xs font-semibold rounded-full cursor-default select-none transition-all duration-200",
                   isBlue
-                    ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20"
-                    : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20",
+                    ? "bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/20 hover:border-teal-400/50 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(20,184,166,0.15)]"
+                    : "bg-gray-500/10 border border-gray-500/30 text-gray-400 hover:bg-gray-500/20",
                 ].join(" ")}
               >
                 {tech}
@@ -146,11 +146,11 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           </div>
 
           {/* CTA */}
-          <div className="pt-4">
+          <div className="pt-4 flex flex-wrap items-center gap-3">
             {project.comingSoon ? (
               <button
                 disabled
-                className="inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
+                className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
               >
                 View Case Study
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -159,15 +159,16 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
               <Link
                 href={project.link}
                 className={[
-                  "group/cta inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold transition-all duration-300",
+                  "group/cta inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-200",
+                  "hover:-translate-y-0.5 active:translate-y-0",
                   isBlue
-                    ? "bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60"
-                    : "bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400/60",
+                    ? "bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/[0.18] hover:border-teal-400/60 hover:shadow-[0_6px_20px_rgba(20,184,166,0.2)]"
+                    : "bg-gray-500/10 border border-gray-500/30 text-gray-400 hover:bg-gray-500/20 hover:border-gray-400/50",
                   "focus-visible:ring-2 focus-visible:ring-teal-400 outline-none",
                 ].join(" ")}
               >
                 View Case Study
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
               </Link>
             )}
           </div>

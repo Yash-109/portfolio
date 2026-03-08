@@ -140,10 +140,11 @@ export default function Certifications() {
           whileTap={reduced ? {} : { scale: 0.98 }}
           className="group relative z-0 hover:z-10 h-full"
         >
-          <div className="relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
+          <div
+            className="relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300">
 
             {/* Hover gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
 
             {/* Decorative corner orb */}
             <div className={`absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-gradient-to-br ${cert.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
@@ -185,13 +186,16 @@ export default function Certifications() {
                 {cert.skills.slice(0, 3).map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 text-xs bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-300 hover:bg-purple-500/20 transition-colors duration-200 whitespace-nowrap"
+                    className="px-3.5 py-2 text-xs font-semibold bg-teal-500/10 border border-teal-500/25 rounded-full text-teal-300
+                      hover:bg-teal-500/20 hover:border-teal-400/50 hover:-translate-y-0.5
+                      hover:shadow-[0_4px_12px_rgba(20,184,166,0.15)]
+                      transition-all duration-200 whitespace-nowrap cursor-default select-none"
                   >
                     {skill}
                   </span>
                 ))}
                 {cert.skills.length > 3 && (
-                  <span className="px-2.5 py-1 text-xs bg-gray-700/40 border border-gray-700 rounded-lg text-gray-400 whitespace-nowrap">
+                  <span className="px-3 py-2 text-xs font-semibold bg-gray-700/40 border border-gray-700 rounded-full text-gray-400 whitespace-nowrap cursor-default">
                     +{cert.skills.length - 3}
                   </span>
                 )}
@@ -204,7 +208,7 @@ export default function Certifications() {
                 </div>
               )}
 
-              {/* Download button — appears on hover */}
+              {/* Download button */}
               <a
                 href={cert.file}
                 target="_blank"
@@ -212,7 +216,13 @@ export default function Certifications() {
                 aria-label="Download Certificate"
                 title="Download Certificate"
                 onClick={e => e.stopPropagation()}
-                className="mt-4 inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg text-sm font-semibold w-fit opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
+                className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold w-fit
+                  bg-teal-500/10 border border-teal-500/30 text-teal-300
+                  hover:bg-teal-500/[0.18] hover:border-teal-400/60
+                  hover:shadow-[0_6px_20px_rgba(20,184,166,0.2)]
+                  hover:-translate-y-0.5 active:translate-y-0
+                  transition-all duration-200
+                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
               >
                 <FaDownload className="w-3.5 h-3.5" />
                 Download

@@ -70,7 +70,7 @@ export const VIEWPORT = { once: true, margin: "-80px" } as const;
 
 /** Unified glassmorphism card base */
 export const CARD_BASE =
-  "relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10";
+  "relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10";
 
 /** Standard icon container (pair with a gradient bg class) */
 export const ICON_CONTAINER =
@@ -89,7 +89,7 @@ export const COUNT_BADGE =
 
 /** Hover gradient overlay (place inside card, absolute inset-0, z-0) */
 export const HOVER_OVERLAY =
-  "absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl";
+  "absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl";
 
 // ─── Spacing Tokens ────────────────────────────────────────────────────────
 

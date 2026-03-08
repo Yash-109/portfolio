@@ -8,7 +8,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight, Github, Linkedin } from "lucide-react";
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Constants
@@ -286,7 +286,7 @@ export default function Hero() {
               transition={{ delay: 0.82, duration: 0.45 }}
               className="italic pl-3"
               style={{
-                color:       "#475569",
+                color:       "#64748b",
                 fontSize:    "0.9rem",
                 borderLeft:  "3px solid #14b8a6",
               }}
@@ -322,9 +322,10 @@ export default function Hero() {
                   px-7 py-3.5 min-h-[44px] rounded-xl
                   bg-gradient-to-r from-teal-500 to-cyan-400
                   text-slate-900 text-[15px] font-bold tracking-wide
-                  shadow-[0_4px_20px_rgba(20,184,166,0.4)]
-                  hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
-                  hover:scale-[1.04] active:scale-[0.97]
+                  shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)]
+                  hover:shadow-[0_8px_32px_rgba(20,184,166,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]
+                  hover:scale-[1.04] hover:-translate-y-0.5
+                  active:scale-[0.97] active:translate-y-px
                   transition-all duration-300
                   overflow-hidden
                   focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
@@ -336,24 +337,73 @@ export default function Hero() {
                   style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)" }}
                 />
                 <span className="relative z-10">View Projects</span>
-                <ArrowRight size={16} strokeWidth={2.5} className="relative z-10" />
+                <ArrowRight size={16} strokeWidth={2.5} className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
 
-              {/* Secondary: Contact Me — ghost outlined */}
+              {/* Secondary: Contact Me */}
               <a
                 href="#contact"
                 className="
                   inline-flex items-center justify-center gap-2
                   w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-xl
-                  border-2 border-teal-400/80 text-teal-400
+                  border border-teal-400/40 bg-teal-400/[0.04] text-teal-400
                   text-[15px] font-bold tracking-wide
-                  hover:bg-teal-400 hover:text-slate-900 hover:border-teal-400
-                  hover:scale-[1.04] active:scale-[0.97]
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]
+                  hover:bg-teal-400/[0.1] hover:border-teal-300/60 hover:text-teal-300
+                  hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_0_24px_rgba(20,184,166,0.2)]
+                  hover:-translate-y-0.5 active:translate-y-px
                   transition-all duration-200
                   focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
                 "
               >
                 Contact Me
+              </a>
+            </motion.div>
+
+            {/* [7.5] Social icon links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.4 }}
+              className="flex items-center gap-3"
+            >
+              <a
+                href="https://github.com/Yash-109"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="
+                  flex items-center gap-2 px-5 py-2.5 rounded-xl
+                  bg-white/[0.04] border border-white/[0.1] text-slate-300
+                  text-sm font-semibold
+                  hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white
+                  hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]
+                  hover:-translate-y-0.5 active:translate-y-0
+                  transition-all duration-200
+                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                "
+              >
+                <Github size={15} strokeWidth={2} />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/yash-parmar-b99796289"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="
+                  flex items-center gap-2 px-5 py-2.5 rounded-xl
+                  bg-white/[0.04] border border-white/[0.1] text-slate-300
+                  text-sm font-semibold
+                  hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white
+                  hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]
+                  hover:-translate-y-0.5 active:translate-y-0
+                  transition-all duration-200
+                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                "
+              >
+                <Linkedin size={15} strokeWidth={2} />
+                LinkedIn
               </a>
             </motion.div>
 
@@ -375,12 +425,14 @@ export default function Hero() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.25 + i * 0.07, duration: 0.3 }}
                     className="
-                      inline-flex items-center gap-1.5
-                      px-3 py-1 rounded-full text-xs font-medium
-                      border border-slate-700 bg-slate-800/60 text-slate-300
+                      inline-flex items-center gap-2
+                      px-4 py-2.5 rounded-full text-xs font-semibold
+                      border border-teal-500/30 bg-teal-500/[0.09] text-teal-300
+                      cursor-default select-none
+                      hover:bg-teal-500/[0.16] hover:border-teal-400/50
+                      hover:shadow-[0_4px_14px_rgba(20,184,166,0.18)]
+                      hover:-translate-y-0.5 active:translate-y-0
                       transition-all duration-200
-                      hover:border-teal-500/60 hover:text-teal-400 hover:bg-teal-500/5 hover:scale-105
-                      cursor-default
                     "
                   >
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: dot }} />

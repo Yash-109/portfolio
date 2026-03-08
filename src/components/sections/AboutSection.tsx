@@ -145,11 +145,11 @@ function StatCard({
             }
       }
       whileTap={reduced ? {} : { scale: 0.98 }}
-      className="group relative z-0 hover:z-10 p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-default"
+      className="group relative z-0 hover:z-10 p-6 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300 cursor-default"
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
-        <div className="p-3 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg shrink-0">
+        <div className="p-3 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg shrink-0">
           <Icon size={20} strokeWidth={2} className="text-white" />
         </div>
 
@@ -257,10 +257,12 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + i * 0.06, duration: 0.28 }}
-                className="px-3 py-1.5 rounded-full text-xs font-medium cursor-default select-none
-                           bg-teal-500/10 border border-teal-500/20 text-teal-300
+                className="px-4 py-2 rounded-full text-xs font-semibold cursor-default select-none
+                           bg-teal-500/10 border border-teal-500/25 text-teal-300
                            hover:bg-teal-500/20 hover:border-teal-400/50
-                           transition-colors duration-200"
+                           hover:shadow-[0_4px_14px_rgba(20,184,166,0.18)]
+                           hover:-translate-y-0.5 active:translate-y-0
+                           transition-all duration-200"
               >
                 {chip}
               </motion.span>
@@ -284,9 +286,10 @@ export default function AboutSection() {
                 px-7 py-3.5 min-h-[44px] rounded-xl
                 bg-gradient-to-r from-teal-500 to-cyan-400
                 text-slate-900 text-[15px] font-bold tracking-wide
-                shadow-[0_4px_20px_rgba(20,184,166,0.4)]
-                hover:shadow-[0_6px_32px_rgba(20,184,166,0.6)]
-                hover:scale-[1.04] active:scale-[0.97]
+                shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)]
+                hover:shadow-[0_8px_32px_rgba(20,184,166,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]
+                hover:scale-[1.04] hover:-translate-y-0.5
+                active:scale-[0.97] active:translate-y-px
                 transition-all duration-300
                 overflow-hidden w-fit
                 focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none

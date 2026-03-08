@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation';
 
 export default function ProjectsPage() {
   redirect('/#projects');
-        
-        {/* Title Section */}
+}
+
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tight">
             Projects

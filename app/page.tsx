@@ -28,7 +28,7 @@ export default function Page() {
         <Certifications />
       </Section>
 
-      <Section id="education" title="Experience & Education">
+      <Section id="education" title="Education">
         <ExperienceEducation />
       </Section>
 

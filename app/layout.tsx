@@ -120,7 +120,7 @@ export default function RootLayout({
         <div className="relative z-[1]">
           <PageLoader />
           <Navbar />
-          <div className="pt-20">
+          <div className="pt-16">
             {children}
             <Footer />
           </div>

@@ -209,31 +209,10 @@ function SkillGroupPanel({
 
 /* ─── Main Export ─────────────────────────────────────────────────────────── */
 export default function SkillsGrid() {
-  const reduced    = useReducedMotion() ?? false;
-  const totalSkills = skillGroups.reduce((s, g) => s + g.skills.length, 0);
+  const reduced = useReducedMotion() ?? false;
 
   return (
     <div className="space-y-8">
-      {/* Intro row */}
-      <motion.div
-        initial={{ opacity: 0, y: reduced ? 0 : -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end"
-      >
-        <span
-          className="text-xs font-mono px-3 py-1 rounded-full"
-          style={{
-            border:     "1px solid rgba(20,184,166,0.25)",
-            background: "rgba(20,184,166,0.06)",
-            color:      "#5eead4",
-          }}
-        >
-          {totalSkills} technologies
-        </span>
-      </motion.div>
-
       {skillGroups.map((group, i) => (
         <SkillGroupPanel
           key={group.title}

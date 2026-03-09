@@ -189,7 +189,7 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.12 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.05 }}
-        className="flex flex-col gap-6 max-w-3xl"
+        className="flex flex-col gap-6 max-w-3xl mx-auto"
       >
         {/* Heading */}
         <motion.h3

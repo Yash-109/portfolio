@@ -102,33 +102,13 @@ export default function Certifications() {
   const reduced = useReducedMotion() ?? false;
   return (
     <div className="space-y-8">
-      {/* Section header row */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-        className="relative z-10 flex items-center justify-end"
-      >
-        <span
-          className="text-xs font-mono px-3 py-1 rounded-full"
-          style={{
-            border: "1px solid rgba(20,184,166,0.25)",
-            background: "rgba(20,184,166,0.06)",
-            color: "#5eead4",
-          }}
-        >
-          {certificates.length} certifications
-        </span>
-      </motion.div>
-
       <motion.div
         role="list"
         aria-label="Professional Certifications"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, margin: "0px" }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
       >
       {certificates.map((cert) => (

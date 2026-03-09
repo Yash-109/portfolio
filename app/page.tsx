@@ -16,23 +16,23 @@ export default function Page() {
         <AboutSection />
       </Section>
 
-      <Section id="skills" title="Skills & Technologies">
+      <Section id="skills" title="Skills & Technologies" badge="16 technologies" tinted>
         <SkillsGrid />
       </Section>
 
-      <Section id="projects" title="Projects">
+      <Section id="projects" title="Projects" badge="3 projects">
         <FeaturedProjects />
       </Section>
 
-      <Section id="certifications" title="Certifications">
+      <Section id="certifications" title="Certifications" badge="5 certifications" tinted>
         <Certifications />
       </Section>
 
-      <Section id="education" title="Education">
+      <Section id="education" title="Education" badge="3 qualifications">
         <ExperienceEducation />
       </Section>
 
-      <Section id="contact" title="Get In Touch">
+      <Section id="contact" title="Get In Touch" tinted>
         <Contact />
       </Section>
     </main>

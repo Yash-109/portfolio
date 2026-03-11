@@ -84,12 +84,10 @@ const skillGroups: SkillGroup[] = [
 /* ─── Skill Card ─────────────────────────────────────────────────────────── */
 function SkillCard({
   skill,
-  accent,
   index,
   reduced,
 }: {
   skill:   Skill;
-  accent:  string;
   index:   number;
   reduced: boolean;
 }) {
@@ -103,19 +101,7 @@ function SkillCard({
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-5 sm:p-6 rounded-2xl h-[120px] sm:h-[130px] bg-slate-800/40 backdrop-blur-[12px] border border-slate-700/60 transition-all duration-300"
-        onMouseEnter={e => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = accent + "AA";
-          el.style.background  = "rgba(30,41,59,0.6)";
-          el.style.boxShadow   = `0 0 0 1px ${accent}60, 0 12px 40px ${accent}50, 0 0 80px ${accent}20`;
-        }}
-        onMouseLeave={e => {
-          const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = "rgba(51,65,85,0.6)";
-          el.style.background  = "rgba(30,41,59,0.4)";
-          el.style.boxShadow   = "none";
-        }}
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-teal-500/30 transition-all duration-200"
       >
         {/* Radial glow from icon color on hover */}
         <div
@@ -172,7 +158,7 @@ function SkillGroupPanel({
         <div className={`relative z-10 shrink-0 h-5 w-1 rounded-full bg-gradient-to-b ${group.gradient}`} />
 
         {/* Gradient title text */}
-        <h4 className={`relative z-10 text-sm font-bold tracking-wide bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
+        <h4 className="relative z-10 text-sm font-semibold text-teal-400/80 uppercase tracking-widest">
           {group.title}
         </h4>
 
@@ -196,7 +182,6 @@ function SkillGroupPanel({
             <SkillCard
               key={skill.name}
               skill={skill}
-              accent={group.accent}
               index={i}
               reduced={reduced}
             />

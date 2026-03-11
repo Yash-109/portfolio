@@ -54,8 +54,6 @@ const cardVariants = {
 
 /* ─── Single Project Card ─────────────────────────────────────────────────── */
 function ProjectCard({ project, reduced }: { project: Project; reduced: boolean }) {
-  const isBlue = !project.comingSoon;
-
   return (
     <motion.div
       role="listitem"
@@ -66,20 +64,11 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className={[
-          "relative h-full flex flex-col overflow-hidden rounded-2xl p-6 md:p-8",
-          "bg-gray-900/50 backdrop-blur-sm border transition-all duration-300",
-          isBlue
-            ? "border-gray-800 hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10"
-            : "border-gray-800 hover:border-gray-600/40 hover:shadow-xl hover:shadow-gray-500/5",
-        ].join(" ")}
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-6 bg-white/5 border border-white/10 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300"
       >
         {/* Gradient overlay on hover */}
         <div
-          className={[
-            "absolute inset-0 bg-gradient-to-t to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl",
-            isBlue ? "from-teal-900/20" : "from-gray-900/20",
-          ].join(" ")}
+          className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
         />
 
         {/* Top row: Coming Soon badge OR GitHub icon */}
@@ -111,34 +100,21 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
         {/* Main content */}
         <div className="relative z-10 flex flex-col flex-1 space-y-4">
           {/* Title — gradient on hover */}
-          <h3
-            className={[
-              "text-2xl font-bold leading-snug transition-all duration-300",
-              "text-white group-hover:text-transparent group-hover:bg-clip-text",
-              isBlue
-                ? "group-hover:bg-gradient-to-r group-hover:from-teal-400 group-hover:to-cyan-400"
-                : "group-hover:bg-gradient-to-r group-hover:from-gray-400 group-hover:to-gray-300",
-            ].join(" ")}
-          >
+          <h3 className="text-xl font-bold text-white">
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className="text-base leading-relaxed flex-1 text-slate-400">
+          <p className="text-sm text-white/60 leading-relaxed mt-2 flex-1">
             {project.description}
           </p>
 
           {/* Tech badges — pill style */}
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-2 mt-4">
             {project.techStack.slice(0, 5).map(tech => (
               <span
                 key={tech}
-                className={[
-                  "px-3.5 py-2 text-xs font-semibold rounded-full cursor-default select-none transition-all duration-200",
-                  isBlue
-                    ? "bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/20 hover:border-teal-400/50 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(20,184,166,0.15)]"
-                    : "bg-gray-500/10 border border-gray-500/30 text-gray-400 hover:bg-gray-500/20",
-                ].join(" ")}
+                className="text-xs bg-teal-500/10 text-teal-300 border border-teal-500/20 rounded-full px-3 py-1 cursor-default select-none"
               >
                 {tech}
               </span>
@@ -146,29 +122,19 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           </div>
 
           {/* CTA */}
-          <div className="pt-4 flex flex-wrap items-center gap-3">
+          <div className="mt-4">
             {project.comingSoon ? (
-              <button
-                disabled
-                className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold cursor-not-allowed select-none bg-gray-800/50 border border-gray-700/50 text-gray-500"
-              >
+              <span className="text-sm text-white/30 flex items-center gap-1 cursor-not-allowed select-none">
                 View Case Study
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </span>
             ) : (
               <Link
                 href={project.link}
-                className={[
-                  "group/cta inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-200",
-                  "hover:-translate-y-0.5 active:translate-y-0",
-                  isBlue
-                    ? "bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500/[0.18] hover:border-teal-400/60 hover:shadow-[0_6px_20px_rgba(20,184,166,0.2)]"
-                    : "bg-gray-500/10 border border-gray-500/30 text-gray-400 hover:bg-gray-500/20 hover:border-gray-400/50",
-                  "focus-visible:ring-2 focus-visible:ring-teal-400 outline-none",
-                ].join(" ")}
+                className="text-sm text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
               >
                 View Case Study
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             )}
           </div>
@@ -192,7 +158,7 @@ export default function FeaturedProjects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "0px" }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
       >
         {PROJECTS.map(project => (
           <ProjectCard key={project.id} project={project} reduced={reduced} />

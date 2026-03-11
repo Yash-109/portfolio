@@ -47,10 +47,10 @@ export default function ScrollToTop() {
             fixed bottom-8 right-8 z-50
             w-14 h-14
             rounded-full
-            bg-gradient-to-br from-indigo-600 to-purple-600
+            bg-gradient-to-br from-teal-500 to-cyan-400
             text-white
-            shadow-lg shadow-indigo-500/50
-            hover:shadow-xl hover:shadow-indigo-500/70
+            shadow-lg shadow-teal-500/40
+            hover:shadow-xl hover:shadow-teal-500/60
             hover:scale-110
             active:scale-95
             transition-all duration-300

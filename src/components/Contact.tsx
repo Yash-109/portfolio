@@ -9,9 +9,9 @@ export default function Contact() {
     <div role="region" aria-label="Contact" className="relative">
       {/* Background ambient orbs — larger + more vivid */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-56 -left-56 w-[600px] h-[600px] rounded-full bg-indigo-600/15 blur-[120px]" />
-        <div className="absolute -bottom-56 -right-56 w-[600px] h-[600px] rounded-full bg-violet-600/15 blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-indigo-500/8 blur-[100px]" />
+        <div className="absolute -top-56 -left-56 w-[600px] h-[600px] rounded-full bg-teal-600/10 blur-[120px]" />
+        <div className="absolute -bottom-56 -right-56 w-[600px] h-[600px] rounded-full bg-cyan-600/10 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-teal-500/5 blur-[100px]" />
       </div>
 
       {/* Two-column grid */}

@@ -121,7 +121,7 @@ export default function Certifications() {
           className="group relative z-0 hover:z-10 h-full"
         >
           <div
-            className="relative h-full flex flex-col bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 md:p-8 overflow-hidden hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300">
+            className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-6 overflow-hidden hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300">
 
             {/* Hover gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
@@ -143,12 +143,12 @@ export default function Certifications() {
               </h3>
 
               {/* Provider */}
-              <p className="text-gray-400 text-sm font-semibold mb-2">
+              <p className="text-white/50 text-sm font-semibold mb-2">
                 {cert.organization}
               </p>
 
               {/* Date + optional score */}
-              <div className="flex items-center gap-4 text-xs text-gray-500 mb-5">
+              <div className="flex items-center gap-4 text-xs text-white/40 mb-5">
                 <span className="flex items-center gap-1.5">
                   <FaCalendarAlt className="w-3 h-3" />
                   {cert.date}
@@ -183,8 +183,8 @@ export default function Certifications() {
 
               {/* Cert ID */}
               {cert.certId && (
-                <div className="mt-3 pt-3 border-t border-gray-800">
-                  <p className="text-xs text-gray-600 truncate">ID: {cert.certId}</p>
+                <div className="mt-3 pt-3 border-t border-white/10">
+                  <p className="text-xs text-white/30 truncate">ID: {cert.certId}</p>
                 </div>
               )}
 

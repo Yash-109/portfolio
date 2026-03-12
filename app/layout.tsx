@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 import GlobalBackground from "@/components/background/GlobalBackground";
 

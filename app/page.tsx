@@ -1,40 +1,21 @@
-import Hero from "@/components/Hero";
-import Section from "@/components/Section";
+import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
-import SkillsGrid from "@/components/SkillsGrid";
-import FeaturedProjects from "@/components/FeaturedProjects";
-import Certifications from "@/components/Certifications";
-import ExperienceEducation from "@/components/ExperienceEducation";
-import Contact from "@/components/Contact";
+import SkillsSection from "@/components/sections/SkillsSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import CertificationsSection from "@/components/sections/CertificationsSection";
+import EducationSection from "@/components/sections/EducationSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Page() {
   return (
     <main className="text-white">
-      <Hero />
-
-      <Section id="about" title="About">
-        <AboutSection />
-      </Section>
-
-      <Section id="skills" title="Skills & Technologies" badge="16 technologies" tinted>
-        <SkillsGrid />
-      </Section>
-
-      <Section id="projects" title="Projects" badge="3 projects">
-        <FeaturedProjects />
-      </Section>
-
-      <Section id="certifications" title="Certifications" badge="5 certifications" tinted>
-        <Certifications />
-      </Section>
-
-      <Section id="education" title="Education" badge="3 qualifications">
-        <ExperienceEducation />
-      </Section>
-
-      <Section id="contact" title="Get In Touch" tinted>
-        <Contact />
-      </Section>
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <CertificationsSection />
+      <EducationSection />
+      <ContactSection />
     </main>
   );
 }

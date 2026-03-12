@@ -2,7 +2,7 @@
 
 import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FaDownload, FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
+import { FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
 import { SiCoursera, SiNvidia } from "react-icons/si";
 import { staggerContainer, staggerItem } from "@/animations/stagger";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -112,7 +112,9 @@ export default function CertificationsSection() {
               className="group relative z-0 hover:z-10 h-full"
             >
               <div
-                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-8 overflow-hidden hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+                className="relative h-full flex flex-col bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-8 overflow-hidden hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
 
                 {/* Hover gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
@@ -184,11 +186,10 @@ export default function CertificationsSection() {
                     href={cert.file}
                     target="_blank"
                     variant="ghost"
-                    className="mt-5 w-fit text-sm"
+                    size="sm"
                     aria-label="Download Certificate"
                   >
-                    <FaDownload className="w-3.5 h-3.5" />
-                    Download
+                    ↓ Download
                   </PrimaryButton>
 
                 </div>

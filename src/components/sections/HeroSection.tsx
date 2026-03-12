@@ -334,8 +334,9 @@ export default function HeroSection() {
                 target="_blank"
                 variant="ghost"
                 aria-label="GitHub"
+                className="text-sm"
               >
-                <Github size={16} strokeWidth={2} />
+                <Github size={15} strokeWidth={2} />
                 GitHub
               </PrimaryButton>
 
@@ -344,8 +345,9 @@ export default function HeroSection() {
                 target="_blank"
                 variant="ghost"
                 aria-label="LinkedIn"
+                className="text-sm"
               >
-                <Linkedin size={16} strokeWidth={2} />
+                <Linkedin size={15} strokeWidth={2} />
                 LinkedIn
               </PrimaryButton>
             </motion.div>

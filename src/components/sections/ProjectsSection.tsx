@@ -7,6 +7,7 @@ import { staggerContainer, staggerItem } from "@/animations/stagger";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 interface Project {
   id:          string;
@@ -61,8 +62,9 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-8 bg-white/5 border border-white/10 hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-8 bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
       >
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
         {/* Gradient overlay on hover */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
@@ -97,7 +99,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
         {/* Main content */}
         <div className="relative z-10 flex flex-col flex-1 space-y-4">
           {/* Title */}
-          <h3 className="text-xl font-bold text-white">
+          <h3 className="text-xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
             {project.title}
           </h3>
 
@@ -126,13 +128,14 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
             ) : (
-              <Link
+              <PrimaryButton
                 href={project.link}
-                className="text-sm text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
+                variant="ghost"
+                size="sm"
               >
                 View Case Study
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </PrimaryButton>
             )}
           </div>
         </div>

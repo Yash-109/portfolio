@@ -14,29 +14,9 @@ interface PrimaryButtonProps {
   type?:         "button" | "submit" | "reset";
   className?:    string;
   variant?:      "solid" | "ghost";
+  size?:         "sm" | "md";
   "aria-label"?: string;
 }
-
-const SHARED =
-  "group relative inline-flex items-center justify-center gap-2 " +
-  "px-7 py-3.5 min-h-[44px] rounded-xl overflow-hidden " +
-  "text-[15px] font-bold tracking-wide cursor-pointer " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 " +
-  "focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 " +
-  "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none " +
-  "transition-all duration-300";
-
-const SOLID =
-  "bg-gradient-to-r from-teal-500 to-cyan-400 text-slate-900 " +
-  "shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)] " +
-  "hover:shadow-[0_8px_32px_rgba(20,184,166,0.65),inset_0_1px_0_rgba(255,255,255,0.2)] " +
-  "hover:from-teal-400 hover:to-cyan-300";
-
-const GHOST =
-  "bg-white/[0.04] border border-white/[0.12] text-slate-200 " +
-  "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] " +
-  "hover:bg-white/[0.09] hover:border-teal-500/50 hover:text-white " +
-  "hover:shadow-[0_0_24px_rgba(20,184,166,0.18),inset_0_1px_0_rgba(255,255,255,0.1)]";
 
 export default function PrimaryButton({
   children,
@@ -49,26 +29,31 @@ export default function PrimaryButton({
   type = "button",
   className = "",
   variant = "solid",
+  size = "md",
   "aria-label": ariaLabel,
 }: PrimaryButtonProps) {
   const reduced = useReducedMotion() ?? false;
 
+  /* ─── Base styles ─── */
+  const baseClasses = "inline-flex items-center gap-2 cursor-pointer transition-all duration-200 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none";
+
+  /* ─── Size variants ─── */
+  const sizeClasses = size === "sm" 
+    ? "px-4 py-1.5 text-xs font-medium"
+    : "px-6 py-2.5 text-sm font-medium";
+
+  /* ─── Variant styles ─── */
+  const variantClasses = variant === "solid"
+    ? "bg-gradient-to-r from-teal-500 to-cyan-400 text-white shadow-[0_0_18px_rgba(20,184,166,0.35)] hover:shadow-[0_0_24px_rgba(20,184,166,0.45)]"
+    : "border border-white/20 bg-white/5 text-white hover:border-white/30 hover:bg-white/10 hover:shadow-[0_0_12px_rgba(20,184,166,0.2)]";
+
   const motionProps = {
-    whileHover: disabled || reduced ? {} : { scale: 1.02, y: -2 },
-    whileTap:   disabled || reduced ? {} : { scale: 0.97, y: 0 },
+    whileHover: disabled || reduced ? {} : { scale: 1.03 },
+    whileTap:   disabled || reduced ? {} : { scale: 0.97 },
     transition: { type: "spring" as const, stiffness: 300, damping: 20 },
   };
 
-  const shimmer = (
-    <span
-      aria-hidden
-      className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
-      style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }}
-    />
-  );
-
-  const combinedClass =
-    `${SHARED} ${variant === "ghost" ? GHOST : SOLID} ${className}`.trim();
+  const combinedClass = `${baseClasses} ${sizeClasses} ${variantClasses} ${className}`.trim();
 
   if (href) {
     return (
@@ -82,8 +67,7 @@ export default function PrimaryButton({
         className={combinedClass}
         {...motionProps}
       >
-        {shimmer}
-        <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
+        {children}
       </motion.a>
     );
   }
@@ -97,8 +81,7 @@ export default function PrimaryButton({
       className={combinedClass}
       {...motionProps}
     >
-      {shimmer}
-      <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
+      {children}
     </motion.button>
   );
 }

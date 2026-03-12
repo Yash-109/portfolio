@@ -84,17 +84,16 @@ export default function EducationSection() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Section id="education">
-      <SectionHeader title="Education" count="3 qualifications" />
-      <div className="space-y-8">
-        <motion.div
-          ref={ref}
-          role="list"
-          aria-label="Educational Qualifications"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
-        >
+      <SectionHeader title="Education" />
+      <motion.div
+        ref={ref}
+        role="list"
+        aria-label="Educational Qualifications"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
           {educationData.map((edu) => (
             <motion.div
               key={edu.title}
@@ -106,7 +105,7 @@ export default function EducationSection() {
             >
               {/* Card */}
               <div
-                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
 
                 {/* Hover gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
@@ -168,8 +167,7 @@ export default function EducationSection() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-      </div>
+      </motion.div>
     </Section>
   );
 }

@@ -61,7 +61,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-6 bg-white/5 border border-white/10 hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-8 bg-white/5 border border-white/10 hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
       >
         {/* Gradient overlay on hover */}
         <div
@@ -148,22 +148,20 @@ export default function ProjectsSection() {
 
   return (
     <Section id="projects">
-      <SectionHeader title="Projects" count="3 projects" />
-      <div className="space-y-8">
-        <motion.div
-          ref={ref}
-          role="list"
-          aria-label="Featured Projects"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
-        >
-          {PROJECTS.map(project => (
-            <ProjectCard key={project.id} project={project} reduced={reduced} />
-          ))}
-        </motion.div>
-      </div>
+      <SectionHeader title="Projects" />
+      <motion.div
+        ref={ref}
+        role="list"
+        aria-label="Featured Projects"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        {PROJECTS.map(project => (
+          <ProjectCard key={project.id} project={project} reduced={reduced} />
+        ))}
+      </motion.div>
     </Section>
   );
 }

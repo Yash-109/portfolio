@@ -317,23 +317,9 @@ export default function HeroSection() {
               </PrimaryButton>
 
               {/* Secondary: Contact Me */}
-              <a
-                href="#contact"
-                className="
-                  inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto px-7 py-3.5 min-h-[44px] rounded-xl
-                  border border-teal-400/40 bg-teal-400/[0.04] text-teal-400
-                  text-[15px] font-bold tracking-wide
-                  shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]
-                  hover:bg-teal-400/[0.1] hover:border-teal-300/60 hover:text-teal-300
-                  hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_0_24px_rgba(20,184,166,0.2)]
-                  hover:-translate-y-0.5 active:translate-y-px
-                  transition-all duration-200
-                  focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
-                "
-              >
+              <PrimaryButton href="#contact" variant="ghost" className="w-full sm:w-auto">
                 Contact Me
-              </a>
+              </PrimaryButton>
             </motion.div>
 
             {/* [7.5] Social icon links */}
@@ -343,44 +329,25 @@ export default function HeroSection() {
               transition={{ delay: 1.1, duration: 0.4 }}
               className="flex items-center gap-3"
             >
-              <a
+              <PrimaryButton
                 href="https://github.com/Yash-109"
                 target="_blank"
-                rel="noopener noreferrer"
+                variant="ghost"
                 aria-label="GitHub"
-                className="
-                  flex items-center gap-2 px-5 py-2.5 rounded-xl
-                  bg-white/[0.04] border border-white/[0.1] text-slate-300
-                  text-sm font-semibold
-                  hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white
-                  hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]
-                  hover:-translate-y-0.5 active:translate-y-0
-                  transition-all duration-200
-                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
-                "
               >
-                <Github size={15} strokeWidth={2} />
+                <Github size={16} strokeWidth={2} />
                 GitHub
-              </a>
-              <a
+              </PrimaryButton>
+
+              <PrimaryButton
                 href="https://linkedin.com/in/yash-parmar-b99796289"
                 target="_blank"
-                rel="noopener noreferrer"
+                variant="ghost"
                 aria-label="LinkedIn"
-                className="
-                  flex items-center gap-2 px-5 py-2.5 rounded-xl
-                  bg-white/[0.04] border border-white/[0.1] text-slate-300
-                  text-sm font-semibold
-                  hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white
-                  hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)]
-                  hover:-translate-y-0.5 active:translate-y-0
-                  transition-all duration-200
-                  focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
-                "
               >
-                <Linkedin size={15} strokeWidth={2} />
+                <Linkedin size={16} strokeWidth={2} />
                 LinkedIn
-              </a>
+              </PrimaryButton>
             </motion.div>
 
             {/* [8] Tech Stack */}

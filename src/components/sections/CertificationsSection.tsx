@@ -8,6 +8,7 @@ import { staggerContainer, staggerItem } from "@/animations/stagger";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 interface Certificate {
   id: string;
@@ -91,16 +92,15 @@ export default function CertificationsSection() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Section id="certifications" tinted>
-      <SectionHeader title="Certifications" count="5 certifications" />
-      <div className="space-y-8">
-        <motion.div
+      <SectionHeader title="Certifications" />
+      <motion.div
           ref={ref}
           role="list"
           aria-label="Professional Certifications"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {certificates.map((cert) => (
             <motion.div
@@ -112,7 +112,7 @@ export default function CertificationsSection() {
               className="group relative z-0 hover:z-10 h-full"
             >
               <div
-                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-6 overflow-hidden hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-8 overflow-hidden hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
 
                 {/* Hover gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
@@ -180,31 +180,22 @@ export default function CertificationsSection() {
                   )}
 
                   {/* Download button */}
-                  <a
+                  <PrimaryButton
                     href={cert.file}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    variant="ghost"
+                    className="mt-5 w-fit text-sm"
                     aria-label="Download Certificate"
-                    title="Download Certificate"
-                    onClick={e => e.stopPropagation()}
-                    className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold w-fit
-                      bg-teal-500/10 border border-teal-500/30 text-teal-300
-                      hover:bg-teal-500/[0.18] hover:border-teal-400/60
-                      hover:shadow-[0_6px_20px_rgba(20,184,166,0.2)]
-                      hover:-translate-y-0.5 active:translate-y-0
-                      transition-all duration-200
-                      focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
                   >
                     <FaDownload className="w-3.5 h-3.5" />
                     Download
-                  </a>
+                  </PrimaryButton>
 
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
     </Section>
   );
 }

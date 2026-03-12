@@ -30,7 +30,7 @@ export default function AboutSection() {
   return (
     <Section id="about">
       <SectionHeader title="About" />
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
       {/* LEFT COLUMN */}
       <motion.div
@@ -38,7 +38,7 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="w-full lg:w-[55%] min-w-0 flex flex-col gap-6"
+        className="flex flex-col gap-6 max-w-xl"
       >
         <motion.h3
           initial={{ opacity: 0, y: reduced ? 0 : 16 }}
@@ -133,7 +133,7 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="w-full lg:w-[45%] min-w-0 flex flex-col gap-3"
+        className="flex flex-col gap-3 w-full"
       >
         {/* Availability Banner */}
         <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4">

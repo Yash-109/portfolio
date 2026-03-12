@@ -194,7 +194,6 @@ export default function ContactFormNew() {
             >
               {/* Success bg shimmer */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-indigo-500/5 pointer-events-none" />
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
               {/* Celebration particles */}
               {[...Array(12)].map((_, k) => (
@@ -388,17 +387,26 @@ export default function ContactFormNew() {
                   whileTap={!isSubmitDisabled ? { scale: 0.975 } : {}}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
                   className={`
-                    w-full rounded-xl px-6 py-3.5 font-semibold text-white text-sm
+                    w-full rounded-xl px-6 py-3.5 font-bold text-[15px]
                     flex items-center justify-center gap-2.5
-                    transition-all duration-300 min-h-[48px] overflow-hidden
+                    transition-all duration-300 min-h-[48px] overflow-hidden relative
                     focus-visible:ring-2 focus-visible:ring-teal-400 outline-none
+                    group
                     ${
                       isSubmitDisabled
-                        ? "bg-slate-700/60 cursor-not-allowed opacity-55 shadow-none"
-                        : "bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 hover:from-teal-400 hover:via-cyan-400 hover:to-teal-500 shadow-[0_4px_24px_rgba(20,184,166,0.45)] hover:shadow-[0_8px_40px_rgba(20,184,166,0.65)] hover:scale-[1.02]"
+                        ? "bg-slate-700/60 cursor-not-allowed opacity-55 shadow-none text-white/50"
+                        : "bg-gradient-to-r from-teal-500 to-cyan-400 text-slate-900 " +
+                          "shadow-[0_4px_24px_rgba(20,184,166,0.45)] " +
+                          "hover:shadow-[0_8px_40px_rgba(20,184,166,0.7)] " +
+                          "hover:from-teal-400 hover:to-cyan-300"
                     }
                   `}
                 >
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }}
+                  />
                   {status === "loading" ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />

@@ -171,7 +171,7 @@ function SkillGroupPanel({
 
       {/* Skills grid */}
       <div className="p-4 md:p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 w-full justify-items-stretch">
           {group.skills.map((skill) => (
             <SkillCard
               key={skill.name}
@@ -192,20 +192,16 @@ export default function SkillsSection() {
 
   return (
     <Section id="skills" tinted>
-      <SectionHeader title="Skills & Technologies" count="16 technologies" />
+      <SectionHeader title="Skills & Technologies" />
       <motion.div
         ref={ref}
         variants={staggerContainer}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
-        className="space-y-8"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
       >
-        {skillGroups.map((group, i) => (
-          <SkillGroupPanel
-            key={group.title}
-            group={group}
-            reduced={reduced}
-          />
+        {skillGroups.map((group) => (
+          <SkillGroupPanel key={group.title} group={group} reduced={reduced} />
         ))}
       </motion.div>
     </Section>

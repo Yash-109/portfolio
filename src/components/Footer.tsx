@@ -8,9 +8,7 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800 mt-24">
-      {/* Teal top accent glow line */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-teal-500/25 to-transparent" />
+    <footer className="mt-24">
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
           <div className="space-y-1 text-center md:text-left">

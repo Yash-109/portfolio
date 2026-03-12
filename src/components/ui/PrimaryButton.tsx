@@ -4,31 +4,39 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface PrimaryButtonProps {
-  children:     ReactNode;
-  /** Renders an <a> tag instead of <button> when provided */
-  href?:        string;
-  /** Pass `true` or a filename string to trigger file download */
-  download?:    boolean | string;
-  target?:      "_blank" | "_self";
-  rel?:         string;
-  onClick?:     () => void;
-  disabled?:    boolean;
-  type?:        "button" | "submit" | "reset";
-  className?:   string;
+  children:      ReactNode;
+  href?:         string;
+  download?:     boolean | string;
+  target?:       "_blank" | "_self";
+  rel?:          string;
+  onClick?:      () => void;
+  disabled?:     boolean;
+  type?:         "button" | "submit" | "reset";
+  className?:    string;
+  variant?:      "solid" | "ghost";
   "aria-label"?: string;
 }
 
-const BASE =
+const SHARED =
   "group relative inline-flex items-center justify-center gap-2 " +
   "px-7 py-3.5 min-h-[44px] rounded-xl overflow-hidden " +
-  "bg-gradient-to-r from-teal-500 to-cyan-400 " +
-  "text-slate-900 text-[15px] font-bold tracking-wide " +
-  "shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)] " +
-  "hover:shadow-[0_8px_32px_rgba(20,184,166,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] " +
+  "text-[15px] font-bold tracking-wide cursor-pointer " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 " +
   "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none " +
-  "transition-shadow duration-300 cursor-pointer";
+  "transition-all duration-300";
+
+const SOLID =
+  "bg-gradient-to-r from-teal-500 to-cyan-400 text-slate-900 " +
+  "shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)] " +
+  "hover:shadow-[0_8px_32px_rgba(20,184,166,0.65),inset_0_1px_0_rgba(255,255,255,0.2)] " +
+  "hover:from-teal-400 hover:to-cyan-300";
+
+const GHOST =
+  "bg-white/[0.04] border border-white/[0.12] text-slate-200 " +
+  "shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] " +
+  "hover:bg-white/[0.09] hover:border-teal-500/50 hover:text-white " +
+  "hover:shadow-[0_0_24px_rgba(20,184,166,0.18),inset_0_1px_0_rgba(255,255,255,0.1)]";
 
 export default function PrimaryButton({
   children,
@@ -40,6 +48,7 @@ export default function PrimaryButton({
   disabled = false,
   type = "button",
   className = "",
+  variant = "solid",
   "aria-label": ariaLabel,
 }: PrimaryButtonProps) {
   const reduced = useReducedMotion() ?? false;
@@ -54,11 +63,12 @@ export default function PrimaryButton({
     <span
       aria-hidden
       className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
-      style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)" }}
+      style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }}
     />
   );
 
-  const combinedClass = `${BASE} ${className}`.trim();
+  const combinedClass =
+    `${SHARED} ${variant === "ghost" ? GHOST : SOLID} ${className}`.trim();
 
   if (href) {
     return (

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github } from "lucide-react";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 interface Project {
   id:          string;
@@ -99,7 +101,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
 
         {/* Main content */}
         <div className="relative z-10 flex flex-col flex-1 space-y-4">
-          {/* Title — gradient on hover */}
+          {/* Title */}
           <h3 className="text-xl font-bold text-white">
             {project.title}
           </h3>
@@ -109,7 +111,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
             {project.description}
           </p>
 
-          {/* Tech badges — pill style */}
+          {/* Tech badges */}
           <div className="flex flex-wrap gap-2 mt-4">
             {project.techStack.slice(0, 5).map(tech => (
               <span
@@ -145,25 +147,27 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
 }
 
 /* ─── Main Export ─────────────────────────────────────────────────────────── */
-export default function FeaturedProjects() {
+export default function ProjectsSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="space-y-8">
-      {/* Cards grid */}
-      <motion.div
-        role="list"
-        aria-label="Featured Projects"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "0px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
-      >
-        {PROJECTS.map(project => (
-          <ProjectCard key={project.id} project={project} reduced={reduced} />
-        ))}
-      </motion.div>
-    </div>
+    <Section id="projects">
+      <SectionHeader title="Projects" count="3 projects" />
+      <div className="space-y-8">
+        <motion.div
+          role="list"
+          aria-label="Featured Projects"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+        >
+          {PROJECTS.map(project => (
+            <ProjectCard key={project.id} project={project} reduced={reduced} />
+          ))}
+        </motion.div>
+      </div>
+    </Section>
   );
 }

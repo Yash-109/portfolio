@@ -20,6 +20,8 @@ import {
   SiFramer,
 } from "react-icons/si";
 import { type IconType } from "react-icons";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 interface Skill {
   name:  string;
@@ -142,13 +144,13 @@ function SkillGroupPanel({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ type: "spring", stiffness: 100, damping: 20, delay: groupIndex * 0.1 }}
-      className="isolate rounded-2xl overflow-hidden border border-slate-800/90 bg-slate-950/65"
+      className="isolate rounded-2xl overflow-hidden border border-white/10 bg-white/5"
     >
       {/* Panel header */}
       <div
-        className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden border-b border-slate-800/90"
+        className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden border-b border-white/10"
       >
-        {/* Accent tint wash — more opaque than before */}
+        {/* Accent tint wash */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: `linear-gradient(90deg, ${group.accent}18 0%, transparent 55%)` }}
@@ -177,7 +179,7 @@ function SkillGroupPanel({
 
       {/* Skills grid */}
       <div className="p-4 md:p-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {group.skills.map((skill, i) => (
             <SkillCard
               key={skill.name}
@@ -193,19 +195,22 @@ function SkillGroupPanel({
 }
 
 /* ─── Main Export ─────────────────────────────────────────────────────────── */
-export default function SkillsGrid() {
+export default function SkillsSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="space-y-8">
-      {skillGroups.map((group, i) => (
-        <SkillGroupPanel
-          key={group.title}
-          group={group}
-          groupIndex={i}
-          reduced={reduced}
-        />
-      ))}
-    </div>
+    <Section id="skills" tinted>
+      <SectionHeader title="Skills & Technologies" count="16 technologies" />
+      <div className="space-y-8">
+        {skillGroups.map((group, i) => (
+          <SkillGroupPanel
+            key={group.title}
+            group={group}
+            groupIndex={i}
+            reduced={reduced}
+          />
+        ))}
+      </div>
+    </Section>
   );
 }

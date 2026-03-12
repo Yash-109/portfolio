@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Download } from "lucide-react";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const SKILL_CHIPS = [
   "Next.js",
@@ -25,7 +27,9 @@ export default function AboutSection() {
   const reduced = useReducedMotion() ?? false;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
+    <Section id="about">
+      <SectionHeader title="About" />
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
 
       {/* LEFT COLUMN */}
       <motion.div
@@ -189,5 +193,6 @@ export default function AboutSection() {
       </motion.div>
 
     </div>
+    </Section>
   );
 }

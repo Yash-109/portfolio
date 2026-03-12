@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import {
@@ -10,9 +10,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { MapPin, ArrowRight, Github, Linkedin } from "lucide-react";
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────────────────────────────────────────────────
    Constants
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────────────────────────────────────────────────── */
 const ROLES = ["Full-Stack Developer", "ML Engineer", "Next.js Developer"];
 
 const TECH_STACK = [
@@ -26,9 +26,9 @@ const TECH_STACK = [
 
 const WORDS = ["Yash", "Parmar"];
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Typewriter hook  (all loop state in refs â€” zero extra re-renders)
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─────────────────────────────────────────────────────────────────────────────
+   Typewriter hook  (all loop state in refs — zero extra re-renders)
+───────────────────────────────────────────────────────────────────────────── */
 function useTypewriter(roles: string[]) {
   const [displayed, setDisplayed] = useState("");
   const charRef  = useRef(0);
@@ -84,9 +84,9 @@ function useTypewriter(roles: string[]) {
   return displayed;
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────────────────────────────────────────────────
    3-D Photo Card with mouse-tracking tilt
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────────────────────────────────────────────────── */
 function PhotoCard({ reduced }: { reduced: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -162,20 +162,16 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
             className="object-cover object-center"
             sizes="240px"
           />
-
         </div>
-
-
-
       </motion.div>
     </motion.div>
   );
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Hero
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-export default function Hero() {
+/* ─────────────────────────────────────────────────────────────────────────────
+   HeroSection
+───────────────────────────────────────────────────────────────────────────── */
+export default function HeroSection() {
   const displayed = useTypewriter(ROLES);
   const prefersReduced = useReducedMotion() ?? false;
 
@@ -189,14 +185,14 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/6  blur-[120px] animate-pulse-slow" />
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/*
           Mobile:  single col, photo first (order-1), text second (order-2)
-          Desktop: 55 / 45 grid â€” text left, photo right
+          Desktop: 55 / 45 grid — text left, photo right
         */}
         <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 items-center">
 
-          {/* â”€â”€ TEXT COLUMN â”€â”€ */}
+          {/* ── TEXT COLUMN ── */}
           <div className="order-2 lg:order-1 flex flex-col gap-6">
 
             {/* [1] Status badge */}
@@ -211,7 +207,7 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* [2] Name â€” word-level slide-up stagger */}
+            {/* [2] Name — word-level slide-up stagger */}
             <h1
               className="font-extrabold text-white leading-[1.05] mt-3 sm:mt-5"
               style={{
@@ -279,7 +275,7 @@ export default function Hero() {
               performance, and structured problem-solving.
             </motion.p>
 
-            {/* [5] Italic tagline â€” blockquote style */}
+            {/* [5] Italic tagline — blockquote style */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -444,7 +440,7 @@ export default function Hero() {
 
           </div>
 
-          {/* â”€â”€ PHOTO COLUMN â”€â”€ */}
+          {/* ── PHOTO COLUMN ── */}
           <div className="order-1 lg:order-2 flex justify-center">
             <PhotoCard reduced={prefersReduced} />
           </div>
@@ -454,4 +450,3 @@ export default function Hero() {
     </section>
   );
 }
-

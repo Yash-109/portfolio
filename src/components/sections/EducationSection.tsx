@@ -105,13 +105,11 @@ export default function EducationSection() {
             >
               {/* Card */}
               <div
-                className="relative h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+                className="relative h-full flex flex-col overflow-hidden bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-8 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
 
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
                 {/* Hover gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
-
-                {/* Subtle per-card tint */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${edu.cardGradient} pointer-events-none`} />
 
                 {/* Corner accent */}
                 <div className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br ${edu.iconGradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />

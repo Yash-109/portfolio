@@ -175,7 +175,7 @@ export default function ContactFormNew() {
   return (
     <div className="relative">
       {/* Card */}
-      <div className="relative rounded-2xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-teal-500/50 transition-colors duration-300 shadow-lg">
+      <div className="relative rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-teal-500/30 transition-colors duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* Top accent bar */}
         <div className="h-[2px] w-full bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-500" />
 
@@ -316,7 +316,7 @@ export default function ContactFormNew() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={validationErrors.name}
+                  error={touched.name ? validationErrors.name : undefined}
                   placeholder="Your name"
                   autoComplete="name"
                   required
@@ -329,7 +329,7 @@ export default function ContactFormNew() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={validationErrors.email}
+                  error={touched.email ? validationErrors.email : undefined}
                   placeholder="your.email@example.com"
                   autoComplete="email"
                   required
@@ -342,7 +342,7 @@ export default function ContactFormNew() {
                   value={formData.subject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={validationErrors.subject}
+                  error={touched.subject ? validationErrors.subject : undefined}
                   placeholder="What's this about?"
                   required
                 />
@@ -355,7 +355,7 @@ export default function ContactFormNew() {
                   value={formData.message}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={validationErrors.message}
+                  error={touched.message ? validationErrors.message : undefined}
                   placeholder="Tell me about your project or opportunity..."
                   rows={5}
                   showCounter

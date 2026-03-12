@@ -136,8 +136,12 @@ function SkillGroupPanel({
   return (
     <motion.div
       variants={staggerItem}
-      className="isolate rounded-2xl overflow-hidden border border-white/10 bg-white/5"
+      className="isolate rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-[0_1px_0_0_rgba(255,255,255,0.05)_inset]"
     >
+      <div
+        className="h-[2px] w-full"
+        style={{ background: `linear-gradient(90deg, ${group.accent}90, transparent 70%)` }}
+      />
       {/* Panel header */}
       <div
         className="relative flex items-center gap-3 px-5 sm:px-6 py-3.5 sm:py-4 overflow-hidden border-b border-white/10"

@@ -30,7 +30,7 @@ export default function AboutSection() {
   return (
     <Section id="about">
       <SectionHeader title="About" />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-stretch">
 
       {/* LEFT COLUMN */}
       <motion.div
@@ -38,14 +38,14 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="flex flex-col gap-6 max-w-xl"
+        className="flex flex-col gap-6 max-w-xl lg:sticky lg:top-32"
       >
         <motion.h3
           initial={{ opacity: 0, y: reduced ? 0 : 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.12, duration: 0.5 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent"
         >
           Who I Am
         </motion.h3>
@@ -147,7 +147,7 @@ export default function AboutSection() {
           {MINI_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
+              className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4 text-center"
             >
               <p className="text-2xl font-bold text-teal-400">{stat.value}</p>
               <p className="text-xs text-white/50 mt-1">{stat.label}</p>
@@ -156,7 +156,7 @@ export default function AboutSection() {
         </div>
 
         {/* Quick Info Card */}
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4">
           <p className="text-xs text-white/30 uppercase tracking-widest mb-3">Quick Info</p>
           <div className="flex items-center gap-3 py-2 border-b border-white/5">
             <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
@@ -177,7 +177,7 @@ export default function AboutSection() {
         </div>
 
         {/* Tech Focus Card */}
-        <div className="bg-gradient-to-br from-teal-500/10 to-cyan-500/5 border border-teal-500/20 rounded-xl p-4">
+        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4">
           <p className="text-xs text-white/30 uppercase tracking-widest mb-3">Currently focused on</p>
           <div className="flex flex-wrap gap-2">
             {TECH_TAGS.map((tag) => (

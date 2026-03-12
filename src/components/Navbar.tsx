@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import {
   House,
   User,
@@ -33,40 +34,17 @@ const navLinks: NavLink[] = [
 ];
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen]       = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [mounted, setMounted]             = useState(false);
-  const [hoveredIndex, setHoveredIndex]   = useState<number | null>(null);
-  const [scrolled, setScrolled]           = useState(false);
+  const [isMenuOpen, setIsMenuOpen]     = useState(false);
+  const [mounted, setMounted]           = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [scrolled, setScrolled]         = useState(false);
   const pathname = usePathname();
+  const { activeSection } = useActiveSection();
 
   useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 80);
-
-      const sections = navLinks
-        .filter((l) => l.section)
-        .map((l) => ({ section: l.section!, el: document.getElementById(l.section!) }))
-        .filter((s) => s.el !== null);
-
-      if (y < 80) {
-        setActiveSection(null);
-        return;
-      }
-
-      let closest: string | null = null;
-      let closestDist = Infinity;
-      for (const { section, el } of sections) {
-        const top = el!.getBoundingClientRect().top;
-        const dist = Math.abs(top - 100);
-        if (dist < closestDist) { closestDist = dist; closest = section; }
-      }
-      setActiveSection(closest);
-    };
-
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -79,7 +57,6 @@ export default function Navbar() {
     if (!section) {
       if (pathname === "/") {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        setActiveSection(null);
       }
     } else {
       const el = document.getElementById(section);

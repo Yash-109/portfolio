@@ -9,22 +9,27 @@ export default function ScrollToTop() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      // Show button when page is scrolled down 300px
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    let rafId: number | null = null;
 
-      // Calculate scroll progress
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (window.scrollY / windowHeight) * 100;
-      setScrollProgress(scrolled);
+    const handleScroll = () => {
+      if (rafId !== null) return; // throttle via rAF
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const y = window.scrollY;
+        setIsVisible(y > 400);
+
+        const windowHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        setScrollProgress(windowHeight > 0 ? (y / windowHeight) * 100 : 0);
+      });
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const scrollToTop = () => {

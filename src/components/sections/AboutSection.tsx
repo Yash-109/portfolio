@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Download } from "lucide-react";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -115,15 +116,14 @@ export default function AboutSection() {
           transition={{ delay: 0.6, duration: 0.45 }}
           className="pt-2"
         >
-          <a
+          <PrimaryButton
             href="/Yash_Parmar_Resume.pdf"
             target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-400 text-slate-900 text-sm font-bold shadow-[0_4px_20px_rgba(20,184,166,0.4)] hover:shadow-[0_8px_32px_rgba(20,184,166,0.6)] hover:scale-[1.04] hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-300 overflow-hidden w-fit outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+            aria-label="Download Resume"
           >
-            <Download size={16} strokeWidth={2.5} className="relative z-10 shrink-0" />
-            <span className="relative z-10">Download Resume</span>
-          </a>
+            <Download size={16} strokeWidth={2.5} />
+            Download Resume
+          </PrimaryButton>
         </motion.div>
       </motion.div>
 

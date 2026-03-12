@@ -4,6 +4,8 @@ import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FaDownload, FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
 import { SiCoursera, SiNvidia } from "react-icons/si";
+import { staggerContainer, staggerItem } from "@/animations/stagger";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -81,38 +83,23 @@ const certificates: Certificate[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
-  },
-};
+const containerVariants = staggerContainer;
+const cardVariants      = staggerItem;
 
 export default function CertificationsSection() {
   const reduced = useReducedMotion() ?? false;
+  const { ref, isVisible } = useScrollReveal();
   return (
     <Section id="certifications" tinted>
       <SectionHeader title="Certifications" count="5 certifications" />
       <div className="space-y-8">
         <motion.div
+          ref={ref}
           role="list"
           aria-label="Professional Certifications"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "0px" }}
+          animate={isVisible ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-2"
         >
           {certificates.map((cert) => (

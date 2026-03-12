@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { MapPin, ArrowRight, Github, Linkedin } from "lucide-react";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Constants
@@ -310,31 +311,10 @@ export default function HeroSection() {
               className="flex flex-wrap gap-3 mt-4"
             >
               {/* Primary: View Projects */}
-              <a
-                href="#projects"
-                className="
-                  group relative inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto
-                  px-7 py-3.5 min-h-[44px] rounded-xl
-                  bg-gradient-to-r from-teal-500 to-cyan-400
-                  text-slate-900 text-[15px] font-bold tracking-wide
-                  shadow-[0_4px_20px_rgba(20,184,166,0.4),inset_0_1px_0_rgba(255,255,255,0.15)]
-                  hover:shadow-[0_8px_32px_rgba(20,184,166,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]
-                  hover:scale-[1.04] hover:-translate-y-0.5
-                  active:scale-[0.97] active:translate-y-px
-                  transition-all duration-300
-                  overflow-hidden
-                  focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 outline-none
-                "
-              >
-                {/* Shimmer sweep */}
-                <span
-                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent)" }}
-                />
-                <span className="relative z-10">View Projects</span>
-                <ArrowRight size={16} strokeWidth={2.5} className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </a>
+              <PrimaryButton href="#projects" className="w-full sm:w-auto">
+                View Projects
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </PrimaryButton>
 
               {/* Secondary: Contact Me */}
               <a

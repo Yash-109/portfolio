@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github } from "lucide-react";
+import { staggerContainer, staggerItem } from "@/animations/stagger";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -44,15 +46,8 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const containerVariants = {
-  hidden:   { opacity: 0 },
-  visible:  { opacity: 1, transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden:   { opacity: 0, y: 28 },
-  visible:  { opacity: 1, y: 0, transition: { duration: 0.55 } },
-};
+const containerVariants = staggerContainer;
+const cardVariants      = staggerItem;
 
 /* ─── Single Project Card ─────────────────────────────────────────────────── */
 function ProjectCard({ project, reduced }: { project: Project; reduced: boolean }) {
@@ -66,7 +61,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-6 bg-white/5 border border-white/10 hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-6 bg-white/5 border border-white/10 hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
       >
         {/* Gradient overlay on hover */}
         <div
@@ -136,7 +131,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
                 className="text-sm text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-teal-400 outline-none"
               >
                 View Case Study
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             )}
           </div>
@@ -149,18 +144,19 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
 /* ─── Main Export ─────────────────────────────────────────────────────────── */
 export default function ProjectsSection() {
   const reduced = useReducedMotion() ?? false;
+  const { ref, isVisible } = useScrollReveal();
 
   return (
     <Section id="projects">
       <SectionHeader title="Projects" count="3 projects" />
       <div className="space-y-8">
         <motion.div
+          ref={ref}
           role="list"
           aria-label="Featured Projects"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "0px" }}
+          animate={isVisible ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
         >
           {PROJECTS.map(project => (

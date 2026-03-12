@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { staggerContainer, staggerItem } from "@/animations/stagger";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   SiReact,
   SiNextdotjs,
@@ -86,24 +88,19 @@ const skillGroups: SkillGroup[] = [
 /* ─── Skill Card ─────────────────────────────────────────────────────────── */
 function SkillCard({
   skill,
-  index,
   reduced,
 }: {
   skill:   Skill;
-  index:   number;
   reduced: boolean;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: reduced ? 1 : 0.82 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      whileHover={reduced ? {} : { scale: 1.07, transition: { duration: 0.18 } }}
+      variants={staggerItem}
+      whileHover={reduced ? {} : { scale: 1.04, y: -2, transition: { type: "spring", stiffness: 320, damping: 18 } }}
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-teal-500/30 transition-all duration-200"
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-teal-500/40 hover:shadow-[0_4px_20px_rgba(20,184,166,0.12)] transition-all duration-200"
       >
         {/* Radial glow from icon color on hover */}
         <div
@@ -131,19 +128,14 @@ function SkillCard({
 /* ─── Group Panel ─────────────────────────────────────────────────────────── */
 function SkillGroupPanel({
   group,
-  groupIndex,
   reduced,
 }: {
-  group:      SkillGroup;
-  groupIndex: number;
-  reduced:    boolean;
+  group:   SkillGroup;
+  reduced: boolean;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: reduced ? 0 : 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20, delay: groupIndex * 0.1 }}
+      variants={staggerItem}
       className="isolate rounded-2xl overflow-hidden border border-white/10 bg-white/5"
     >
       {/* Panel header */}
@@ -180,11 +172,10 @@ function SkillGroupPanel({
       {/* Skills grid */}
       <div className="p-4 md:p-6">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {group.skills.map((skill, i) => (
+          {group.skills.map((skill) => (
             <SkillCard
               key={skill.name}
               skill={skill}
-              index={i}
               reduced={reduced}
             />
           ))}
@@ -197,20 +188,26 @@ function SkillGroupPanel({
 /* ─── Main Export ─────────────────────────────────────────────────────────── */
 export default function SkillsSection() {
   const reduced = useReducedMotion() ?? false;
+  const { ref, isVisible } = useScrollReveal();
 
   return (
     <Section id="skills" tinted>
       <SectionHeader title="Skills & Technologies" count="16 technologies" />
-      <div className="space-y-8">
+      <motion.div
+        ref={ref}
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        className="space-y-8"
+      >
         {skillGroups.map((group, i) => (
           <SkillGroupPanel
             key={group.title}
             group={group}
-            groupIndex={i}
             reduced={reduced}
           />
         ))}
-      </div>
+      </motion.div>
     </Section>
   );
 }

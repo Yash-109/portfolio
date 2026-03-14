@@ -17,6 +17,9 @@ interface Project {
   link:        string;
   github:      string | null;
   comingSoon?: boolean;
+  accentFrom:  string;
+  accentTo:    string;
+  initial:     string;
 }
 
 const PROJECTS: Project[] = [
@@ -27,6 +30,9 @@ const PROJECTS: Project[] = [
     techStack:   ["Next.js 15", "TypeScript", "MongoDB", "NextAuth.js", "Razorpay"],
     link:        "/projects/electrotrack",
     github:      "https://github.com/Yash-109/Electrotrack",
+    accentFrom:  "from-teal-500",
+    accentTo:    "to-cyan-400",
+    initial:     "E",
   },
   {
     id:          "tradejournal",
@@ -35,6 +41,9 @@ const PROJECTS: Project[] = [
     techStack:   ["Next.js", "Node.js", "MongoDB", "JWT", "Recharts"],
     link:        "/projects/tradejournal",
     github:      "https://github.com/Yash-109/Trading-Journal",
+    accentFrom:  "from-blue-500",
+    accentTo:    "to-indigo-400",
+    initial:     "T",
   },
   {
     id:          "ml-predictor",
@@ -44,6 +53,9 @@ const PROJECTS: Project[] = [
     link:        "/projects/ml-predictor",
     github:      null,
     comingSoon:  true,
+    accentFrom:  "from-violet-500",
+    accentTo:    "to-purple-400",
+    initial:     "M",
   },
 ];
 
@@ -62,16 +74,27 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl p-8 bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:border-teal-500/50 hover:bg-white/10 hover:shadow-[0_0_28px_rgba(20,184,166,0.14)] transition-all duration-300"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] backdrop-blur-sm hover:border-teal-500/50 hover:from-white/[0.1] hover:to-white/[0.04] hover:shadow-[0_0_32px_rgba(20,184,166,0.16)] transition-all duration-300"
       >
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
-        {/* Gradient overlay on hover */}
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-        />
+        {/* Preview banner */}
+        <div className={`relative h-28 w-full bg-gradient-to-br ${project.accentFrom}/20 ${project.accentTo}/10 flex items-center justify-center overflow-hidden shrink-0`}>
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.accentFrom}/10 ${project.accentTo}/5`} />
+          <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+          <span className={`relative z-10 text-6xl font-black bg-gradient-to-br ${project.accentFrom} ${project.accentTo} bg-clip-text text-transparent select-none opacity-60`}>
+            {project.initial}
+          </span>
+          <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-current to-transparent opacity-40 bg-gradient-to-r ${project.accentFrom} ${project.accentTo}`} />
+        </div>
+        {/* Content padding */}
+        <div className="p-6 flex flex-col flex-1">
+          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-teal-500/[0.06] blur-2xl pointer-events-none group-hover:bg-teal-500/[0.12] transition-opacity duration-500" />
+          {/* Gradient overlay on hover */}
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+          />
 
-        {/* Top row: Coming Soon badge OR GitHub icon */}
-        <div className="relative z-10 flex items-start justify-between mb-5">
+          {/* Top row: Coming Soon badge OR GitHub icon */}
+          <div className="relative z-10 flex items-start justify-between mb-4">
           {project.comingSoon ? (
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-500/10 border border-gray-500/30 text-gray-400">
               Coming Soon
@@ -96,10 +119,10 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           )}
         </div>
 
-        {/* Main content */}
-        <div className="relative z-10 flex flex-col flex-1 space-y-4">
+          {/* Main content */}
+          <div className="relative z-10 flex flex-col flex-1 space-y-4">
           {/* Title */}
-          <h3 className="text-xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          <h3 className="text-xl font-bold bg-gradient-to-r from-white via-white to-teal-100/70 bg-clip-text text-transparent">
             {project.title}
           </h3>
 
@@ -137,6 +160,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
                 <ArrowRight className="w-3.5 h-3.5" />
               </PrimaryButton>
             )}
+          </div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 import GlobalBackground from "@/components/background/GlobalBackground";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -118,6 +119,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <GlobalBackground />
         <div className="relative z-[1]">
+          <ScrollProgress />
           <PageLoader />
           <Navbar />
           <div className="pt-16">

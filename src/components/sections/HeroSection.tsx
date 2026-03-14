@@ -357,7 +357,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.4 }}
-              className="pt-3 border-t border-slate-800"
+              className="pt-3 border-t border-white/10"
             >
               <p className="text-xs tracking-[0.2em] text-slate-500 uppercase mb-3">
                 Tech Stack

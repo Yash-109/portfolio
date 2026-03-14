@@ -58,19 +58,19 @@ export default function ContactInput({
   const wrapperBorderClasses = focused
     ? error
       ? "ring-1 ring-red-500/50 shadow-[0_0_0_3px_rgba(239,68,68,0.12)] border-red-500/50"
-      : "ring-1 ring-indigo-500/60 shadow-[0_0_0_3px_rgba(99,102,241,0.15)] border-indigo-500/60"
+      : "ring-1 ring-teal-500/60 shadow-[0_0_0_3px_rgba(20,184,166,0.15)] border-teal-500/60"
     : error
     ? "border-red-500/40"
-    : "border-slate-800 hover:border-slate-600";
+    : "border-white/10 hover:border-white/20";
 
   const inputClasses = `
     w-full
-    bg-slate-950/70
+    bg-white/[0.04]
     border ${wrapperBorderClasses}
     rounded-xl
     px-4 py-3
     text-sm text-white
-    placeholder:text-slate-600
+    placeholder:text-white/30
     transition-all duration-200
     focus:outline-none
     shadow-inner shadow-black/20
@@ -96,7 +96,7 @@ export default function ContactInput({
 
   return (
     <div className="w-full">
-      <label htmlFor={id} className="block text-sm font-medium text-slate-300 mb-1.5">
+      <label htmlFor={id} className="block text-sm font-medium text-white/60 mb-1.5">
         {label}
         {required && (
           <span className="text-red-400 text-xs ml-1" aria-hidden="true">

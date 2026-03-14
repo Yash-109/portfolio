@@ -45,7 +45,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.12, duration: 0.5 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight bg-gradient-to-r from-white via-white to-teal-200/80 bg-clip-text text-transparent"
         >
           Who I Am
         </motion.h3>
@@ -119,6 +119,7 @@ export default function AboutSection() {
           <PrimaryButton
             href="/Yash_Parmar_Resume.pdf"
             target="_blank"
+            variant="ghost"
             aria-label="Download Resume"
           >
             <Download size={16} strokeWidth={2.5} />
@@ -147,7 +148,7 @@ export default function AboutSection() {
           {MINI_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4 text-center"
+              className="bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-sm p-4 text-center shadow-[0_2px_12px_rgba(0,0,0,0.2)]"
             >
               <p className="text-2xl font-bold text-teal-400">{stat.value}</p>
               <p className="text-xs text-white/50 mt-1">{stat.label}</p>
@@ -156,7 +157,7 @@ export default function AboutSection() {
         </div>
 
         {/* Quick Info Card */}
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4">
+        <div className="bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-sm p-4 shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
           <p className="text-xs text-white/30 uppercase tracking-widest mb-3">Quick Info</p>
           <div className="flex items-center gap-3 py-2 border-b border-white/5">
             <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
@@ -177,7 +178,7 @@ export default function AboutSection() {
         </div>
 
         {/* Tech Focus Card */}
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-4">
+        <div className="bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-sm p-4 shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
           <p className="text-xs text-white/30 uppercase tracking-widest mb-3">Currently focused on</p>
           <div className="flex flex-wrap gap-2">
             {TECH_TAGS.map((tag) => (

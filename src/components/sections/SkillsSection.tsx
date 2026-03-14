@@ -100,7 +100,7 @@ function SkillCard({
       className="group cursor-default"
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-teal-500/40 hover:shadow-[0_4px_20px_rgba(20,184,166,0.12)] transition-all duration-200"
+        className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] hover:from-white/[0.12] hover:to-white/[0.05] hover:border-teal-500/40 hover:shadow-[0_4px_20px_rgba(20,184,166,0.15)] transition-all duration-200"
       >
         {/* Radial glow from icon color on hover */}
         <div
@@ -136,7 +136,7 @@ function SkillGroupPanel({
   return (
     <motion.div
       variants={staggerItem}
-      className="isolate rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-[0_1px_0_0_rgba(255,255,255,0.05)_inset]"
+      className="isolate rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] shadow-[0_2px_20px_rgba(0,0,0,0.3),0_1px_0_0_rgba(255,255,255,0.06)_inset]"
     >
       <div
         className="h-[2px] w-full"
@@ -156,7 +156,7 @@ function SkillGroupPanel({
         <div className={`relative z-10 shrink-0 h-5 w-1 rounded-full bg-gradient-to-b ${group.gradient}`} />
 
         {/* Gradient title text */}
-        <h4 className="relative z-10 text-sm font-semibold text-teal-400/80 uppercase tracking-widest">
+        <h4 className="relative z-10 text-sm font-semibold text-white uppercase tracking-widest">
           {group.title}
         </h4>
 
@@ -175,7 +175,7 @@ function SkillGroupPanel({
 
       {/* Skills grid */}
       <div className="p-4 md:p-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 w-full justify-items-stretch">
+        <div className="grid grid-cols-3 gap-3 md:gap-4 w-full justify-items-stretch">
           {group.skills.map((skill) => (
             <SkillCard
               key={skill.name}

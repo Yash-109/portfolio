@@ -112,7 +112,8 @@ export default function CertificationsSection() {
               className="group relative z-0 hover:z-10 h-full"
             >
               <div
-                className="relative h-full flex flex-col bg-white/[0.04] border border-white/10 rounded-2xl backdrop-blur-sm p-8 overflow-hidden hover:border-teal-500/30 hover:bg-white/10 transition-all duration-300">
+                className="relative h-full flex flex-col bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-sm p-8 overflow-hidden hover:border-teal-500/40 hover:from-white/[0.1] hover:to-white/[0.04] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300"
+              >
 
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
 
@@ -140,7 +141,7 @@ export default function CertificationsSection() {
                     {cert.organization}
                   </p>
 
-                  {/* Date + optional score */}
+                  {/* Info Row (formerly Date) */}
                   <div className="flex items-center gap-4 text-xs text-white/40 mb-5">
                     <span className="flex items-center gap-1.5">
                       <FaCalendarAlt className="w-3 h-3" />
@@ -154,43 +155,46 @@ export default function CertificationsSection() {
                     )}
                   </div>
 
-                  {/* Skill pills */}
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {cert.skills.slice(0, 3).map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3.5 py-2 text-xs font-semibold bg-teal-500/10 border border-teal-500/25 rounded-full text-teal-300
-                          hover:bg-teal-500/20 hover:border-teal-400/50 hover:-translate-y-0.5
-                          hover:shadow-[0_4px_12px_rgba(20,184,166,0.15)]
-                          transition-all duration-200 whitespace-nowrap cursor-default select-none"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {cert.skills.length > 3 && (
-                      <span className="px-3 py-2 text-xs font-semibold bg-white/5 border border-white/10 rounded-full text-white/60 whitespace-nowrap cursor-default">
-                        +{cert.skills.length - 3}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Cert ID */}
-                  {cert.certId && (
-                    <div className="mt-3 pt-3 border-t border-white/10">
-                      <p className="text-xs text-white/30 truncate">ID: {cert.certId}</p>
+                  <div className="mt-auto flex flex-col gap-3">
+                    {/* Skill pills */}
+                    <div className="flex flex-wrap gap-2">
+                      {cert.skills.slice(0, 3).map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3.5 py-2 text-xs font-semibold bg-teal-500/10 border border-teal-500/25 rounded-full text-teal-300
+                            hover:bg-teal-500/20 hover:border-teal-400/50 hover:-translate-y-0.5
+                            hover:shadow-[0_4px_12px_rgba(20,184,166,0.15)]
+                            transition-all duration-200 whitespace-nowrap cursor-default select-none"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {cert.skills.length > 3 && (
+                        <span className="px-3 py-2 text-xs font-semibold bg-white/5 border border-white/10 rounded-full text-white/60 whitespace-nowrap cursor-default">
+                          +{cert.skills.length - 3}
+                        </span>
+                      )}
                     </div>
-                  )}
 
-                  {/* Download button */}
-                  <PrimaryButton
-                    href={cert.file}
-                    target="_blank"
-                    variant="ghost"
-                    size="sm"
-                    aria-label="Download Certificate"
-                  >
-                    ↓ Download
-                  </PrimaryButton>
+                    {/* Cert ID */}
+                    {cert.certId && (
+                      <div className="pt-3 border-t border-white/10">
+                        <p className="text-xs text-white/30 truncate">ID: {cert.certId}</p>
+                      </div>
+                    )}
+
+                    {/* Download button */}
+                    <PrimaryButton
+                      href={cert.file}
+                      target="_blank"
+                      variant="ghost"
+                      size="sm"
+                      className="mt-auto pt-4 w-full justify-center border-white/20 hover:border-teal-400/50"
+                      aria-label="Download Certificate"
+                    >
+                      ↓ Download
+                    </PrimaryButton>
+                  </div>
 
                 </div>
               </div>

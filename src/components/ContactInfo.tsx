@@ -72,7 +72,7 @@ export default function ContactInfo() {
               viewport={{ once: true }}
               whileHover={reduced ? {} : { y: -3, scale: 1.01, transition: { type: "spring", stiffness: 320, damping: 22 } }}
               whileTap={reduced ? {} : { scale: 0.98 }}
-              className="group flex items-center gap-4 p-4 rounded-2xl outline-none bg-white/[0.04] backdrop-blur-sm border border-white/10 hover:border-teal-500/50 hover:bg-white/[0.08] hover:shadow-[0_4px_20px_rgba(20,184,166,0.12)] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-teal-400"
+              className="group flex items-center gap-4 p-4 rounded-2xl outline-none bg-gradient-to-r from-white/[0.06] to-white/[0.02] backdrop-blur-sm border border-white/[0.08] hover:border-teal-500/50 hover:from-white/[0.1] hover:to-white/[0.04] hover:shadow-[0_4px_20px_rgba(20,184,166,0.14)] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               {/* Square icon badge */}
               <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0

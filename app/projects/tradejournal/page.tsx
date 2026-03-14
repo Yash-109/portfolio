@@ -13,26 +13,27 @@ export const metadata: Metadata = {
 
 export default function TradeJournalPage() {
   return (
-    <main className="text-white min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-20 space-y-12">
+    <main className="text-white min-h-screen pt-8">
+      <div className="max-w-4xl mx-auto px-6 py-12 space-y-10">
 
         {/* BACK LINK */}
         <div>
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-base font-semibold transition-all duration-200 hover:gap-3"
-            style={{ color: '#60a5fa' }}
+            className="inline-flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 group"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
+            <span className="group-hover:-translate-x-1 transition-transform duration-200">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </span>
             Back to Projects
           </Link>
         </div>
 
         {/* TITLE SECTION */}
         <section className="space-y-6">
-          <h1 className="text-4xl font-black tracking-tight">TradeJournal Pro+</h1>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">TradeJournal Pro+</h1>
           
           <p className="text-lg text-gray-300 leading-relaxed">
             A multi-market trading analytics platform focused on risk discipline, behavioral consistency, 
@@ -42,7 +43,7 @@ export default function TradeJournalPage() {
           <div className="grid sm:grid-cols-2 gap-6 mt-8">
             <div className="space-y-3">
               <h3 className="text-xl font-semibold text-gray-200 mb-3">Tech Stack</h3>
-              <ul className="space-y-3 text-gray-300 text-base">
+              <ul className="space-y-3 text-white/70 text-sm">
                 <li><strong className="text-white">Frontend:</strong> Next.js (App Router), TypeScript, Tailwind CSS</li>
                 <li><strong className="text-white">Backend:</strong> Node.js, Express</li>
                 <li><strong className="text-white">Database:</strong> MongoDB (Mongoose)</li>
@@ -53,7 +54,7 @@ export default function TradeJournalPage() {
 
             <div className="space-y-3">
               <h3 className="text-xl font-semibold text-gray-200 mb-3">Project Info</h3>
-              <ul className="space-y-3 text-gray-300 text-base">
+              <ul className="space-y-3 text-white/70 text-sm">
                 <li><strong className="text-white">Role:</strong> Full-Stack Developer</li>
                 <li><strong className="text-white">Duration:</strong> Ongoing</li>
                 <li>
@@ -67,31 +68,34 @@ export default function TradeJournalPage() {
 
         {/* KEY CAPABILITIES SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Key Capabilities</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Key Capabilities</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Multi-Market Tracking</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Multi-Market Tracking</h3>
               <p className="text-gray-300 text-base leading-relaxed">Supports Equity, F&O, Forex, Crypto, and Gold instruments.</p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Rule-Based Evaluation Engine</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Rule-Based Evaluation Engine</h3>
               <p className="text-gray-300 text-base leading-relaxed">Automated penalty scoring for discipline violations.</p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Session-Level Analytics</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Session-Level Analytics</h3>
               <p className="text-gray-300 text-base leading-relaxed">Performance segmented by trading session.</p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Strategy Segmentation</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Strategy Segmentation</h3>
               <p className="text-gray-300 text-base leading-relaxed">Win-rate and P&L breakdown by strategy.</p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Behavioral Insights</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Behavioral Insights</h3>
               <p className="text-gray-300 text-base leading-relaxed">Emotion tagging and consistency scoring.</p>
             </div>
 
@@ -104,25 +108,28 @@ export default function TradeJournalPage() {
 
         {/* IMPACT SUMMARY SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Impact & Scope</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Impact & Scope</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           
           <div className="grid sm:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,58,138,0.15) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 text-blue-400">Multi-Market Coverage</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 text-teal-400">Multi-Market Coverage</h3>
               <p className="text-gray-300 text-base leading-relaxed">
                 Supports Equity, F&O, Forex, Crypto, and Commodities.
               </p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,58,138,0.15) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 text-blue-400">Discipline Scoring Engine</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 text-teal-400">Discipline Scoring Engine</h3>
               <p className="text-gray-300 text-base leading-relaxed">
                 Quantifies trade quality using automated penalty logic.
               </p>
             </div>
 
-            <div className="group rounded-xl p-6 border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,58,138,0.15) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 text-blue-400">Analytics-Driven Dashboard</h3>
+            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+              <h3 className="font-bold text-lg mb-3 text-teal-400">Analytics-Driven Dashboard</h3>
               <p className="text-gray-300 text-base leading-relaxed">
                 Session, strategy, and emotion-based performance insights.
               </p>
@@ -132,7 +139,10 @@ export default function TradeJournalPage() {
 
         {/* OVERVIEW SECTION */}
         <section className="space-y-4">
-          <h2 className="text-3xl font-bold">Overview</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Overview</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           <p className="text-lg text-gray-300 leading-relaxed">
             TradeJournal Pro+ is a full-stack trading analytics platform designed to help traders measure 
             not just profitability, but discipline and behavioral consistency. It integrates trade tracking, 
@@ -142,7 +152,10 @@ export default function TradeJournalPage() {
 
         {/* PROBLEM STATEMENT SECTION */}
         <section className="space-y-4">
-          <h2 className="text-3xl font-bold">Problem Statement</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Problem Statement</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           <ul className="list-disc list-inside space-y-3 text-gray-300 text-base leading-relaxed">
             <li>Retail traders rely on spreadsheets or unstructured notes.</li>
             <li>No automated risk validation.</li>
@@ -155,11 +168,14 @@ export default function TradeJournalPage() {
 
         {/* SYSTEM ARCHITECTURE SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">System Architecture</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">System Architecture</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mt-4 text-blue-400">Frontend</h3>
+              <h3 className="text-xl font-semibold mt-4 text-teal-400">Frontend</h3>
               <ul className="list-disc list-inside space-y-3 text-gray-300 text-base mt-3">
                 <li>Built with Next.js App Router.</li>
                 <li>Modular dashboard layout.</li>
@@ -169,7 +185,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mt-4 text-blue-400">Backend</h3>
+              <h3 className="text-xl font-semibold mt-4 text-teal-400">Backend</h3>
               <ul className="list-disc list-inside space-y-3 text-gray-300 text-base mt-3">
                 <li>REST APIs for trades, sessions, and evaluations.</li>
                 <li>Rule-based scoring engine.</li>
@@ -178,7 +194,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mt-4 text-blue-400">Database</h3>
+              <h3 className="text-xl font-semibold mt-4 text-teal-400">Database</h3>
               <p className="text-gray-300 mt-3 mb-2 text-base">Collections:</p>
               <ul className="list-disc list-inside space-y-3 text-gray-300 text-base ml-4">
                 <li>Users</li>
@@ -196,7 +212,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mt-4 text-blue-400">Data Flow</h3>
+              <h3 className="text-xl font-semibold mt-4 text-teal-400">Data Flow</h3>
               <ul className="list-disc list-inside space-y-3 text-gray-300 text-base mt-3">
                 <li>User → Journal Entry → MongoDB</li>
                 <li>MongoDB → Aggregation → Analytics Engine</li>
@@ -208,11 +224,14 @@ export default function TradeJournalPage() {
 
         {/* ARCHITECTURE FLOW SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Architecture Flow</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Architecture Flow</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           
           <div className="flex flex-col items-center space-y-4">
             <div className="w-full max-w-lg flex flex-col items-center">
-              <div className="w-full rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500/40 transition-all duration-300" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.6) 100%)' }}>
+              <div className="w-full rounded-xl p-6 text-center border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300">
                 <h3 className="font-bold text-lg mb-2">UI Layer (Next.js Frontend)</h3>
                 <p className="text-gray-300 text-base leading-relaxed">
                   Handles trade entry, analytics visualization, and session evaluation UI.
@@ -222,7 +241,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div className="w-full max-w-lg flex flex-col items-center">
-              <div className="w-full rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500/40 transition-all duration-300" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.6) 100%)' }}>
+              <div className="w-full rounded-xl p-6 text-center border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300">
                 <h3 className="font-bold text-lg mb-2">API Layer (Node + Express)</h3>
                 <p className="text-gray-300 text-base leading-relaxed">
                   Processes trade data, executes rule evaluation logic, and handles authentication.
@@ -232,7 +251,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div className="w-full max-w-lg flex flex-col items-center">
-              <div className="w-full rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500/40 transition-all duration-300" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.6) 100%)' }}>
+              <div className="w-full rounded-xl p-6 text-center border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300">
                 <h3 className="font-bold text-lg mb-2">Business Logic Layer (Risk Engine + Scoring Engine)</h3>
                 <p className="text-gray-300 text-base leading-relaxed">
                   Implements risk validation, scoring engine, and analytics aggregation.
@@ -242,7 +261,7 @@ export default function TradeJournalPage() {
             </div>
 
             <div className="w-full max-w-lg">
-              <div className="w-full rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500/40 transition-all duration-300" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.6) 100%)' }}>
+              <div className="w-full rounded-xl p-6 text-center border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300">
                 <h3 className="font-bold text-lg mb-2">Database Layer (MongoDB Collections + Aggregations)</h3>
                 <p className="text-gray-300 text-base leading-relaxed">
                   Stores users, trades, sessions, rules, and evaluation results.
@@ -254,9 +273,12 @@ export default function TradeJournalPage() {
 
         {/* CORE FEATURES SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Core Features</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Core Features</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
 
-          <div className="space-y-6">
+            <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold mt-4 text-blue-400">Multi-Market Support</h3>
               <ul className="list-disc list-inside space-y-3 text-gray-300 text-base mt-3">
@@ -309,7 +331,10 @@ export default function TradeJournalPage() {
 
         {/* ENGINEERING CHALLENGES SECTION */}
         <section className="space-y-4">
-          <h2 className="text-3xl font-bold">Engineering Challenges</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Engineering Challenges</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           <ul className="list-disc list-inside space-y-3 text-gray-300 text-base leading-relaxed">
             <li>Handling floating point precision issues in financial calculations (P&L, Risk %, R-multiple).</li>
             <li>Designing a modular rule-based scoring engine for extensibility.</li>
@@ -321,7 +346,10 @@ export default function TradeJournalPage() {
 
         {/* TECHNICAL DECISIONS SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Technical Decisions</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Technical Decisions</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
 
           <div className="space-y-6">
             <div>
@@ -352,7 +380,10 @@ export default function TradeJournalPage() {
 
         {/* LIVE ACCESS & SOURCE SECTION */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold">Live Access & Source</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Live Access & Source</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           
           <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
             This project is structured as a full-stack analytical system with a modular architecture. 
@@ -373,7 +404,10 @@ export default function TradeJournalPage() {
 
         {/* DEPLOYMENT & SCALABILITY PLAN SECTION */}
         <section className="space-y-4">
-          <h2 className="text-3xl font-bold">Deployment & Scalability Plan</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">Deployment & Scalability Plan</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           <ul className="list-disc list-inside space-y-3 text-gray-300 text-base leading-relaxed">
             <li>Planned deployment using Vercel (frontend) and Render/Node hosting.</li>
             <li>MongoDB Atlas for production database.</li>
@@ -385,7 +419,10 @@ export default function TradeJournalPage() {
 
         {/* WHAT I LEARNED SECTION */}
         <section className="space-y-4">
-          <h2 className="text-3xl font-bold">What I Learned</h2>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-white">What I Learned</h2>
+            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+          </div>
           <ul className="list-disc list-inside space-y-3 text-gray-300 text-base leading-relaxed">
             <li>Designing analytical systems beyond CRUD.</li>
             <li>Financial metric normalization and consistency scoring.</li>
@@ -396,15 +433,16 @@ export default function TradeJournalPage() {
         </section>
 
         {/* BACK TO PROJECTS LINK */}
-        <section className="pt-8 border-t border-gray-800">
+        <section className="pt-8 border-t border-white/10">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-base font-semibold transition-all duration-200 hover:gap-3"
-            style={{ color: '#60a5fa' }}
+            className="inline-flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 group"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
+            <span className="group-hover:-translate-x-1 transition-transform duration-200">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </span>
             Back to Projects
           </Link>
         </section>

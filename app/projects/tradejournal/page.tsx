@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import FeatureCard from '@/components/ui/FeatureCard';
 
 export const metadata: Metadata = {
   title: 'TradeJournal Pro+',
@@ -74,35 +75,38 @@ export default function TradeJournalPage() {
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Multi-Market Tracking</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Supports Equity, F&O, Forex, Crypto, and Gold instruments.</p>
-            </div>
+            <FeatureCard
+              title="Multi-Market Tracking"
+              description="Supports Equity, F&O, Forex, Crypto, and Gold instruments."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Rule-Based Evaluation Engine</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Automated penalty scoring for discipline violations.</p>
-            </div>
+            <FeatureCard
+              title="Rule-Based Evaluation Engine"
+              description="Automated penalty scoring for discipline violations."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Session-Level Analytics</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Performance segmented by trading session.</p>
-            </div>
+            <FeatureCard
+              title="Session-Level Analytics"
+              description="Performance segmented by trading session."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Strategy Segmentation</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Win-rate and P&L breakdown by strategy.</p>
-            </div>
+            <FeatureCard
+              title="Strategy Segmentation"
+              description="Win-rate and P&L breakdown by strategy."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Behavioral Insights</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Emotion tagging and consistency scoring.</p>
-            </div>
+            <FeatureCard
+              title="Behavioral Insights"
+              description="Emotion tagging and consistency scoring."
+            />
 
-            <div className="group rounded-xl p-6 border border-gray-700 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}>
-              <h3 className="font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors duration-200">Aggregation-Driven Analytics</h3>
-              <p className="text-gray-300 text-base leading-relaxed">MongoDB pipelines powering backend analytics.</p>
-            </div>
+            <FeatureCard
+              title="Aggregation-Driven Analytics"
+              description="MongoDB pipelines powering backend analytics."
+              className="border-gray-700 hover:border-blue-500/40"
+              titleClassName="group-hover:text-blue-400"
+              style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(30,41,59,0.5) 100%)' }}
+            />
           </div>
         </section>
 
@@ -114,26 +118,26 @@ export default function TradeJournalPage() {
           </div>
           
           <div className="grid sm:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Multi-Market Coverage</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Supports Equity, F&O, Forex, Crypto, and Commodities.
-              </p>
-            </div>
+            <FeatureCard
+              title="Multi-Market Coverage"
+              description="Supports Equity, F&O, Forex, Crypto, and Commodities."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Discipline Scoring Engine</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Quantifies trade quality using automated penalty logic.
-              </p>
-            </div>
+            <FeatureCard
+              title="Discipline Scoring Engine"
+              description="Quantifies trade quality using automated penalty logic."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Analytics-Driven Dashboard</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Session, strategy, and emotion-based performance insights.
-              </p>
-            </div>
+            <FeatureCard
+              title="Analytics-Driven Dashboard"
+              description="Session, strategy, and emotion-based performance insights."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
           </div>
         </section>
 

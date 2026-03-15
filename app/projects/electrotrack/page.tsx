@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import FeatureCard from '@/components/ui/FeatureCard';
 
 export const metadata: Metadata = {
   title: 'Electrotrack',
@@ -75,35 +76,35 @@ export default function ElectrotrackPage() {
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Product Catalog & Filtering</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Browse electronics with advanced filtering and search capabilities.</p>
-            </div>
+            <FeatureCard
+              title="Product Catalog & Filtering"
+              description="Browse electronics with advanced filtering and search capabilities."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Shopping Cart with Persistence</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Local storage-based cart that persists across sessions.</p>
-            </div>
+            <FeatureCard
+              title="Shopping Cart with Persistence"
+              description="Local storage-based cart that persists across sessions."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Razorpay Integration</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Secure payment processing with Razorpay checkout.</p>
-            </div>
+            <FeatureCard
+              title="Razorpay Integration"
+              description="Secure payment processing with Razorpay checkout."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Google OAuth Login</h3>
-              <p className="text-gray-300 text-base leading-relaxed">One-click authentication with Google accounts via NextAuth.js.</p>
-            </div>
+            <FeatureCard
+              title="Google OAuth Login"
+              description="One-click authentication with Google accounts via NextAuth.js."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Admin Dashboard</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Revenue analytics, transaction monitoring, and order management.</p>
-            </div>
+            <FeatureCard
+              title="Admin Dashboard"
+              description="Revenue analytics, transaction monitoring, and order management."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Contact Form</h3>
-              <p className="text-gray-300 text-base leading-relaxed">Nodemailer-powered email notifications for customer inquiries.</p>
-            </div>
+            <FeatureCard
+              title="Contact Form"
+              description="Nodemailer-powered email notifications for customer inquiries."
+            />
           </div>
         </section>
 
@@ -115,26 +116,26 @@ export default function ElectrotrackPage() {
           </div>
           
           <div className="grid sm:grid-cols-3 gap-6">
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Full Authentication Flow</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Secure user registration, Google OAuth integration, and session management.
-              </p>
-            </div>
+            <FeatureCard
+              title="Full Authentication Flow"
+              description="Secure user registration, Google OAuth integration, and session management."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Responsive E-commerce UI</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Mobile-first design with shadcn/ui components and Lucide icons.
-              </p>
-            </div>
+            <FeatureCard
+              title="Responsive E-commerce UI"
+              description="Mobile-first design with shadcn/ui components and Lucide icons."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 text-teal-400">Admin Analytics</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Real-time revenue tracking, transaction history, and business insights.
-              </p>
-            </div>
+            <FeatureCard
+              title="Admin Analytics"
+              description="Real-time revenue tracking, transaction history, and business insights."
+              hoverTitle={false}
+              titleClassName="text-teal-400"
+            />
           </div>
         </section>
 
@@ -445,47 +446,35 @@ export default function ElectrotrackPage() {
             <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Product Reviews & Ratings</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                User-generated reviews with star ratings and verified purchase badges.
-              </p>
-            </div>
+            <FeatureCard
+              title="Product Reviews & Ratings"
+              description="User-generated reviews with star ratings and verified purchase badges."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Wishlist Feature</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Save products for later with database-synced wishlist functionality.
-              </p>
-            </div>
+            <FeatureCard
+              title="Wishlist Feature"
+              description="Save products for later with database-synced wishlist functionality."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Order Tracking</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Real-time order status updates with shipping integration (Shiprocket/Delhivery).
-              </p>
-            </div>
+            <FeatureCard
+              title="Order Tracking"
+              description="Real-time order status updates with shipping integration (Shiprocket/Delhivery)."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Advanced Analytics</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Customer behavior tracking, conversion funnel analysis, and sales forecasting.
-              </p>
-            </div>
+            <FeatureCard
+              title="Advanced Analytics"
+              description="Customer behavior tracking, conversion funnel analysis, and sales forecasting."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Inventory Management</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                Real-time stock tracking, low-stock alerts, and automated reorder points.
-              </p>
-            </div>
+            <FeatureCard
+              title="Inventory Management"
+              description="Real-time stock tracking, low-stock alerts, and automated reorder points."
+            />
 
-            <div className="group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1">
-              <h3 className="font-bold text-lg mb-3 group-hover:text-teal-400 transition-colors duration-200">Multi-Currency Support</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                International payments with automatic currency conversion and localization.
-              </p>
-            </div>
+            <FeatureCard
+              title="Multi-Currency Support"
+              description="International payments with automatic currency conversion and localization."
+            />
           </div>
         </section>
 

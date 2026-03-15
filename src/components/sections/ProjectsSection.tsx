@@ -146,8 +146,8 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
           {/* CTA */}
           <div className="mt-4">
             {project.comingSoon ? (
-              <span className="text-sm text-white/30 flex items-center gap-1 cursor-not-allowed select-none">
-                View Case Study
+              <span className="text-sm text-white/30 flex items-center gap-1 cursor-not-allowed select-none" aria-label="View case study (coming soon)">
+                View Case Study (Coming Soon)
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
             ) : (

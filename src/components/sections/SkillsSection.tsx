@@ -98,6 +98,7 @@ function SkillCard({
       variants={staggerItem}
       whileHover={reduced ? {} : { scale: 1.04, y: -2, transition: { type: "spring", stiffness: 320, damping: 18 } }}
       className="group cursor-default"
+      role="presentation"
     >
       <div
         className="relative overflow-hidden flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] hover:from-white/[0.12] hover:to-white/[0.05] hover:border-teal-500/40 hover:shadow-[0_4px_20px_rgba(20,184,166,0.15)] transition-all duration-200"

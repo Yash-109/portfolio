@@ -372,9 +372,9 @@ export default function HeroSection() {
                     className="
                       inline-flex items-center gap-2
                       px-4 py-2.5 rounded-full text-xs font-semibold
-                      border border-teal-500/30 bg-teal-500/[0.09] text-teal-300
+                      border border-teal-500/30 bg-teal-500/10 text-teal-300
                       cursor-default select-none
-                      hover:bg-teal-500/[0.16] hover:border-teal-400/50
+                      hover:bg-teal-500/15 hover:border-teal-400/50
                       hover:shadow-[0_4px_14px_rgba(20,184,166,0.18)]
                       hover:-translate-y-0.5 active:translate-y-0
                       transition-all duration-200

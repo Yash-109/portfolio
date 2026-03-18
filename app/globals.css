@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @layer base {
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+}
 
 html {
   scroll-behavior: smooth;
@@ -36,30 +37,47 @@ body {
   --animate-mesh-gradient: mesh-gradient 20s ease infinite;
 
   @keyframes pulse-slow {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.05);
     }
   }
 
   @keyframes shake {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateX(0);
     }
-    10%, 30%, 50%, 70%, 90% {
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
       transform: translateX(-8px);
     }
-    20%, 40%, 60%, 80% {
+
+    20%,
+    40%,
+    60%,
+    80% {
       transform: translateX(8px);
     }
   }
 
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-10px);
     }
@@ -69,6 +87,7 @@ body {
     0% {
       left: -100%;
     }
+
     100% {
       left: 100%;
     }
@@ -78,9 +97,11 @@ body {
     0% {
       transform: rotateX(0);
     }
+
     50% {
       transform: rotateX(90deg);
     }
+
     100% {
       transform: rotateX(180deg);
     }
@@ -91,6 +112,7 @@ body {
       transform: translateY(0) scale(1) rotate(0deg);
       opacity: 1;
     }
+
     100% {
       transform: translateY(-100px) scale(0) rotate(360deg);
       opacity: 0;
@@ -98,9 +120,12 @@ body {
   }
 
   @keyframes mesh-gradient {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -109,18 +134,24 @@ body {
 
 /* Custom animations for Hero section */
 @keyframes gradient {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
 
 @keyframes gradient-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -138,12 +169,12 @@ body {
 
 /* Selection styling */
 ::selection {
-  background-color: rgba(99, 102, 241, 0.3);
+  background-color: rgba(20, 184, 166, 0.3);
   color: white;
 }
 
 ::-moz-selection {
-  background-color: rgba(99, 102, 241, 0.3);
+  background-color: rgba(20, 184, 166, 0.3);
   color: white;
 }
 
@@ -193,6 +224,7 @@ img {
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -200,7 +232,7 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
@@ -222,7 +254,7 @@ img {
 .glass-hover:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(20, 184, 166, 0.2);
 }
 
 /* Shine effect for buttons */
@@ -238,12 +270,10 @@ img {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transition: left 0.8s ease-out;
 }
 
@@ -256,9 +286,11 @@ img {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -267,10 +299,10 @@ img {
 .gradient-border-animated {
   background: linear-gradient(
     90deg,
-    #6366f1,
-    #8b5cf6,
-    #06b6d4,
-    #6366f1
+    #14b8a6,
+    #22d3ee,
+    #14b8a6,
+    #22d3ee
   );
   background-size: 200% 200%;
   animation: gradient-border 3s ease infinite;
@@ -278,14 +310,12 @@ img {
 
 /* Mesh gradient background */
 .mesh-gradient {
-  background: linear-gradient(
-    135deg,
-    #1e1b4b 0%,
-    #312e81 25%,
-    #1e3a8a 50%,
-    #0e7490 75%,
-    #1e1b4b 100%
-  );
+  background: linear-gradient(135deg,
+      #1e1b4b 0%,
+      #312e81 25%,
+      #1e3a8a 50%,
+      #0e7490 75%,
+      #1e1b4b 100%);
   background-size: 400% 400%;
   animation: mesh-gradient 20s ease infinite;
 }
@@ -303,21 +333,32 @@ img {
 .bg-white\/4 {
   background-color: rgba(255, 255, 255, 0.04);
 }
+
 .bg-white\/8 {
   background-color: rgba(255, 255, 255, 0.08);
 }
+
 .border-white\/8 {
   border-color: rgba(255, 255, 255, 0.08);
 }
+
 .border-white\/20 {
   border-color: rgba(255, 255, 255, 0.20);
 }
 
 /* Float slow — used by decorative orbs in Contact */
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50%       { transform: translateY(-18px) scale(1.04); }
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.04);
+  }
 }
+
 .animate-float-slow {
   animation: float-slow 8s ease-in-out infinite;
 }
@@ -336,7 +377,7 @@ textarea:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
   -webkit-box-shadow: 0 0 0 1000px rgb(2, 8, 23) inset !important;
   box-shadow: 0 0 0 1000px rgb(2, 8, 23) inset !important;
-  transition: background-color 5000s ease-in-out 0s;  
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
@@ -423,29 +464,75 @@ textarea:-webkit-autofill:active {
 }
 
 @keyframes aurora-drift-1 {
-  0%,   100% { transform: translate(0,    0)    scale(1);    }
-  25%        { transform: translate(8%,   12%)  scale(1.08); }
-  50%        { transform: translate(15%,  -5%)  scale(0.95); }
-  75%        { transform: translate(-5%,  8%)   scale(1.05); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(8%, 12%) scale(1.08);
+  }
+
+  50% {
+    transform: translate(15%, -5%) scale(0.95);
+  }
+
+  75% {
+    transform: translate(-5%, 8%) scale(1.05);
+  }
 }
 
 @keyframes aurora-drift-2 {
-  0%,   100% { transform: translate(0,    0)    scale(1);    }
-  33%        { transform: translate(-12%, 8%)   scale(1.10); }
-  66%        { transform: translate(5%,   -10%) scale(0.92); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-12%, 8%) scale(1.10);
+  }
+
+  66% {
+    transform: translate(5%, -10%) scale(0.92);
+  }
 }
 
 @keyframes aurora-drift-3 {
-  0%,   100% { transform: translate(0,    0)    scale(1);    }
-  40%        { transform: translate(-8%,  -12%) scale(1.06); }
-  70%        { transform: translate(6%,   5%)   scale(0.97); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  40% {
+    transform: translate(-8%, -12%) scale(1.06);
+  }
+
+  70% {
+    transform: translate(6%, 5%) scale(0.97);
+  }
 }
 
 @keyframes aurora-drift-4 {
-  0%,   100% { transform: translate(0,    0)    scale(1)    rotate(0deg);  }
-  25%        { transform: translate(10%,  -8%)  scale(1.12) rotate(5deg);  }
-  50%        { transform: translate(-6%,  10%)  scale(0.90) rotate(-3deg); }
-  75%        { transform: translate(8%,   5%)   scale(1.08) rotate(2deg);  }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(10%, -8%) scale(1.12) rotate(5deg);
+  }
+
+  50% {
+    transform: translate(-6%, 10%) scale(0.90) rotate(-3deg);
+  }
+
+  75% {
+    transform: translate(8%, 5%) scale(1.08) rotate(2deg);
+  }
 }
 
 /* Disable aurora animations for users who prefer reduced motion */
@@ -454,4 +541,3 @@ textarea:-webkit-autofill:active {
     animation: none !important;
   }
 }
-

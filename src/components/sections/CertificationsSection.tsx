@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FaCertificate, FaCalendarAlt, FaAward } from "react-icons/fa";
 import { SiCoursera, SiNvidia } from "react-icons/si";
+import { Download } from "lucide-react";
 import { staggerContainer, staggerItem } from "@/animations/stagger";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Section from "@/components/ui/Section";
@@ -189,10 +190,11 @@ export default function CertificationsSection() {
                       target="_blank"
                       variant="ghost"
                       size="sm"
-                      className="mt-auto pt-4 w-full justify-center border-white/20 hover:border-teal-400/50"
+                      className="mt-auto pt-4 w-full justify-center"
                       aria-label="Download Certificate"
                     >
-                      ↓ Download
+                      <Download className="w-3.5 h-3.5" />
+                      Download
                     </PrimaryButton>
                   </div>
 

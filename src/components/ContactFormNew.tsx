@@ -258,7 +258,7 @@ export default function ContactFormNew() {
                     onClick={handleSendAnother}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors duration-200 underline-offset-4 hover:underline font-medium focus-visible:ring-2 focus-visible:ring-teal-400 rounded outline-none"
+                    className="text-sm text-teal-400 hover:text-teal-300 transition-colors duration-200 underline-offset-4 hover:underline font-medium focus-visible:ring-2 focus-visible:ring-teal-400 rounded outline-none"
                   >
                     Send another message
                   </motion.button>
@@ -387,7 +387,7 @@ export default function ContactFormNew() {
                   whileTap={!isSubmitDisabled ? { scale: 0.975 } : {}}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
                   className={`
-                    w-full rounded-xl px-6 py-3.5 font-bold text-[15px]
+                    w-full rounded-full px-6 py-3.5 font-bold text-[15px]
                     flex items-center justify-center gap-2.5
                     transition-all duration-300 min-h-[48px] overflow-hidden relative
                     focus-visible:ring-2 focus-visible:ring-teal-400 outline-none

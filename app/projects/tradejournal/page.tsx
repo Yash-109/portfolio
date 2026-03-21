@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import PrimaryButton from '@/components/ui/PrimaryButton';
 import FeatureCard from '@/components/ui/FeatureCard';
+import { Github } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'TradeJournal Pro+',
@@ -19,17 +20,9 @@ export default function TradeJournalPage() {
 
         {/* BACK LINK */}
         <div>
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 group"
-          >
-            <span className="group-hover:-translate-x-1 transition-transform duration-200">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </span>
+          <PrimaryButton href="/#projects" variant="ghost">
             Back to Projects
-          </Link>
+          </PrimaryButton>
         </div>
 
         {/* TITLE SECTION */}
@@ -60,7 +53,16 @@ export default function TradeJournalPage() {
                 <li><strong className="text-white">Duration:</strong> Ongoing</li>
                 <li>
                   <strong className="text-white">GitHub:</strong>{' '}
-                  <a href="https://github.com/Yash-109/Trading-Journal" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Yash-109/Trading-Journal</a>
+                  <PrimaryButton
+                    href="https://github.com/Yash-109/Trading-Journal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="ghost"
+                    className="text-sm p-0 h-auto"
+                  >
+                    <Github className="w-4 h-4 mr-2" />
+                    Yash-109/Trading-Journal
+                  </PrimaryButton>
                 </li>
               </ul>
             </div>
@@ -386,14 +388,15 @@ export default function TradeJournalPage() {
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="text-2xl font-bold text-white">Live Access & Source</h2>
-            <div className="h-[2px] w-10 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
+            <PrimaryButton
+              href="https://github.com/Yash-109/Trading-Journal"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+            >
+              View on GitHub
+            </PrimaryButton>
           </div>
-          
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
-            This project is structured as a full-stack analytical system with a modular architecture. 
-            The source code demonstrates separation of concerns between UI, API, business logic, and data layers.
-          </p>
-
           <div className="flex flex-wrap gap-4 pt-4">
             <a
               href="https://github.com/Yash-109/Trading-Journal"
@@ -438,17 +441,9 @@ export default function TradeJournalPage() {
 
         {/* BACK TO PROJECTS LINK */}
         <section className="pt-8 border-t border-white/10">
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors duration-200 group"
-          >
-            <span className="group-hover:-translate-x-1 transition-transform duration-200">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </span>
+          <PrimaryButton href="/#projects" variant="ghost">
             Back to Projects
-          </Link>
+          </PrimaryButton>
         </section>
 
       </div>

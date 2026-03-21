@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -61,20 +62,12 @@ export default function NotFound() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
         >
-          <button
-            onClick={() => router.back()}
-            className="group relative px-8 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white font-medium transition-all duration-300 hover:border-teal-500/50 hover:shadow-[0_0_20px_rgba(20,184,166,0.15)]"
-          >
-            <span className="relative z-10">Go Back</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
-
-          <Link
-            href="/"
-            className="group relative px-8 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-lg text-white font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(20,184,166,0.3)] hover:scale-105"
-          >
-            <span className="relative z-10">Go Home</span>
-          </Link>
+          <PrimaryButton onClick={() => router.back()} variant="ghost">
+            Go Back
+          </PrimaryButton>
+          <PrimaryButton href="/" variant="solid">
+            Go Home
+          </PrimaryButton>
         </motion.div>
 
         {/* Quick Links */}
@@ -107,9 +100,9 @@ export default function NotFound() {
         {/* Decorative Element */}
         <motion.div
           variants={itemVariants}
-          className="pt-12 text-6xl opacity-20"
+          className="pt-12"
         >
-          🤔
+          <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-teal-500 to-transparent mx-auto" />
         </motion.div>
       </motion.div>
     </main>

@@ -14,7 +14,7 @@ export default function ContactStat({ icon: Icon, title, value }: ContactStatPro
     <motion.div
       whileHover={{ y: -3, scale: 1.02, transition: { type: "spring", stiffness: 320, damping: 22 } }}
       whileTap={{ scale: 0.98 }}
-      className="relative p-4 rounded-2xl cursor-default bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-sm border border-white/[0.08] hover:border-teal-500/40 hover:shadow-[0_4px_16px_rgba(20,184,166,0.12)] transition-all duration-300"
+      className="relative p-4 rounded-2xl cursor-default bg-gradient-to-b from-white/5 to-white/5 backdrop-blur-sm border border-white/10 hover:border-teal-500/40 hover:shadow-[0_4px_16px_rgba(20,184,166,0.12)] transition-all duration-300"
     >
       <div className="flex items-center gap-2 mb-2">
         <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-teal-500/15 border border-teal-500/25 shrink-0">

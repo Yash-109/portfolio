@@ -19,7 +19,7 @@ export default function FeatureCard({
 }: FeatureCardProps) {
   return (
     <div
-      className={`group rounded-xl p-6 border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-white/[0.02] hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1 ${className}`}
+      className={`group rounded-xl p-6 border border-white/10 bg-gradient-to-b from-white/5 to-white/5 hover:border-teal-500/40 transition-all duration-300 hover:-translate-y-1 ${className}`}
       style={style}
     >
       <h3

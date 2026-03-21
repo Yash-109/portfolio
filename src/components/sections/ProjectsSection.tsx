@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
     link:        "/projects/tradejournal",
     github:      "https://github.com/Yash-109/Trading-Journal",
     accentFrom:  "from-blue-500",
-    accentTo:    "to-indigo-400",
+    accentTo:    "to-blue-400",
     initial:     "T",
   },
   {
@@ -53,8 +53,8 @@ const PROJECTS: Project[] = [
     link:        "/projects/ml-predictor",
     github:      null,
     comingSoon:  true,
-    accentFrom:  "from-violet-500",
-    accentTo:    "to-purple-400",
+    accentFrom:  "from-teal-500",
+    accentTo:    "to-cyan-400",
     initial:     "M",
   },
 ];
@@ -74,7 +74,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
     >
       {/* Card shell */}
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] backdrop-blur-sm hover:border-teal-500/50 hover:from-white/[0.1] hover:to-white/[0.04] hover:shadow-[0_0_32px_rgba(20,184,166,0.16)] transition-all duration-300"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/5 border border-white/10 backdrop-blur-sm hover:border-teal-500/50 hover:from-white/10 hover:to-white/5 hover:shadow-[0_0_32px_rgba(20,184,166,0.16)] transition-all duration-300"
       >
         {/* Preview banner */}
         <div className={`relative h-28 w-full bg-gradient-to-br ${project.accentFrom}/20 ${project.accentTo}/10 flex items-center justify-center overflow-hidden shrink-0`}>
@@ -87,7 +87,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
         </div>
         {/* Content padding */}
         <div className="p-6 flex flex-col flex-1">
-          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-teal-500/[0.06] blur-2xl pointer-events-none group-hover:bg-teal-500/[0.12] transition-opacity duration-500" />
+          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-teal-500/5 blur-2xl pointer-events-none group-hover:bg-teal-500/10 transition-opacity duration-500" />
           {/* Gradient overlay on hover */}
           <div
             className="absolute inset-0 bg-gradient-to-t from-teal-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"

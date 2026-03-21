@@ -64,9 +64,9 @@ const educationData: EducationCard[] = [
     location: "Partapore, Gujarat",
     year: "2021",
     status: "GSEB Board",
-    statusBg: "bg-purple-500/20",
-    statusText: "text-purple-400",
-    statusBorder: "border-purple-500/30",
+    statusBg: "bg-teal-500/20",
+    statusText: "text-teal-400",
+    statusBorder: "border-teal-500/30",
     score: "71.84%",
     scoreLabel: "Percentage",
     cardGradient: "from-orange-500/10 to-amber-600/10",
@@ -105,7 +105,7 @@ export default function EducationSection() {
             >
               {/* Card */}
               <div
-                className="relative h-full flex flex-col overflow-hidden bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-sm p-8 hover:border-teal-500/40 hover:from-white/[0.1] hover:to-white/[0.04] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300"
+                className="relative h-full flex flex-col overflow-hidden bg-gradient-to-b from-white/5 to-white/5 border border-white/10 rounded-2xl backdrop-blur-sm p-8 hover:border-teal-500/40 hover:from-white/10 hover:to-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300"
               >
 
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />

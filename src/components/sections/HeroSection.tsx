@@ -17,12 +17,12 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 const ROLES = ["Full-Stack Developer", "ML Engineer", "Next.js Developer"];
 
 const TECH_STACK = [
-  { name: "React",      dot: "#61DAFB" },
-  { name: "Next.js",    dot: "#ffffff" },
+  { name: "React", dot: "#61DAFB" },
+  { name: "Next.js", dot: "#ffffff" },
   { name: "TypeScript", dot: "#3178C6" },
-  { name: "Node.js",    dot: "#68A063" },
-  { name: "MongoDB",    dot: "#47A248" },
-  { name: "Python",     dot: "#F7C948" },
+  { name: "Node.js", dot: "#68A063" },
+  { name: "MongoDB", dot: "#47A248" },
+  { name: "Python", dot: "#F7C948" },
 ];
 
 const WORDS = ["Yash", "Parmar"];
@@ -32,15 +32,17 @@ const WORDS = ["Yash", "Parmar"];
 ───────────────────────────────────────────────────────────────────────────── */
 function useTypewriter(roles: string[]) {
   const [displayed, setDisplayed] = useState("");
-  const charRef  = useRef(0);
-  const roleRef  = useRef(0);
-  const phaseRef = useRef<"typing" | "reading" | "deleting" | "waiting">("typing");
+  const charRef = useRef(0);
+  const roleRef = useRef(0);
+  const phaseRef = useRef<"typing" | "reading" | "deleting" | "waiting">(
+    "typing",
+  );
   const ticksRef = useRef(0);
 
   useEffect(() => {
-    const TICK_MS    = 65;
+    const TICK_MS = 65;
     const READ_TICKS = Math.round(2000 / TICK_MS);
-    const WAIT_TICKS = Math.round(450  / TICK_MS);
+    const WAIT_TICKS = Math.round(450 / TICK_MS);
 
     const id = setInterval(() => {
       const role = roles[roleRef.current];
@@ -99,10 +101,10 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (reduced || !cardRef.current) return;
     const r = cardRef.current.getBoundingClientRect();
-    const nx = (e.clientX - r.left) / r.width  - 0.5;
-    const ny = (e.clientY - r.top)  / r.height - 0.5;
+    const nx = (e.clientX - r.left) / r.width - 0.5;
+    const ny = (e.clientY - r.top) / r.height - 0.5;
     rawX.set(ny * -24);
-    rawY.set(nx *  24);
+    rawY.set(nx * 24);
   }
   function handleMouseLeave() {
     rawX.set(0);
@@ -116,7 +118,16 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
       transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
       {...(!reduced && {
         animate: { opacity: 1, x: 0, y: [0, -8, 0] },
-        transition: { opacity: { duration: 0.7, delay: 0.35 }, x: { duration: 0.7, delay: 0.35, ease: "easeOut" }, y: { duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" } },
+        transition: {
+          opacity: { duration: 0.7, delay: 0.35 },
+          x: { duration: 0.7, delay: 0.35, ease: "easeOut" },
+          y: {
+            duration: 5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "mirror",
+          },
+        },
       })}
       className="flex justify-center lg:justify-end"
       style={{ perspective: 1000 }}
@@ -128,7 +139,11 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
         style={
           reduced
             ? {}
-            : { rotateX: springX, rotateY: springY, transformStyle: "preserve-3d" }
+            : {
+                rotateX: springX,
+                rotateY: springY,
+                transformStyle: "preserve-3d",
+              }
         }
         className="relative cursor-default"
       >
@@ -138,7 +153,8 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
           className="absolute pointer-events-none rounded-full z-0"
           style={{
             inset: "-20%",
-            background: "radial-gradient(circle at 50% 50%, rgba(20,184,166,0.22) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(20,184,166,0.22) 0%, transparent 70%)",
             filter: "blur(28px)",
           }}
           animate={reduced ? {} : { scale: [1, 1.2, 1] }}
@@ -151,7 +167,8 @@ function PhotoCard({ reduced }: { reduced: boolean }) {
           style={{
             width: "min(240px, 72vw)",
             height: "min(240px, 72vw)",
-            boxShadow: "0 0 0 3px rgba(20,184,166,0.7), 0 0 60px rgba(20,184,166,0.2)",
+            boxShadow:
+              "0 0 0 3px rgba(20,184,166,0.7), 0 0 60px rgba(20,184,166,0.2)",
             transform: reduced ? undefined : "translateZ(20px)",
           }}
         >
@@ -177,9 +194,7 @@ export default function HeroSection() {
   const prefersReduced = useReducedMotion() ?? false;
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center"
-    >
+    <section className="relative min-h-screen flex items-center justify-center">
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="absolute top-1/3  left-1/4  w-[500px] h-[500px] rounded-full bg-teal-500/8  blur-[160px] animate-pulse-slow" />
@@ -192,10 +207,8 @@ export default function HeroSection() {
           Desktop: 55 / 45 grid — text left, photo right
         */}
         <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 items-center">
-
           {/* ── TEXT COLUMN ── */}
           <div className="order-2 lg:order-1 flex flex-col gap-6">
-
             {/* [1] Status badge */}
             <motion.div
               initial={{ opacity: 0, y: prefersReduced ? 0 : -20 }}
@@ -212,21 +225,28 @@ export default function HeroSection() {
             <h1
               className="font-extrabold text-white leading-[1.05] mt-3 sm:mt-5"
               style={{
-                fontSize:      "clamp(2.8rem, 6vw, 5.5rem)",
+                fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
                 letterSpacing: "-0.03em",
               }}
               aria-label="Yash Parmar"
             >
               {WORDS.map((word, wi) => (
-                <span key={wi} className="inline-block overflow-hidden mr-[0.5em] last:mr-0" style={{ lineHeight: 1.08 }}>
+                <span
+                  key={wi}
+                  className="inline-block overflow-hidden mr-[0.5em] last:mr-0"
+                  style={{ lineHeight: 1.08 }}
+                >
                   <motion.span
                     className="inline-block"
-                    initial={{ y: prefersReduced ? 0 : "100%", opacity: prefersReduced ? 0 : 1 }}
+                    initial={{
+                      y: prefersReduced ? 0 : "100%",
+                      opacity: prefersReduced ? 0 : 1,
+                    }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
                       duration: 0.55,
-                      delay:    0.2 + wi * 0.1,
-                      ease:     [0.22, 1, 0.36, 1],
+                      delay: 0.2 + wi * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                   >
                     {word}
@@ -247,7 +267,7 @@ export default function HeroSection() {
                 className="font-semibold tracking-tight"
                 style={{
                   fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
-                  color:    "#14b8a6",
+                  color: "#14b8a6",
                 }}
               >
                 {displayed}
@@ -255,7 +275,11 @@ export default function HeroSection() {
                 <motion.span
                   className="inline-block ml-[2px] w-[2px] h-[0.85em] bg-teal-400 align-middle rounded-sm"
                   animate={{ opacity: [1, 1, 0, 0, 1] }}
-                  transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+                  transition={{
+                    duration: 1.2,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                 />
               </span>
             </motion.div>
@@ -266,10 +290,10 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.7 }}
               style={{
-                color:      "#94a3b8",
-                fontSize:   "clamp(0.95rem, 1.5vw, 1.1rem)",
-                maxWidth:    480,
-                lineHeight:  1.7,
+                color: "#94a3b8",
+                fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+                maxWidth: 480,
+                lineHeight: 1.7,
               }}
             >
               I build scalable web applications focused on clean architecture,
@@ -277,19 +301,6 @@ export default function HeroSection() {
             </motion.p>
 
             {/* [5] Italic tagline — blockquote style */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.82, duration: 0.45 }}
-              className="italic pl-3"
-              style={{
-                color:       "#64748b",
-                fontSize:    "0.9rem",
-                borderLeft:  "3px solid #14b8a6",
-              }}
-            >
-              Building at the intersection of performance and design.
-            </motion.p>
 
             {/* [6] Location */}
             <motion.div
@@ -297,9 +308,14 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.4 }}
               className="flex items-center gap-2"
-              style={{ color: "#64748b", fontSize: "0.875rem" }}
+              style={{ color: "#94a3b8", fontSize: "0.925rem" }}
             >
-              <MapPin size={16} color="#14b8a6" strokeWidth={2} className="shrink-0" />
+              <MapPin
+                size={16}
+                color="#14b8a6"
+                strokeWidth={2}
+                className="shrink-0"
+              />
               <span>Navsari, Gujarat</span>
             </motion.div>
 
@@ -308,7 +324,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: prefersReduced ? 0 : 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.45 }}
-              className="flex flex-wrap gap-3 mt-4"
+              className="flex flex-wrap gap-3"
             >
               {/* Primary: View Projects */}
               <PrimaryButton href="#projects" className="w-full sm:w-auto">
@@ -317,7 +333,11 @@ export default function HeroSection() {
               </PrimaryButton>
 
               {/* Secondary: Contact Me */}
-              <PrimaryButton href="#contact" variant="ghost" className="w-full sm:w-auto">
+              <PrimaryButton
+                href="#contact"
+                variant="ghost"
+                className="w-full sm:w-auto"
+              >
                 Contact Me
               </PrimaryButton>
             </motion.div>
@@ -380,20 +400,21 @@ export default function HeroSection() {
                       transition-all duration-200
                     "
                   >
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: dot }} />
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ backgroundColor: dot }}
+                    />
                     {name}
                   </motion.span>
                 ))}
               </div>
             </motion.div>
-
           </div>
 
           {/* ── PHOTO COLUMN ── */}
           <div className="order-1 lg:order-2 flex justify-center">
             <PhotoCard reduced={prefersReduced} />
           </div>
-
         </div>
       </div>
     </section>

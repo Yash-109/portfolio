@@ -1,15 +1,22 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   forwardRef,
   type ReactNode,
   type ButtonHTMLAttributes,
   type AnchorHTMLAttributes,
+  type Ref,
 } from "react";
 import Link from "next/link";
 import { motion, type MotionProps } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/design-system";
+
+const MotionLink = motion(Link);
+const MotionButton = motion.button;
+const MotionAnchor = motion.a;
 
 const buttonVariants = cva(
   "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-center font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:pointer-events-none disabled:opacity-50 overflow-hidden",
@@ -30,7 +37,7 @@ const buttonVariants = cva(
       variant: "solid",
       size: "md",
     },
-  }
+  },
 );
 
 type PrimaryButtonBaseProps = VariantProps<typeof buttonVariants> & {
@@ -39,8 +46,12 @@ type PrimaryButtonBaseProps = VariantProps<typeof buttonVariants> & {
 };
 
 type ButtonOrLinkProps =
-  | (ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined })
-  | (AnchorHTMLAttributes<HTMLAnchorElement> & { href: string });
+  | (Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onDrag"> & {
+      href?: undefined;
+    })
+  | (Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onDrag"> & {
+      href: string;
+    });
 
 type PrimaryButtonProps = PrimaryButtonBaseProps & ButtonOrLinkProps;
 
@@ -48,60 +59,67 @@ const PrimaryButton = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   PrimaryButtonProps
 >(({ variant, size, className, children, href, ...props }, ref) => {
-    const motionProps: MotionProps = {
-      whileHover: { scale: 1.03 },
-      whileTap: { scale: 0.97 },
-      transition: { type: "spring", stiffness: 400, damping: 17 },
-    };
+  const motionProps: MotionProps = {
+    whileHover: { scale: 1.03 },
+    whileTap: { scale: 0.97 },
+    transition: { type: "spring", stiffness: 400, damping: 17 },
+  };
 
-    const commonProps = {
-      className: cn(buttonVariants({ variant, size, className })),
-      ...motionProps,
-    };
+  const commonProps = {
+    className: cn(buttonVariants({ variant, size, className })),
+    ...motionProps,
+  };
 
-    const content = (
-      <>
-        {children}
-        {variant === "solid" && (
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -translate-x-full rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-500 group-hover:translate-x-full"
-          />
-        )}
-      </>
-    );
-
-    const Component = href ? "a" : "button";
-
-    // Internal links: use Next.js Link wrapped with framer-motion
-    if (Component === "a" && href?.toString().startsWith("/")) {
-      const MotionLink = motion(Link);
-
-      return (
-        <MotionLink
-          href={href}
-          ref={ref as any}
-          {...commonProps}
-          {...(props as any)}
-        >
-          {content}
-        </MotionLink>
-      );
-    }
-
-    const MotionComponent = motion(Component);
-
+  const content = (
+    <>
+      {children}
+      {variant === "solid" && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -translate-x-full rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-500 group-hover:translate-x-full"
+        />
+      )}
+    </>
+  );
+  // Internal links: use Next.js Link wrapped with framer-motion
+  if (href?.toString().startsWith("/")) {
     return (
-      <MotionComponent
-        ref={ref as any}
+      <MotionLink
+        href={href}
+        ref={ref as Ref<HTMLAnchorElement>}
         {...commonProps}
         {...(props as any)}
-        {...(Component === "a" ? { href } : {})}
       >
         {content}
-      </MotionComponent>
+      </MotionLink>
     );
-  });
+  }
+
+  // External links: animated anchor element
+  if (href) {
+    return (
+      <MotionAnchor
+        href={href}
+        ref={ref as Ref<HTMLAnchorElement>}
+        {...commonProps}
+        {...(props as any)}
+      >
+        {content}
+      </MotionAnchor>
+    );
+  }
+
+  // Buttons (no href)
+  return (
+    <MotionButton
+      ref={ref as Ref<HTMLButtonElement>}
+      {...commonProps}
+      {...(props as any)}
+    >
+      {content}
+    </MotionButton>
+  );
+});
 
 PrimaryButton.displayName = "PrimaryButton";
 

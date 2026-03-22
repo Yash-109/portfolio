@@ -20,10 +20,15 @@ import {
   SiGit,
   SiPostman,
   SiMongoose,
+  SiPandas,
+  SiScikitlearn,
+  SiVercel,
+  SiMysql,
 } from "react-icons/si";
 import { type IconType } from "react-icons";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { VscVscode } from "react-icons/vsc";
 
 interface Skill {
   name: string;
@@ -61,6 +66,10 @@ const skillGroups: SkillGroup[] = [
       { name: "Node.js", icon: SiNodedotjs, color: "#68A063" },
       { name: "Express.js", icon: SiExpress, color: "#ffffff" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { name: "Mongoose", icon: SiMongoose, color: "#880000" },
+      { name: "REST APIs", icon: SiExpress, color: "#94a3b8" },
+      { name: "JWT", icon: SiNodedotjs, color: "#68A063" },
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
     ],
   },
   {
@@ -71,6 +80,8 @@ const skillGroups: SkillGroup[] = [
       { name: "Python", icon: SiPython, color: "#F7C948" },
       { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
       { name: "OpenCV", icon: SiOpencv, color: "#5C3EE8" },
+      { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
+      { name: "Pandas", icon: SiPandas, color: "#150458" },
     ],
   },
   {
@@ -80,7 +91,8 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Git", icon: SiGit, color: "#F05032" },
       { name: "Postman", icon: SiPostman, color: "#FF6C37" },
-      { name: "Mongoose", icon: SiMongoose, color: "#880000" },
+      { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+      { name: "VS Code", icon: VscVscode, color: "#007ACC" },
     ],
   },
 ];

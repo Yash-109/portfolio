@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import type React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github } from "lucide-react";
 import { staggerContainer, staggerItem } from "@/animations/stagger";
@@ -19,6 +19,7 @@ interface Project {
   comingSoon?: boolean;
   accentFrom: string;
   accentTo: string;
+  bannerIllustration?: React.ReactNode;
 }
 
 const PROJECTS: Project[] = [
@@ -38,6 +39,42 @@ const PROJECTS: Project[] = [
     github: "https://github.com/Yash-109/Electrotrack",
     accentFrom: "from-teal-500",
     accentTo: "to-cyan-400",
+    bannerIllustration: (
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="w-full rounded-xl border border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden shadow-[0_0_30px_rgba(20,184,166,0.12)]">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/10 bg-white/5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+            <span className="ml-3 text-[10px] text-white/40 font-mono tracking-wide">
+              electrotrack.ts
+            </span>
+          </div>
+          <div className="px-4 py-3 font-mono text-[11px] leading-6 space-y-0.5">
+            <p>
+              <span className="text-blue-400">const</span>{" "}
+              <span className="text-teal-300">order</span>{" "}
+              <span className="text-white/40">=</span>{" "}
+              <span className="text-yellow-300">createOrder</span>
+              <span className="text-white/50">(cart)</span>
+            </p>
+            <p>
+              <span className="text-blue-400">await</span>{" "}
+              <span className="text-yellow-300">razorpay</span>
+              <span className="text-white/50">.capture(order)</span>
+            </p>
+            <p>
+              <span className="text-blue-400">await</span>{" "}
+              <span className="text-yellow-300">sendConfirmation</span>
+              <span className="text-white/50">(user)</span>
+            </p>
+            <p>
+              <span className="text-green-400/80">payment success</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: "tradejournal",
@@ -49,6 +86,43 @@ const PROJECTS: Project[] = [
     github: "https://github.com/Yash-109/Trading-Journal",
     accentFrom: "from-teal-500",
     accentTo: "to-cyan-400",
+    bannerIllustration: (
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="w-full rounded-xl border border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden shadow-[0_0_30px_rgba(20,184,166,0.12)]">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/10 bg-white/5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+            <span className="ml-3 text-[10px] text-white/40 font-mono tracking-wide">
+              journal.ts
+            </span>
+          </div>
+          <div className="px-4 py-3 font-mono text-[11px] leading-6 space-y-0.5">
+            <p>
+              <span className="text-blue-400">const</span>{" "}
+              <span className="text-teal-300">score</span>{" "}
+              <span className="text-white/40">=</span>{" "}
+              <span className="text-yellow-300">calcRiskScore</span>
+              <span className="text-white/50">(trade)</span>
+            </p>
+            <p>
+              <span className="text-blue-400">if</span>{" "}
+              <span className="text-white/50">(score</span>{" "}
+              <span className="text-red-400">&gt;</span>{" "}
+              <span className="text-white/50">threshold)</span>
+            </p>
+            <p>
+              <span className="text-white/50"> </span>
+              <span className="text-yellow-300">flagTrade</span>
+              <span className="text-white/50">(trade.id)</span>
+            </p>
+            <p>
+              <span className="text-green-400/80">rule engine applied</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: "ml-predictor",
@@ -61,6 +135,45 @@ const PROJECTS: Project[] = [
     comingSoon: true,
     accentFrom: "from-teal-500",
     accentTo: "to-cyan-400",
+    bannerIllustration: (
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="w-full rounded-xl border border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden shadow-[0_0_30px_rgba(20,184,166,0.12)]">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/10 bg-white/5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+            <span className="ml-3 text-[10px] text-white/40 font-mono tracking-wide">
+              predictor.py
+            </span>
+          </div>
+          <div className="px-4 py-3 font-mono text-[11px] leading-6 space-y-0.5">
+            <p>
+              <span className="text-blue-400">model</span>{" "}
+              <span className="text-white/40">=</span>{" "}
+              <span className="text-yellow-300">load</span>
+              <span className="text-white/50">(</span>
+              <span className="text-orange-300">&apos;risk_v2.pkl&apos;</span>
+              <span className="text-white/50">)</span>
+            </p>
+            <p>
+              <span className="text-blue-400">pred</span>{" "}
+              <span className="text-white/40">=</span>{" "}
+              <span className="text-teal-300">model</span>
+              <span className="text-white/50">.predict(X_test)</span>
+            </p>
+            <p>
+              <span className="text-blue-400">acc</span>{" "}
+              <span className="text-white/40">=</span>{" "}
+              <span className="text-yellow-300">accuracy_score</span>
+              <span className="text-white/50">(y, pred)</span>
+            </p>
+            <p>
+              <span className="text-green-400/80"># acc: 0.94</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 
@@ -95,7 +208,7 @@ function ProjectCard({
       <div className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/5 border border-white/10 backdrop-blur-sm hover:border-teal-500/50 hover:from-white/10 hover:to-white/5 hover:shadow-[0_0_32px_rgba(20,184,166,0.16)] transition-all duration-300">
         {/* Preview banner */}
         <div
-          className={`relative h-28 w-full bg-gradient-to-br ${project.accentFrom}/20 ${project.accentTo}/10 flex items-center justify-center overflow-hidden shrink-0`}
+          className={`relative h-44 w-full bg-gradient-to-br ${project.accentFrom}/20 ${project.accentTo}/10 flex items-center justify-center overflow-hidden shrink-0`}
         >
           <div
             className={`absolute inset-0 bg-gradient-to-br ${project.accentFrom}/10 ${project.accentTo}/5`}
@@ -108,15 +221,7 @@ function ProjectCard({
               backgroundSize: "20px 20px",
             }}
           />
-          {/* Project title in banner */}
-          <span
-            className={`relative z-10 text-2xl font-black bg-gradient-to-br ${project.accentFrom} ${project.accentTo} bg-clip-text text-transparent select-none tracking-tight px-6 text-center`}
-          >
-            {project.title}
-          </span>
-          <div
-            className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-current to-transparent opacity-40 bg-gradient-to-r ${project.accentFrom} ${project.accentTo}`}
-          />
+          {project.bannerIllustration}
         </div>
 
         {/* Content padding */}
@@ -153,6 +258,11 @@ function ProjectCard({
 
           {/* Main content */}
           <div className="relative z-10 flex flex-col flex-1 space-y-4">
+            <h3
+              className={`text-lg font-bold bg-gradient-to-br ${project.accentFrom} ${project.accentTo} bg-clip-text text-transparent`}
+            >
+              {project.title}
+            </h3>
             {/* Description */}
             <p className="text-sm text-white/60 leading-relaxed flex-1">
               {project.description}

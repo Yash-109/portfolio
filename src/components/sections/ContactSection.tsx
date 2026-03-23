@@ -26,6 +26,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
+            className="lg:border-r lg:border-white/10 lg:pr-10"
           >
             <ContactInfo />
           </motion.div>
@@ -36,6 +37,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.25, ease: "easeOut" }}
+            className="lg:pl-4"
           >
             <ContactFormNew />
           </motion.div>

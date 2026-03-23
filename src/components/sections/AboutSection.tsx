@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Download } from "lucide-react";
@@ -121,8 +121,9 @@ export default function AboutSection() {
             {MINI_STATS.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-gradient-to-b from-white/5 to-white/5 border border-white/10 rounded-2xl backdrop-blur-sm p-4 text-center shadow-[0_2px_12px_rgba(0,0,0,0.2)]"
+                className="relative overflow-hidden bg-gradient-to-b from-white/5 to-white/5 border border-white/10 rounded-2xl backdrop-blur-sm p-4 text-center shadow-[0_2px_12px_rgba(0,0,0,0.2)]"
               >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-teal-500/0 via-teal-400 to-teal-500/0 rounded-t-2xl" />
                 <p className="text-2xl font-bold text-teal-400">{stat.value}</p>
                 <p className="text-xs text-white/50 mt-1">{stat.label}</p>
               </div>

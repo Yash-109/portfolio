@@ -201,7 +201,7 @@ export default function HeroSection() {
         <div className="absolute bottom-1/4 right-1/4 w-[360px] h-[360px] rounded-full bg-blue-500/6  blur-[120px] animate-pulse-slow" />
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/*
           Mobile:  single col, photo first (order-1), text second (order-2)
           Desktop: 55 / 45 grid — text left, photo right

@@ -14,7 +14,7 @@ import { motion, type MotionProps } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/design-system";
 
-const MotionLink = motion(Link);
+const MotionLink = (motion as any).create?.(Link) || motion(Link);
 const MotionButton = motion.button;
 const MotionAnchor = motion.a;
 

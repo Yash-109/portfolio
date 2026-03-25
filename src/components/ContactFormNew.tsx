@@ -18,9 +18,13 @@ export default function ContactFormNew() {
   // Honeypot — must remain empty for legitimate submissions
   const [honeypot, setHoneypot] = useState("");
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string>
+  >({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   // Rate-limiting countdown
@@ -51,7 +55,8 @@ export default function ContactFormNew() {
     switch (name) {
       case "name":
         if (!value.trim()) return "Name is required";
-        if (value.trim().length < 2) return "Name must be at least 2 characters";
+        if (value.trim().length < 2)
+          return "Name must be at least 2 characters";
         if (value.length > 50) return "Name must be less than 50 characters";
         break;
       case "email":
@@ -61,20 +66,24 @@ export default function ContactFormNew() {
         break;
       case "subject":
         if (!value.trim()) return "Subject is required";
-        if (value.trim().length < 3) return "Subject must be at least 3 characters";
-        if (value.length > 100) return "Subject must be less than 100 characters";
+        if (value.trim().length < 3)
+          return "Subject must be at least 3 characters";
+        if (value.length > 100)
+          return "Subject must be less than 100 characters";
         break;
       case "message":
         if (!value.trim()) return "Message is required";
-        if (value.trim().length < 10) return "Message must be at least 10 characters";
-        if (value.length > 500) return "Message must be less than 500 characters";
+        if (value.trim().length < 10)
+          return "Message must be at least 10 characters";
+        if (value.length > 500)
+          return "Message must be less than 500 characters";
         break;
     }
     return "";
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -89,7 +98,7 @@ export default function ContactFormNew() {
   };
 
   const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
@@ -131,7 +140,7 @@ export default function ContactFormNew() {
     if (!serviceId || !templateAdmin || !templateUser || !publicKey) {
       setStatus("error");
       setErrorMessage(
-        "Email service not configured. Please contact me directly at yashparmar1027@gmail.com"
+        "Email service not configured. Please contact me directly at yashparmar1027@gmail.com",
       );
       return;
     }
@@ -156,7 +165,10 @@ export default function ContactFormNew() {
       startCooldown();
     } catch (error: unknown) {
       const message =
-        typeof error === "object" && error !== null && "text" in error && typeof (error as { text: unknown }).text === "string"
+        typeof error === "object" &&
+        error !== null &&
+        "text" in error &&
+        typeof (error as { text: unknown }).text === "string"
           ? (error as { text: string }).text
           : "Failed to send message. Please email me directly at yashparmar1027@gmail.com";
       setStatus("error");
@@ -201,9 +213,15 @@ export default function ContactFormNew() {
                   key={k}
                   className="absolute w-1 h-1 rounded-full pointer-events-none"
                   style={{
-                    background: ["#6366f1","#8b5cf6","#10b981","#f59e0b","#ec4899"][k % 5],
-                    left: `${10 + (k * 7.5) % 80}%`,
-                    top: `${15 + (k * 11) % 70}%`,
+                    background: [
+                      "#6366f1",
+                      "#8b5cf6",
+                      "#10b981",
+                      "#f59e0b",
+                      "#ec4899",
+                    ][k % 5],
+                    left: `${10 + ((k * 7.5) % 80)}%`,
+                    top: `${15 + ((k * 11) % 70)}%`,
                   }}
                   initial={{ opacity: 0, scale: 0, y: 0 }}
                   animate={{
@@ -212,7 +230,12 @@ export default function ContactFormNew() {
                     y: -(30 + (k % 3) * 20),
                     x: (k % 2 === 0 ? 1 : -1) * (10 + (k % 4) * 8),
                   }}
-                  transition={{ delay: 0.2 + k * 0.06, duration: 0.8, type: "tween", ease: "easeOut" }}
+                  transition={{
+                    delay: 0.2 + k * 0.06,
+                    duration: 0.8,
+                    type: "tween",
+                    ease: "easeOut",
+                  }}
                 />
               ))}
 
@@ -220,26 +243,46 @@ export default function ContactFormNew() {
               <motion.div
                 initial={{ scale: 0, rotate: -15 }}
                 animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 320, damping: 20, delay: 0.1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 320,
+                  damping: 20,
+                  delay: 0.1,
+                }}
                 className="relative w-24 h-24 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)]"
               >
                 {/* Pulse ring */}
                 <motion.span
                   className="absolute inset-0 rounded-full border-2 border-emerald-400/30"
                   animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
+                  transition={{
+                    duration: 1.4,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                  }}
                 />
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden="true" />
+                <CheckCircle2
+                  className="w-12 h-12 text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+                  aria-hidden="true"
+                />
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, type: "spring", stiffness: 260, damping: 22 }}
+                transition={{
+                  delay: 0.35,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 22,
+                }}
               >
-                <p className="text-2xl font-bold text-white mb-2 tracking-tight">Message Sent!</p>
+                <p className="text-2xl font-bold text-white mb-2 tracking-tight">
+                  Message Sent!
+                </p>
                 <p className="text-slate-400 text-sm max-w-xs leading-relaxed">
-                  Thanks for reaching out. I&apos;ll get back to you within 24–48 hours.
+                  Thanks for reaching out. I&apos;ll get back to you within
+                  24–48 hours.
                 </p>
               </motion.div>
 
@@ -251,7 +294,9 @@ export default function ContactFormNew() {
                 {cooldown > 0 ? (
                   <p className="text-xs text-slate-500">
                     You can send another message in{" "}
-                    <span className="tabular-nums text-slate-400 font-medium">{cooldown}s</span>
+                    <span className="tabular-nums text-slate-400 font-medium">
+                      {cooldown}s
+                    </span>
                   </p>
                 ) : (
                   <motion.button
@@ -277,12 +322,21 @@ export default function ContactFormNew() {
             >
               {/* Form Header */}
               <div className="mb-7">
-                <h3 className="text-2xl font-bold text-white mb-1.5 tracking-tight">Send a Message</h3>
-                <p className="text-sm text-slate-500">I&apos;ll get back to you within 24–48 hours</p>
+                <h3 className="text-2xl font-bold text-white mb-1.5 tracking-tight">
+                  Send a Message
+                </h3>
+                <p className="text-sm text-slate-500">
+                  I&apos;ll get back to you within 24–48 hours
+                </p>
               </div>
 
               {/* Visually hidden live region announces general errors to screen readers */}
-              <div role="status" aria-live="assertive" aria-atomic="true" className="sr-only">
+              <div
+                role="status"
+                aria-live="assertive"
+                aria-atomic="true"
+                className="sr-only"
+              >
                 {status === "error" && errorMessage ? errorMessage : ""}
               </div>
 
@@ -295,7 +349,12 @@ export default function ContactFormNew() {
                 {/* Honeypot — visually hidden, bots fill it, humans don't */}
                 <div
                   aria-hidden="true"
-                  style={{ position: "absolute", left: "-9999px", top: "-9999px", visibility: "hidden" }}
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    top: "-9999px",
+                    visibility: "hidden",
+                  }}
                 >
                   <label htmlFor="website">Website</label>
                   <input
@@ -405,15 +464,27 @@ export default function ContactFormNew() {
                   <span
                     aria-hidden
                     className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 pointer-events-none"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)",
+                    }}
                   />
                   {status === "loading" ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                      <Loader2
+                        className="w-4 h-4 animate-spin"
+                        aria-hidden="true"
+                      />
                       <span>Sending...</span>
                     </>
                   ) : cooldown > 0 ? (
-                    <span>Wait <span className="tabular-nums font-bold">{cooldown}s</span> before resending</span>
+                    <span>
+                      Wait{" "}
+                      <span className="tabular-nums font-bold">
+                        {cooldown}s
+                      </span>{" "}
+                      before resending
+                    </span>
                   ) : (
                     <>
                       <Send className="w-4 h-4" aria-hidden="true" />

@@ -207,19 +207,19 @@ export default function ContactFormNew() {
                   }}
                   initial={{ opacity: 0, scale: 0, y: 0 }}
                   animate={{
-                    opacity: [0, 1, 1, 0],
-                    scale: [0, 1.5, 1, 0],
-                    y: [0, -(30 + (k % 3) * 20)],
-                    x: [0, ((k % 2 === 0 ? 1 : -1) * (10 + (k % 4) * 8))],
+                    opacity: [0, 1],
+                    scale: [0, 1],
+                    y: -(30 + (k % 3) * 20),
+                    x: (k % 2 === 0 ? 1 : -1) * (10 + (k % 4) * 8),
                   }}
-                  transition={{ delay: 0.2 + k * 0.06, duration: 1.1, ease: "easeOut" }}
+                  transition={{ delay: 0.2 + k * 0.06, duration: 0.8, type: "tween", ease: "easeOut" }}
                 />
               ))}
 
               {/* Animated check circle */}
               <motion.div
                 initial={{ scale: 0, rotate: -15 }}
-                animate={{ scale: [0, 1.18, 1], rotate: [-15, 5, 0] }}
+                animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 320, damping: 20, delay: 0.1 }}
                 className="relative w-24 h-24 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)]"
               >
